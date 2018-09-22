@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- META TAGS  -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width= device-width, minimum-scale=1, user-scalable=yes, initial-scale=1, viewport-fit=cover">
+    <meta name="robots" content="index, follow, noodp">
+    <meta name="description" content="Check the contrast between different colour combinations against WCAG standards">
+
+    <!-- PAGE TITLE -->
+    <title>Colour Contrast Checker</title>
+
+    <!-- FACEBOOK & LINKEDIN -->
+    <meta property="og:url" content="">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Colour Contrast Checker">
+    <meta property="og:image" content="">
+    <meta property="og:description" content="Check the contrast between different colour combinations against WCAG standards">
+    <meta property="og:site_name" content="Colour Contrast Checker">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- TWITTER -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@AlexMClapperton">
+    <meta name="twitter:creator" content="@AlexMClapperton">
+    <meta name="twitter:url" content="">
+    <meta name="twitter:title" content="Colour Contrast Checker">
+    <meta name="twitter:description" content="Check the contrast between different colour combinations against WCAG standards">
+    <meta name="twitter:image" content="">
+
+    <!-- PRELOAD FILES -->
+    <link rel="preload" href="%PUBLIC_URL%/fonts/avenir-next-variable.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="%PUBLIC_URL%/fonts/nunito-vf-variable.woff2" as="font" type="font/woff2" crossorigin>
+
+    <!-- FAVICONS -->
+    <link rel="icon" type="image/png" href="%PUBLIC_URL%/favicons/favicon-48x48.png" sizes="48x48">
+    <link rel="icon" type="image/png" href="%PUBLIC_URL%/favicons/favicon-72x72.png" sizes="72x72">
+    <link rel="icon" type="image/png" href="%PUBLIC_URL%/favicons/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="%PUBLIC_URL%/favicons/favicon-144x144.png" sizes="144x144">
+    <link rel="icon" type="image/png" href="%PUBLIC_URL%/favicons/favicon-256x256.png" sizes="256x256">
+
+    <!-- Apple Icons -->
+    <meta name="apple-mobile-web-app-title" content="Match Finder">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/favicons/apple-touch-icon.png">
+    <link rel="mask-icon" href="%PUBLIC_URL%/favicons/safari-pinned-tab.svg" color="#222222">
+
+    <!-- MS Tile Icons -->
+    <meta name="application-name" content="Bayer Imitation Game">
+    <meta name="msapplication-TileColor" content="#fff">
+    <meta name="msapplication-square70x70logo" content="%PUBLIC_URL%/favicons/favicon-70x70.png">
+    <meta name="msapplication-TileImage" content="%PUBLIC_URL%/favicons/favicon-144x144.png">
+    <meta name="msapplication-square150x150logo" content="%PUBLIC_URL%/favicons/favicon-150x150.png">
+    <meta name="msapplication-wide310x150logo" content="%PUBLIC_URL%/favicons/favicon-310x150.png">
+    <meta name="msapplication-square310x310logo" content="%PUBLIC_URL%/favicons/favicon-310x310.png">
+    <meta name="msapplication-tooltip" content="Bayer Imitation Game">
+    <meta name="msapplication-config" content="<%= htmlWebpackPlugin.files.publicPath%>assets/browserconfig.xml">
+    <meta name="theme-color" content="#ffe66d">
+
+    <!-- MANIFEST -->
+    <link rel="manifest" href="%PUBLIC_URL%/site.webmanifest">
+
+    <style>
+      @font-face {
+        font-family: 'Avenir Next';
+        src: url('%PUBLIC_URL%/fonts/avenir-next-variable.woff2') format('woff2-variations'), url('%PUBLIC_URL%/fonts/avenir-next-variable.woff2') format('woff2');
+        font-display: swap;
+      }
+    
+      @font-face {
+        font-family: 'Nunito VF';
+        src: url('%PUBLIC_URL%/fonts/nunito-vf-variable.woff2') format('woff2-variations'), url('%PUBLIC_URL%/fonts/nunito-vf-variable.woff2') format('woff2');
+        font-display: swap;
+      }
+    </style>
+
+    <noscript>
+      <style>
+        *,
+        *:before,
+        *:after {
+          box-sizing: border-box;
+          font-weight: inherit;
+        }
+    
+        html,
+        body {
+          height: 100%;
+        }
+    
+        body {
+          background-color: #fff;
+          color: rgba(17, 17, 17, 0.85);
+          font-family: "Avenir Next", sans-serif;
+          font-variation-settings: "wght"400;
+          font-weight: normal;
+          line-height: 1.7;
+          text-rendering: optimizeLegibility;
+          -webkit-font-smoothing: antialiased;
+          margin: 0px;
+        }
+    
+        h1 {
+          font-family: 'Nunito VF', sans-serif;
+          font-size: calc(1.875em + 0.5vw);
+          font-variation-settings: "wght"400;
+          line-height: 1.3;
+          margin: 0px 0px 18px;
+        }
+    
+        p {
+          font-family: 'Avenir Next', sans-serif;
+          margin-top: 0;
+          margin-bottom: 12px;
+        }
+    
+        .wrapper {
+          position: relative;
+          z-index: 1;
+          min-height: 100%;
+          display: flex;
+          flex-direction: column;
+          -webkit-box-pack: center;
+          justify-content: center;
+          -webkit-box-align: center;
+          align-items: center;
+          animation: beshPa 0.5s ease-in-out 1s 1 normal forwards running;
+          overflow: hidden;
+        }
+    
+        .container {
+          position: relative;
+          width: 100%;
+          max-width: 1240px;
+          z-index: 2;
+          padding: 25px 15px;
+          margin: 0px auto;
+        }
+    
+        @media screen and (min-width: 23.4375em) {
+          .container {
+            padding-right: 5vw;
+            padding-left: 5vw;
+          }
+        }
+      </style>
+    </noscript>
+  </head>
+  <body>
+    <noscript>
+      <div class="wrapper">
+        <div class="container">
+          <h1>Oops! No JavaScript</h1>
+          <p>It looks like you have JavaScript turned off on your browser.</p>
+          <p>Please turn on JavaScript in order to use this app.</p>
+        </div>
+      </div>
+    </noscript>
+    <div id="main"></div>
+  </body>
+</html>
