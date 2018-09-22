@@ -9,7 +9,11 @@ const Block = styled.section`
     ${minWidth('992', () => css`
       width: 48%;
       margin-bottom: 0;
-  `)}
+    `)}
+  `}
+
+  ${props => props.color && css`
+    color: ${props.color};
   `}
 `;
 

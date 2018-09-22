@@ -4,6 +4,7 @@ import { minWidth } from '../../../styles/settings.breakpoints.styles';
 
 const Grade = styled.span`
   display: inline-block;
+  color: inherit;
   font-size: ${typography.heading.size.regular};
   font-weight: ${typography.weight.medium};
 

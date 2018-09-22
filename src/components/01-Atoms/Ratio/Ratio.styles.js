@@ -7,6 +7,7 @@ const Ratio = styled.span`
   display: inline-block;
   margin-right: ${spacing.margin}px;
   margin-left: ${spacing.margin}px;
+  color: inherit;
   font-size: ${typography.heading.size.medium};
   font-weight: ${typography.weight.medium};
 
