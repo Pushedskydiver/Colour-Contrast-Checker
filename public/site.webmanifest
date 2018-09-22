@@ -1,7 +1,7 @@
 {
   "name": "Colour Contrast Checker",
   "short_name": "CC Checker",
-  "description": "Find all premier league matches of the season for your favourite team",
+  "description": "Check the contrast between different colour combinations against WCAG standards",
   "start_url": "/?utm_source=homescreen",
   "display": "standalone",
   "orientation": "portrait",
