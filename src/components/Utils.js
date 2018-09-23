@@ -18,7 +18,20 @@ export const isRgb = rgb => {
   }
 };
 
+export const isHsl = hsl => {
+  try {
+    const color = chroma.hsl(hsl);
+    return !!color;
+  } catch (e) {
+    return false;
+  }
+};
+
 export const isDark = hsl => chroma.hsl(hsl).luminance() < 0.5;
+
+export const hexToHsl = hex => isHex(hex) ? chroma(hex).hsl() : null;
+
+export const hslToHex = hsl => isHsl(hsl) ? chroma.hsl(hsl).hex() : '#808080';
 
 export const hexToRgb = hex => isHex(hex) ? chroma(hex).rgb() : null;
 

@@ -5,20 +5,20 @@ import Ratio from '../components/01-Atoms/Ratio/Ratio.styles';
 import Grade from '../components/01-Atoms/Grade/Grade.styles';
 import Copy from '../components/01-Atoms/Copy/Copy.styles';
 import Label from '../components/01-Atoms/Label/Label.styles';
-import Input from '../components/01-Atoms/Input/Input.styles';
+import Input from '../components/01-Atoms/Input/Input';
 import Header from '../components/02-Molecules/Header/Header.styles';
 import Block from '../components/02-Molecules/Block/Block.styles';
 import Example from '../components/02-Molecules/Example/Example.styles';
 import Flex from '../components/03-Organisms/Flex/Flex.styles';
-import { isHex, isDark, hexToRgb, getContrast, getLevel } from '../components/Utils';
+import { isHsl, isDark, hexToHsl, hslToHex, hexToRgb, getContrast, getLevel } from '../components/Utils';
 
 class App extends Component {
   backgroundRef = createRef();
   foregroundRef = createRef();
 
   state = {
-    background: '#ffe66d',
-    foreground: '#222222',
+    background: [49.73, 1, 0.71],
+    foreground: [null, 0, 0.133],
     contrast: 12.72,
     level: 'AAA'
   };
@@ -32,43 +32,34 @@ class App extends Component {
     this.setState({ contrast, level });
   }
 
-  handleContrastCheck = (target, name) => {
-    const backgroundPath = this.state.background.split('#').join('');
-    const foregroundPath = this.state.foreground.split('#').join('');
+  handleContrastCheck = async (target, name) => {
+    await this.setState({ [name]: hexToHsl(target.value) });
+
+    const { background, foreground } = this.state;
+    const backgroundPath = hslToHex(background).split('#').join('');
+    const foregroundPath = hslToHex(foreground).split('#').join('');
 
     document.body.style.setProperty(`--${name}`, target.value);
     this.props.history.push(`/${backgroundPath}/${foregroundPath}`);
-    this.checkContrast(this.state.background, this.state.foreground);
-  }
-
-  handleHexChange = async({ target }) => {
-    const name = target.getAttribute('id');
-
-    await this.setState({ [name]: target.value });
-
-    if (target.value.length !== 7) {
-      return;
-    }
-
-    this.handleContrastCheck(target, name);
+    this.checkContrast(hslToHex(background), hslToHex(foreground));
   }
 
   updateView = (background, foreground) => {
-    this.checkContrast(background, foreground);
+    this.checkContrast(hslToHex(background), hslToHex(foreground));
     this.setState({ background, foreground });
   }
 
   async componentDidMount() {
     const path = this.props.location.pathname.split('/');
-    const background = `#${path[1]}`;
-    const foreground = `#${path[2]}`;
+    const background = hexToHsl(path[1]);
+    const foreground = hexToHsl(path[2]);
 
-    if (!isHex(background) || !isHex(foreground)) {
+    if (!isHsl(background) || !isHsl(foreground)) {
       return;
     }
     
-    document.body.style.setProperty('--background', background);
-    document.body.style.setProperty('--foreground', foreground);
+    document.body.style.setProperty('--background', hslToHex(background));
+    document.body.style.setProperty('--foreground', hslToHex(foreground));
     await this.updateView(background, foreground);
   }
 
@@ -94,8 +85,7 @@ class App extends Component {
 
   render() {
     const { background } = this.state;
-    const isBgDark = isDark(background) && background.length === 7;
-    const colorState = isBgDark ? '#fff' : '#222';
+    const colorState = isDark(background) ? '#fff' : '#222';
 
     return (
       <Container fullHeight>
@@ -125,24 +115,20 @@ class App extends Component {
           <Block inputs color={colorState}>
             <Label htmlFor="background">Background Hex Colour</Label>
             <Input
-              type="text"
-              maxLength="7"
-              id="background"
               value={this.state.background}
+              id="background"
               ref={this.backgroundRef}
-              onChange={this.handleHexChange}
+              handleContrastCheck={this.handleContrastCheck}
             />
           </Block>
 
           <Block inputs color={colorState}>
             <Label htmlFor="foreground">Foreground Hex Colour</Label>
             <Input
-              type="text"
-              maxLength="7"
-              id="foreground"
               value={this.state.foreground}
+              id="foreground"
               ref={this.foregroundRef}
-              onChange={this.handleHexChange}
+              handleContrastCheck={this.handleContrastCheck}
             />
           </Block>
         </Flex>
