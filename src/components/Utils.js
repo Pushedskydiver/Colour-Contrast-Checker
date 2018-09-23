@@ -49,7 +49,7 @@ export const updatePath = throttle((state) => {
   const foreground = hslToHex(state.foreground).replace(/^#/, '');
 
   history.push(`/${background}/${foreground}`);
-}, 200);
+}, 250);
 
 export const isDark = hsl => chroma.hsl(hsl).luminance() < 0.5;
 
