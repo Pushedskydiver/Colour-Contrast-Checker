@@ -1,7 +1,17 @@
 {
   "name": "colour-contrast-checker",
   "version": "0.1.0",
-  "private": true,
+  "description": "WCAG accessibility colour contrast checker",
+  "license": "ISC",
+  "author": {
+    "name": "Alex Clapperton",
+    "email": "hi@alexclapperton.co.uk",
+    "url": "https://alexclapperton.co.uk"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Pushedskydiver/Colour-Contrast-Checker"
+  },
   "dependencies": {
     "chroma-js": "^1.3.7",
     "lodash.round": "^4.0.4",

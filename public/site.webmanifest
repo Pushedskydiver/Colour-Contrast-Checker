@@ -5,8 +5,8 @@
   "start_url": "/?utm_source=homescreen",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#fff",
-  "theme_color": "#38003c",
+  "background_color": "#ffe66d",
+  "theme_color": "#222",
   "icons": [
     {
       "src": "favicons/favicon-48x48.png",
