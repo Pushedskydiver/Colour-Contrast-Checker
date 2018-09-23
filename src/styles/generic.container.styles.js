@@ -10,10 +10,6 @@ export const Container = styled.div`
   padding-right: 5vw;
   padding-left: 5vw;
 
-  ${props => props.fullHeight && css`
-    min-height: 100vh;
-  `}
-
   ${minWidth('992', () => css`
     max-width: 1400px;
     margin: 0 auto;

@@ -86,7 +86,7 @@ class App extends Component {
     const colorState = isDark(background) ? '#ffffff' : '#222222';
 
     return (
-      <Container fullHeight>
+      <Container>
         <Header>
           <Heading1 medium noMargin>Colour Contrast Checker</Heading1>
         </Header>
