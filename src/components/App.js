@@ -91,12 +91,6 @@ class App extends Component {
           <Heading1 medium noMargin>Colour Contrast Checker</Heading1>
         </Header>
 
-        <Block color={colorState}>
-          <Span grade noMargin>Aa</Span>
-          <Ratio>{this.state.contrast.toFixed(2)}</Ratio>
-          <Grade>{this.state.level}</Grade>
-        </Block>
-
         <Flex justify="between">
           <Example>
             <Heading2 regular>Large Text</Heading2>
@@ -108,6 +102,12 @@ class App extends Component {
             <Copy normal>That Biff, what a character. Always trying to get away with something. Been on top of Biff ever since high school. Although, if it wasn't for him- Yes, yes, I'm George, George McFly, and I'm your density. I mean, I'm your destiny. Right. Alright, take it up, go. Doc. Something wrong with the starter, so I hid it.</Copy>
           </Example>
         </Flex>
+
+        <Block color={colorState}>
+          <Span grade noMargin>Aa</Span>
+          <Ratio>{this.state.contrast.toFixed(2)}</Ratio>
+          <Grade>{this.state.level}</Grade>
+        </Block>
 
         <Flex justify="between" align="center">
           <Block inputs color={colorState}>

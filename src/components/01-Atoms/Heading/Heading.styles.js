@@ -48,12 +48,8 @@ export const Heading1 = styled.h1`
   `}
 
   ${props => props.grade && css`
-    font-size: ${typography.heading.size.big};
+    font-size: ${typography.heading.size.large};
     line-height: normal;
-
-    ${minWidth('768', () => css`
-      font-size: ${typography.heading.size.large};
-    `)}
 
     ${minWidth('992', () => css`
       font-size: ${typography.heading.size.xl};
