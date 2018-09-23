@@ -15,7 +15,7 @@ export default () => injectGlobal`
   *:after {
     box-sizing: border-box;
     color: inherit;
-    font-weight: inherit;
+    font-weight: normal;
   }
 
   html {

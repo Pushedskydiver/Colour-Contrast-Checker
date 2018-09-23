@@ -1,4 +1,4 @@
-import React, { Component, createRef } from 'react';
+import React, { Component } from 'react';
 import { Container } from '../styles/generic.container.styles';
 import { Heading1, Heading2, Span } from '../components/01-Atoms/Heading/Heading.styles';
 import Ratio from '../components/01-Atoms/Ratio/Ratio.styles';
@@ -9,13 +9,11 @@ import Input from '../components/01-Atoms/Input/Input';
 import Header from '../components/02-Molecules/Header/Header.styles';
 import Block from '../components/02-Molecules/Block/Block.styles';
 import Example from '../components/02-Molecules/Example/Example.styles';
+import Controls from '../components/02-Molecules/Controls/Controls';
 import Flex from '../components/03-Organisms/Flex/Flex.styles';
 import { isHsl, isDark, hexToHsl, hslToHex, hexToRgb, getContrast, getLevel, updatePath } from '../components/Utils';
 
 class App extends Component {
-  backgroundRef = createRef();
-  foregroundRef = createRef();
-
   state = {
     background: [49.73, 1, 0.71],
     foreground: [NaN, 0, 0.133],
@@ -91,18 +89,6 @@ class App extends Component {
           <Heading1 medium noMargin>Colour Contrast Checker</Heading1>
         </Header>
 
-        <Flex justify="between">
-          <Example>
-            <Heading2 regular>Large Text</Heading2>
-            <Copy large>That Biff, what a character. Always trying to get away with something. Been on top of Biff ever since high school. Although, if it wasn't for him- Yes, yes, I'm George, George McFly, and I'm your density. I mean, I'm your destiny. Right. Alright, take it up, go. Doc. Something wrong with the starter, so I hid it.</Copy>
-          </Example>
-
-          <Example>
-            <Heading2 regular>Normal Text</Heading2>
-            <Copy normal>That Biff, what a character. Always trying to get away with something. Been on top of Biff ever since high school. Although, if it wasn't for him- Yes, yes, I'm George, George McFly, and I'm your density. I mean, I'm your destiny. Right. Alright, take it up, go. Doc. Something wrong with the starter, so I hid it.</Copy>
-          </Example>
-        </Flex>
-
         <Block color={colorState}>
           <Span grade noMargin>Aa</Span>
           <Ratio>{this.state.contrast.toFixed(2)}</Ratio>
@@ -116,7 +102,14 @@ class App extends Component {
               value={this.state.background}
               id="background"
               name="background"
-              ref={this.backgroundRef}
+              color={colorState}
+              onChange={this.handleContrastCheck}
+            />
+
+            <Controls
+              value={this.state.background}
+              id="background"
+              name="background"
               color={colorState}
               onChange={this.handleContrastCheck}
             />
@@ -128,11 +121,30 @@ class App extends Component {
               value={this.state.foreground}
               id="foreground"
               name="foreground"
-              ref={this.foregroundRef}
+              color={colorState}
+              onChange={this.handleContrastCheck}
+            />
+
+            <Controls
+              value={this.state.foreground}
+              id="foreground"
+              name="foreground"
               color={colorState}
               onChange={this.handleContrastCheck}
             />
           </Block>
+        </Flex>
+
+        <Flex justify="between">
+          <Example>
+            <Heading2 regular>Large Text</Heading2>
+            <Copy large>That Biff, what a character. Always trying to get away with something. Been on top of Biff ever since high school. Although, if it wasn't for him- Yes, yes, I'm George, George McFly, and I'm your density. I mean, I'm your destiny. Right. Alright, take it up, go. Doc. Something wrong with the starter, so I hid it.</Copy>
+          </Example>
+
+          <Example>
+            <Heading2 regular>Normal Text</Heading2>
+            <Copy normal>That Biff, what a character. Always trying to get away with something. Been on top of Biff ever since high school. Although, if it wasn't for him- Yes, yes, I'm George, George McFly, and I'm your density. I mean, I'm your destiny. Right. Alright, take it up, go. Doc. Something wrong with the starter, so I hid it.</Copy>
+          </Example>
         </Flex>
       </Container>
     );
