@@ -6,7 +6,10 @@ import spacing from '../../../styles/settings.spacing.styles';
 export const Heading1 = styled.h1`
   font-family: ${typography.family.primary};
   font-variation-settings: "wght" ${typography.weight.bold};
-  line-height: ${typography.lineHeight.heading};
+  
+  ${props => !props.grade && css`
+    line-height: ${typography.lineHeight.heading};
+  `}
 
   ${props => !props.noMargin && css`
     margin: 0 0 ${(spacing.margin * 1.5)}px 0;
@@ -32,6 +35,10 @@ export const Heading1 = styled.h1`
     font-size: ${typography.heading.size.medium};
   `}
 
+  ${props => props.big && css`
+    font-size: ${typography.heading.size.big};
+  `}
+
   ${props => props.large && css`
     font-size: ${typography.heading.size.large};
   `}
@@ -41,9 +48,14 @@ export const Heading1 = styled.h1`
   `}
 
   ${props => props.grade && css`
-    font-size: ${typography.heading.size.large};
+    font-size: ${typography.heading.size.big};
+    line-height: normal;
 
     ${minWidth('768', () => css`
+      font-size: ${typography.heading.size.large};
+    `)}
+
+    ${minWidth('992', () => css`
       font-size: ${typography.heading.size.xl};
     `)}
   `}

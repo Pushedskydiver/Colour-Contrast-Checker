@@ -10,7 +10,7 @@ import Header from '../components/02-Molecules/Header/Header.styles';
 import Block from '../components/02-Molecules/Block/Block.styles';
 import Example from '../components/02-Molecules/Example/Example.styles';
 import Flex from '../components/03-Organisms/Flex/Flex.styles';
-import { isHsl, isDark, hexToHsl, hslToHex, hexToRgb, getContrast, getLevel } from '../components/Utils';
+import { isHsl, isDark, hexToHsl, hslToHex, hexToRgb, getContrast, getLevel, updatePath } from '../components/Utils';
 
 class App extends Component {
   backgroundRef = createRef();
@@ -18,7 +18,7 @@ class App extends Component {
 
   state = {
     background: [49.73, 1, 0.71],
-    foreground: [null, 0, 0.133],
+    foreground: [NaN, 0, 0.133],
     contrast: 12.72,
     level: 'AAA'
   };
@@ -32,16 +32,14 @@ class App extends Component {
     this.setState({ contrast, level });
   }
 
-  handleContrastCheck = async (target, name) => {
-    await this.setState({ [name]: hexToHsl(target.value) });
+  handleContrastCheck = async (value, name) => {
+    await this.setState({ [name]: value });
 
     const { background, foreground } = this.state;
-    const backgroundPath = hslToHex(background).split('#').join('');
-    const foregroundPath = hslToHex(foreground).split('#').join('');
 
-    document.body.style.setProperty(`--${name}`, target.value);
-    this.props.history.push(`/${backgroundPath}/${foregroundPath}`);
+    document.body.style.setProperty(`--${name}`, hslToHex(value));
     this.checkContrast(hslToHex(background), hslToHex(foreground));
+    updatePath(this.state);
   }
 
   updateView = (background, foreground) => {
@@ -85,7 +83,7 @@ class App extends Component {
 
   render() {
     const { background } = this.state;
-    const colorState = isDark(background) ? '#fff' : '#222';
+    const colorState = isDark(background) ? '#ffffff' : '#222222';
 
     return (
       <Container fullHeight>
@@ -94,7 +92,7 @@ class App extends Component {
         </Header>
 
         <Block color={colorState}>
-          <Span grade>Aa</Span>
+          <Span grade noMargin>Aa</Span>
           <Ratio>{this.state.contrast.toFixed(2)}</Ratio>
           <Grade>{this.state.level}</Grade>
         </Block>
@@ -117,8 +115,10 @@ class App extends Component {
             <Input
               value={this.state.background}
               id="background"
+              name="background"
               ref={this.backgroundRef}
-              handleContrastCheck={this.handleContrastCheck}
+              color={colorState}
+              onChange={this.handleContrastCheck}
             />
           </Block>
 
@@ -127,8 +127,10 @@ class App extends Component {
             <Input
               value={this.state.foreground}
               id="foreground"
+              name="foreground"
               ref={this.foregroundRef}
-              handleContrastCheck={this.handleContrastCheck}
+              color={colorState}
+              onChange={this.handleContrastCheck}
             />
           </Block>
         </Flex>

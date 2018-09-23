@@ -58,6 +58,8 @@ export default () => injectGlobal`
   }
 
   input {
+    margin: 0;
+    padding: 0;
     background-color: transparent;
     border: none;
     border-radius: 0;

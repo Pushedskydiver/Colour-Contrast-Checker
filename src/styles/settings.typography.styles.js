@@ -18,8 +18,9 @@ export const typography = {
       small: `calc(${calcFontSize(16)} + 0.5vw)`,
       regular: `calc(${calcFontSize(22)} + 0.5vw)`,
       medium: `calc(${calcFontSize(32)} + 0.5vw)`,
-      large: `calc(${calcFontSize(48)} + 0.5vw)`,
-      xl: `calc(${calcFontSize(112)} + 0.5vw)`
+      big: `calc(${calcFontSize(48)} + 0.5vw)`,
+      large: `calc(${calcFontSize(72)} + 0.5vw)`,
+      xl: `calc(${calcFontSize(124)} + 0.5vw)`
     }
   },
   body: {

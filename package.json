@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "chroma-js": "^1.3.7",
+    "lodash.round": "^4.0.4",
+    "lodash.throttle": "^4.1.1",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-router-dom": "^4.3.1",

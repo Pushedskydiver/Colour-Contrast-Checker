@@ -14,7 +14,7 @@ const Ratio = styled.span`
   ${minWidth('768', () => css`
     margin-right: ${spacing.margin * 2}px;
     margin-left: ${spacing.margin * 2}px;
-    font-size: ${typography.heading.size.large};
+    font-size: ${typography.heading.size.big};
   `)}
 `;
 
