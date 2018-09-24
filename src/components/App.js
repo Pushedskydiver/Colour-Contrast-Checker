@@ -5,6 +5,7 @@ import Ratio from '../components/01-Atoms/Ratio/Ratio.styles';
 import Grade from '../components/01-Atoms/Grade/Grade.styles';
 import Copy from '../components/01-Atoms/Copy/Copy.styles';
 import Label from '../components/01-Atoms/Label/Label.styles';
+import Divider from '../components/01-Atoms/Divider/Divider.styles';
 import Input from '../components/01-Atoms/Input/Input';
 import Header from '../components/02-Molecules/Header/Header.styles';
 import Block from '../components/02-Molecules/Block/Block.styles';
@@ -80,7 +81,7 @@ class App extends Component {
   }
 
   render() {
-    const { background } = this.state;
+    const { background, foreground, contrast, level } = this.state;
     const colorState = isDark(background) ? '#ffffff' : '#222222';
 
     return (
@@ -91,15 +92,15 @@ class App extends Component {
 
         <Block color={colorState}>
           <Span grade noMargin>Aa</Span>
-          <Ratio>{this.state.contrast.toFixed(2)}</Ratio>
-          <Grade>{this.state.level}</Grade>
+          <Ratio>{contrast.toFixed(2)}</Ratio>
+          <Grade>{level}</Grade>
         </Block>
 
         <Flex justify="between" align="center">
           <Block inputs color={colorState}>
             <Label htmlFor="background">Background Hex Colour</Label>
             <Input
-              value={this.state.background}
+              value={background}
               id="background"
               name="background"
               color={colorState}
@@ -107,7 +108,7 @@ class App extends Component {
             />
 
             <Controls
-              value={this.state.background}
+              value={background}
               id="background"
               name="background"
               color={colorState}
@@ -118,7 +119,7 @@ class App extends Component {
           <Block inputs color={colorState}>
             <Label htmlFor="foreground">Foreground Hex Colour</Label>
             <Input
-              value={this.state.foreground}
+              value={foreground}
               id="foreground"
               name="foreground"
               color={colorState}
@@ -126,7 +127,7 @@ class App extends Component {
             />
 
             <Controls
-              value={this.state.foreground}
+              value={foreground}
               id="foreground"
               name="foreground"
               color={colorState}
@@ -134,6 +135,10 @@ class App extends Component {
             />
           </Block>
         </Flex>
+
+        <Divider color={colorState} />
+
+        <Heading2 medium>Example Copy</Heading2>
 
         <Flex justify="between">
           <Example>

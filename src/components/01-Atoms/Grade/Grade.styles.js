@@ -6,7 +6,7 @@ const Grade = styled.span`
   display: inline-block;
   color: inherit;
   font-size: ${typography.heading.size.regular};
-  ont-variation-settings: "wght" ${typography.weight.medium};
+  font-variation-settings: "wght" ${typography.weight.medium};
 
   ${minWidth('768', () => css`
     font-size: ${typography.heading.size.medium};

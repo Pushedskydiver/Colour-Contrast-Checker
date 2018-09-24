@@ -9,7 +9,7 @@ const Ratio = styled.span`
   margin-left: ${spacing.margin}px;
   color: inherit;
   font-size: ${typography.heading.size.medium};
-  ont-variation-settings: "wght" ${typography.weight.medium};
+  font-variation-settings: "wght" ${typography.weight.medium};
 
   ${minWidth('768', () => css`
     margin-right: ${spacing.margin * 2}px;
