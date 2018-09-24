@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container } from '../styles/generic.container.styles';
-import { Heading1, Heading2, Span } from '../components/01-Atoms/Heading/Heading.styles';
+import { Heading1, Heading2, Heading3, Span } from '../components/01-Atoms/Heading/Heading.styles';
 import Ratio from '../components/01-Atoms/Ratio/Ratio.styles';
 import Grade from '../components/01-Atoms/Grade/Grade.styles';
 import Copy from '../components/01-Atoms/Copy/Copy.styles';
@@ -142,12 +142,12 @@ class App extends Component {
 
         <Flex justify="between">
           <Example>
-            <Heading2 regular>Large Text</Heading2>
+            <Heading3 regular>Large Text</Heading3>
             <Copy large>That Biff, what a character. Always trying to get away with something. Been on top of Biff ever since high school. Although, if it wasn't for him- Yes, yes, I'm George, George McFly, and I'm your density. I mean, I'm your destiny. Right. Alright, take it up, go. Doc. Something wrong with the starter, so I hid it.</Copy>
           </Example>
 
           <Example>
-            <Heading2 regular>Normal Text</Heading2>
+            <Heading3 regular>Normal Text</Heading3>
             <Copy normal>That Biff, what a character. Always trying to get away with something. Been on top of Biff ever since high school. Although, if it wasn't for him- Yes, yes, I'm George, George McFly, and I'm your density. I mean, I'm your destiny. Right. Alright, take it up, go. Doc. Something wrong with the starter, so I hid it.</Copy>
           </Example>
         </Flex>
