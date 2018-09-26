@@ -50,7 +50,7 @@ export const Heading1 = styled.h1`
   ${props => props.grade && css`
     font-size: ${typography.heading.size.large};
     font-variation-settings: "wght" ${typography.weight.thick};
-    line-height: normal;
+    line-height: 0.85;
 
     ${minWidth('992', () => css`
       font-size: ${typography.heading.size.xl};

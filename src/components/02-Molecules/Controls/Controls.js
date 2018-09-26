@@ -38,7 +38,7 @@ class Controls extends Component {
 
     return (
       <ControlStyles>
-        <Label bold htmlFor={`${this.props.id}Hue`}>Hue {Math.round(nanH(h))}°</Label>
+        <Label medium htmlFor={`${this.props.id}Hue`}>Hue {Math.round(nanH(h))}°</Label>
         <Range
           type="range"
           max="360"
@@ -48,7 +48,7 @@ class Controls extends Component {
           onChange={this.handleChange(0)}
         />
 
-        <Label bold htmlFor={`${this.props.id}Saturation`}>Saturation {round(s, 2)}</Label>
+        <Label medium htmlFor={`${this.props.id}Saturation`}>Saturation {round(s, 2)}</Label>
         <Range
           type="range"
           max="1"
@@ -59,7 +59,7 @@ class Controls extends Component {
           onChange={this.handleChange(1)}
         />
 
-        <Label bold htmlFor={`${this.props.id}Lightness`}>Lightness {round(l, 2)}</Label>
+        <Label medium htmlFor={`${this.props.id}Lightness`}>Lightness {round(l, 2)}</Label>
         <Range
           type="range"
           max="1"

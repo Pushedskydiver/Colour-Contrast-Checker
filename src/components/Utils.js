@@ -34,14 +34,14 @@ export const isHsl = hsl => {
 
 export const getLevel = contrast => {
   if (contrast > 7) {
-    return 'AAA';
+    return [{ AALarge: 'Pass' }, { AA: 'Pass' }, { AAALarge: 'Pass' }, { AAA: 'Pass' }];
   } else if (contrast > 4.5) {
-    return 'AA / AAA Large';
+    return [{ AALarge: 'Pass' }, { AA: 'Pass' }, { AAALarge: 'Pass' }, { AAA: 'Fail' }];
   } else if (contrast > 3) {
-    return 'AA Large';
+    return [{ AALarge: 'Pass' }, { AA: 'Fail' }, { AAALarge: 'Fail' }, { AAA: 'Fail' }];
   }
 
-  return 'Fail';
+  return [{ AALarge: 'Fail' }, { AA: 'Fail' }, { AAALarge: 'Fail' }, { AAA: 'Fail' }];
 };
 
 export const updatePath = throttle((state) => {
@@ -62,3 +62,5 @@ export const hexToRgb = hex => isHex(hex) ? chroma(hex).rgb() : null;
 export const rgbToHex = rgb => isRgb(rgb) ? chroma.rgb(rgb).hex() : '#808080';
 
 export const getContrast = (a, b) => chroma.contrast(rgbToHex(a), rgbToHex(b));
+
+export const getRandomColor = () => chroma.random().hsl();

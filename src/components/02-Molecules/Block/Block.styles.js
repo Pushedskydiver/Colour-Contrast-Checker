@@ -3,7 +3,14 @@ import { minWidth } from '../../../styles/settings.breakpoints.styles';
 import spacing from '../../../styles/settings.spacing.styles';
 
 const Block = styled.section`
-  margin-bottom: ${spacing.margin * 3}px;
+  margin-bottom: ${spacing.margin * 3.5}px;
+
+  ${props => props.flex && css`
+    ${minWidth('992', () => css`
+      display: flex;
+      align-items: flex-end;
+    `)}
+  `}
 
   ${props => props.inputs && css`
     ${minWidth('992', () => css`

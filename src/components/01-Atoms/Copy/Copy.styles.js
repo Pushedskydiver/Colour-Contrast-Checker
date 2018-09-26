@@ -1,8 +1,20 @@
 import styled, { css } from 'styled-components';
+import spacing from '../../../styles/settings.spacing.styles';
 
-const Copy = styled.span`
-  display: inline-block;
+const Copy = styled.textarea`
+  display: block;
+  width: 100%;
   max-width: 575px;
+  height: auto;
+  margin-top: ${spacing.margin * 1.5}px;
+  padding-top: 0;
+  padding-right: 0;
+  padding-bottom: ${spacing.padding / 2}px;
+  padding-left: 0;
+  border: none;
+  background-color: transparent;
+  line-height: inherit;
+  resize: none;
 
   ${props => props.normal && css`
     font-size: 1em;

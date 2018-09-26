@@ -6,8 +6,16 @@ const Label = styled.label`
   color: inherit;
   cursor: pointer;
 
-  ${props => props.bold && css`
+  ${props => props.medium && css`
     font-variation-settings: "wght" ${typography.weight.medium};
+  `}
+
+  ${props => props.bold && css`
+    font-variation-settings: "wght" ${typography.weight.bold};
+  `}
+
+  ${props => props.heading && css`
+    font-size: ${typography.heading.size.regular};
   `}
 `;
 
