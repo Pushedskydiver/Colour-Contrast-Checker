@@ -10,7 +10,8 @@ const Grade = styled.span`
   line-height: 1;
 
   ${maxWidth('640', () => css`
-    width: 85%;
+    width: 80%;
+    word-break: break-word;
   `)}
 
   ${minWidth('640', () => css`

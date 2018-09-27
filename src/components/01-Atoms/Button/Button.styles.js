@@ -8,10 +8,10 @@ const Button = styled.button`
   display: block;
   width: 100%;
   margin-bottom: ${spacing.margin * 1.5}px;
-  padding: ${spacing.padding * 1.5}px;
+  padding: ${(spacing.padding * 1.3).toFixed(0)}px ${spacing.padding * 1.5}px;
   border: none;
   border-radius: 4px;
-  font-size: ${typography.body.size.small};
+  font-size: ${typography.body.size.regular};
   font-variation-settings: "wght" ${typography.weight.medium};
   cursor: pointer;
   appearance: none;

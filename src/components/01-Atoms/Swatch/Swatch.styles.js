@@ -22,9 +22,12 @@ const Swatch = styled.button`
     margin-right: 0;
   }
 
-  ${minWidth('768', () => css`
+  ${minWidth('375', () => css`
     width: 50px;
     height: 50px;
+  `)}
+
+  ${minWidth('768', () => css`
     margin-right: ${spacing.margin}px;
 
     &:nth-of-type(2) {
