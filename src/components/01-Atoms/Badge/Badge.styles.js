@@ -25,7 +25,12 @@ const Badge = styled.span`
 
   ${props => props.color === '#ffffff' && css`
     background-color: ${props.color};
-   color: ${colors.dark}
+    color: ${colors.dark}
+  `}
+
+  ${props => props.color !== '#222222' && props.color !== '#ffffff' && css`
+    background-color: ${props.color};
+    color: var(--background);
   `}
 `;
 

@@ -93,7 +93,7 @@ class App extends Component {
 
   render() {
     const { background, foreground, contrast, level } = this.state;
-    const colorState = isDark(background) ? '#ffffff' : '#222222';
+    const colorState = contrast < 7 ? isDark(background) ? '#ffffff' : '#222222' : hslToHex(foreground);
 
     return (
       <Container>
