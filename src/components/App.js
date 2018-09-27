@@ -86,6 +86,8 @@ class App extends Component {
     document.body.style.setProperty('--background', background);
     document.body.style.setProperty('--foreground', foreground);
 
+    this.checkContrast(background, foreground);
+
     this.setState({
       background: hexToHsl(background),
       foreground: hexToHsl(foreground)
