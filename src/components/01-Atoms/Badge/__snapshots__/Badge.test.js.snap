@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render a dark badge when color props is #222222 1`] = `
+.c0 {
+  display: inline-block;
+  margin-bottom: 12px;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-variation-settings: "wght" 500;
+  line-height: normal;
+  background-color: #222222;
+  color: #ffffff;
+}
+
+@media screen and (min-width:62em) {
+  .c0 {
+    padding-top: 6px;
+    padding-bottom: 6px;
+    font-size: calc(1em + 0.5vw);
+  }
+}
+
+<span
+  className="c0"
+  color="#222222"
+>
+  AA
+</span>
+`;
+
+exports[`Should render a light badge when color props is #ffffff 1`] = `
+.c0 {
+  display: inline-block;
+  margin-bottom: 12px;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-variation-settings: "wght" 500;
+  line-height: normal;
+  background-color: #ffffff;
+  color: #222222;
+}
+
+@media screen and (min-width:62em) {
+  .c0 {
+    padding-top: 6px;
+    padding-bottom: 6px;
+    font-size: calc(1em + 0.5vw);
+  }
+}
+
+<span
+  className="c0"
+  color="#ffffff"
+>
+  AA
+</span>
+`;

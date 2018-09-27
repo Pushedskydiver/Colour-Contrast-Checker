@@ -23,9 +23,14 @@
     "styled-components": "^3.4.9"
   },
   "devDependencies": {
+    "enzyme": "^3.6.0",
+    "enzyme-adapter-react-16": "^1.5.0",
     "eslint": "^5.6.0",
     "eslint-config-synacor": "^3.0.3",
-    "eslint-plugin-react": "^7.11.1"
+    "eslint-plugin-react": "^7.11.1",
+    "jest-enzyme": "^6.1.2",
+    "jest-styled-components": "^6.2.1",
+    "react-test-renderer": "^16.5.2"
   },
   "eslintConfig": {
     "extends": "eslint-config-synacor"

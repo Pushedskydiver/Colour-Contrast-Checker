@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render text with large font size prop 1`] = `
+.c0 {
+  display: block;
+  width: 100%;
+  max-width: 575px;
+  height: auto;
+  margin-top: 18px;
+  padding-top: 0;
+  padding-right: 0;
+  padding-bottom: 6px;
+  padding-left: 0;
+  border: none;
+  background-color: transparent;
+  line-height: inherit;
+  resize: none;
+  font-size: 14pt;
+}
+
+<textarea
+  className="c0"
+>
+  Test Copy
+</textarea>
+`;
+
+exports[`Should render text with normal font size prop 1`] = `
+.c0 {
+  display: block;
+  width: 100%;
+  max-width: 575px;
+  height: auto;
+  margin-top: 18px;
+  padding-top: 0;
+  padding-right: 0;
+  padding-bottom: 6px;
+  padding-left: 0;
+  border: none;
+  background-color: transparent;
+  line-height: inherit;
+  resize: none;
+  font-size: 1em;
+}
+
+<textarea
+  className="c0"
+>
+  Test Copy
+</textarea>
+`;
