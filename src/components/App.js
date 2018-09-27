@@ -55,10 +55,14 @@ class App extends Component {
   }
 
   saveColors = () => {
-    const colorsStorage = JSON.parse(localStorage.getItem('colors'));
+    const colors = JSON.parse(localStorage.getItem('colors')) || [];
     const background = hslToHex(this.state.background);
     const foreground = hslToHex(this.state.foreground);
-    let colors = colorsStorage || [];
+    const sameColors = colors.filter(color => color.background === background && color.foreground === foreground).length > 0;
+
+    if (colors.length > 0 && sameColors) {
+      return;
+    }
 
     if (colors.length > 5) {
       colors.pop();
