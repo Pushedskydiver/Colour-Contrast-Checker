@@ -61,10 +61,10 @@ class App extends Component {
     let colors = colorsStorage || [];
 
     if (colors.length > 5) {
-      colors.shift();
+      colors.pop();
     }
 
-    colors.push({
+    colors.unshift({
       background,
       foreground
     });
@@ -87,7 +87,6 @@ class App extends Component {
     document.body.style.setProperty('--foreground', foreground);
 
     this.checkContrast(background, foreground);
-
     this.setState({
       background: hexToHsl(background),
       foreground: hexToHsl(foreground)
