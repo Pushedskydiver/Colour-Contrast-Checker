@@ -6,6 +6,8 @@ import Badge from '../components/01-Atoms/Badge/Badge.styles';
 import Grade from '../components/01-Atoms/Grade/Grade.styles';
 import Copy from '../components/01-Atoms/Copy/Copy.styles';
 import Label from '../components/01-Atoms/Label/Label.styles';
+import Button from '../components/01-Atoms/Button/Button.styles';
+import Swatch from '../components/01-Atoms/Swatch/Swatch.styles';
 import Divider from '../components/01-Atoms/Divider/Divider.styles';
 import Input from '../components/01-Atoms/Input/Input';
 import Header from '../components/02-Molecules/Header/Header.styles';
@@ -21,6 +23,7 @@ const defaultText = 'Click/Tap to edit me. That Biff, what a character. Always t
 
 class App extends Component {
   state = {
+    colors: JSON.parse(localStorage.getItem('colors')) || [],
     background: [49.73, 1, 0.71],
     foreground: [NaN, 0, 0.133],
     contrast: 12.72,
@@ -32,7 +35,7 @@ class App extends Component {
     const foregroundRgb = hexToRgb(foreground);
     const contrast = getContrast(backgroundRgb, foregroundRgb);
     const level = getLevel(contrast);
-    
+
     this.setState({ contrast, level });
   }
 
@@ -51,10 +54,42 @@ class App extends Component {
     this.setState({ background, foreground });
   }
 
+  saveColors = () => {
+    const colorsStorage = JSON.parse(localStorage.getItem('colors'));
+    const background = hslToHex(this.state.background);
+    const foreground = hslToHex(this.state.foreground);
+    let colors = colorsStorage || [];
+
+    if (colors.length > 5) {
+      colors.shift();
+    }
+
+    colors.push({
+      background,
+      foreground
+    });
+
+    localStorage.setItem('colors', JSON.stringify(colors));
+    this.setState({ colors });
+  }
+
   checkDataInput = ({ target }) => {
     if (target.value.length === 0) {
       return target.value = defaultText;
     }
+  }
+
+  appendColors = ({ target }) => {
+    const background = target.getAttribute('data-background');
+    const foreground = target.getAttribute('data-foreground');
+
+    document.body.style.setProperty('--background', background);
+    document.body.style.setProperty('--foreground', foreground);
+
+    this.setState({
+      background: hexToHsl(background),
+      foreground: hexToHsl(foreground)
+    });
   }
 
   async componentDidMount() {
@@ -65,13 +100,17 @@ class App extends Component {
     if (!isHsl(background) || !isHsl(foreground)) {
       return;
     }
-    
+
     document.body.style.setProperty('--background', hslToHex(background));
     document.body.style.setProperty('--foreground', hslToHex(foreground));
     await this.updateView(background, foreground);
   }
 
   shouldComponentUpdate(nextProps, nextState) {
+    if (this.state.colors !== nextState.colors) {
+      return true;
+    }
+
     if (this.state.background !== nextState.background) {
       return true;
     }
@@ -91,8 +130,20 @@ class App extends Component {
     return false;
   }
 
+  renderSwatch = ({ background, foreground } = {}, index) => (
+    <Swatch
+      key={index}
+      background={background}
+      foreground={foreground}
+      isDark={isDark(this.state.background)}
+      data-background={background}
+      data-foreground={foreground}
+      onClick={this.appendColors}
+    >A</Swatch>
+  )
+
   render() {
-    const { background, foreground, contrast, level } = this.state;
+    const { colors, background, foreground, contrast, level } = this.state;
     const colorState = contrast < 7 ? isDark(background) ? '#ffffff' : '#222222' : hslToHex(foreground);
 
     return (
@@ -163,6 +214,12 @@ class App extends Component {
               onChange={this.handleContrastCheck}
             />
           </Block>
+        </Flex>
+
+        <Flex align="center">
+          <Button type="button" color={colorState} onClick={this.saveColors}>Save Colours</Button>
+
+          {colors.map((color, index) => this.renderSwatch(color, index))}
         </Flex>
 
         <Divider color={colorState} />

@@ -5,7 +5,7 @@ const Divider = styled.hr`
   display: block;
   margin-top: 0;
   margin-bottom: ${spacing.margin * 4.5}px;
-  padding-top: ${spacing.padding * 3}px;
+  padding-top: ${spacing.padding * 1.5}px;
   background-color: transparent;
   border-top: none;
   border-right: none;
