@@ -135,7 +135,6 @@ class App extends Component {
       key={index}
       background={background}
       foreground={foreground}
-      isDark={isDark(this.state.background)}
       data-background={background}
       data-foreground={foreground}
       onClick={this.appendColors}

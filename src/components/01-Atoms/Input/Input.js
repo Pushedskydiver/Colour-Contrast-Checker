@@ -17,7 +17,11 @@ class Input extends Component {
       target.value = `#${target.value}`;
     }
 
-    if (target.value.length !== 7) {
+    if (target.value.length !== 7 && !isHex(target.value)) {
+      return;
+    }
+
+    if (!isHex(target.value)) {
       return;
     }
 

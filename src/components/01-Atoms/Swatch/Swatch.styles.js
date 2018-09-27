@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import { colors } from '../../../styles/settings.colors.styles';
 import { typography } from '../../../styles/settings.typography.styles';
 import { minWidth } from '../../../styles/settings.breakpoints.styles';
 import spacing from '../../../styles/settings.spacing.styles';
@@ -11,7 +10,7 @@ const Swatch = styled.button`
   width: 40px;
   height: 40px;
   margin-right: ${spacing.margin / 2}px;
-  border: radius: 0;
+  border-radius: 4px;
   font-size: ${typography.body.size.large};
   font-variation-settings: "wght" ${typography.weight.bold};
   line-height: 1;
@@ -38,15 +37,8 @@ const Swatch = styled.button`
   `}
 
   ${props => props.foreground && css`
+    border: 1px solid ${props.foreground};
     color: ${props.foreground};
-  `}
-
-  ${props => props.isDark === true && css`
-    border: 1px solid ${colors.light}
-  `}
-
-  ${props => props.isDark === false && css`
-    border: 1px solid ${colors.dark}
   `}
 `;
 
