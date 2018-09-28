@@ -10,14 +10,16 @@ class Input extends Component {
   handleHexChange = async ({ target }) => {
     const name = target.getAttribute('id');
     const valueHasHash = target.value.indexOf('#') !== -1;
+    const isHexCode = isHex(target.value);
+    const isnum = /^\d+$/.test(target.value);
 
     await this.setState({ hex: target.value });
 
-    if (target.value.length === 6 && !valueHasHash && isHex(target.value)) {
+    if (target.value.length === 6 && !valueHasHash && isHexCode && isnum) {
       target.value = `#${target.value}`;
     }
 
-    if (target.value.length !== 7 && !isHex(target.value)) {
+    if (target.value.length < 7 && !isHex(target.value)) {
       return;
     }
 
@@ -44,7 +46,7 @@ class Input extends Component {
     return (
       <InputStyles
         type="text"
-        maxLength="7"
+        minLength="7"
         value={this.state.hex}
         id={this.props.id}
         onChange={this.handleHexChange}
