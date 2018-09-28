@@ -1,0 +1,115 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render a dark swatch when background props is #222222 1`] = `
+.c0 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  margin-right: 6px;
+  border-radius: 4px;
+  font-size: calc(1.25em + 0.1vw);
+  font-variation-settings: "wght" 600;
+  line-height: 1;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #222222;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+}
+
+.c0:last-child {
+  margin-right: 0;
+}
+
+@media screen and (min-width:23.4375em) {
+  .c0 {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media screen and (min-width:48em) {
+  .c0 {
+    margin-right: 12px;
+  }
+
+  .c0:nth-of-type(2) {
+    margin-left: 36px;
+  }
+}
+
+<button
+  className="c0"
+/>
+`;
+
+exports[`Should render a light swatch when background props is #ffffff 1`] = `
+.c0 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  margin-right: 6px;
+  border-radius: 4px;
+  font-size: calc(1.25em + 0.1vw);
+  font-variation-settings: "wght" 600;
+  line-height: 1;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #ffffff;
+  border: 1px solid #222222;
+  color: #222222;
+}
+
+.c0:last-child {
+  margin-right: 0;
+}
+
+@media screen and (min-width:23.4375em) {
+  .c0 {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media screen and (min-width:48em) {
+  .c0 {
+    margin-right: 12px;
+  }
+
+  .c0:nth-of-type(2) {
+    margin-left: 36px;
+  }
+}
+
+<button
+  className="c0"
+/>
+`;
