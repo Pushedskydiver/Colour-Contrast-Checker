@@ -1,6 +1,6 @@
 {
   "name": "Colour Contrast Checker",
-  "short_name": "CC Checker",
+  "short_name": "Colour Contrast",
   "description": "Check the contrast between different colour combinations against WCAG standards",
   "start_url": "/?utm_source=homescreen",
   "display": "standalone",
