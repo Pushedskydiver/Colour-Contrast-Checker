@@ -17,6 +17,7 @@
     "lodash.round": "^4.0.4",
     "lodash.throttle": "^4.1.1",
     "react": "^16.5.2",
+    "react-copy-to-clipboard": "^5.0.1",
     "react-dom": "^16.5.2",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.5",

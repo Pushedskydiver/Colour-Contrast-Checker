@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import { minWidth } from '../../../styles/settings.breakpoints.styles';
 import spacing from '../../../styles/settings.spacing.styles';
 
-const Block = styled.section`
+export const BlockSection = styled.section`
   margin-bottom: ${spacing.margin * 3.5}px;
 
   ${props => props.flex && css`
@@ -24,4 +24,4 @@ const Block = styled.section`
   `}
 `;
 
-export default Block;
+export const BlockDiv = BlockSection.withComponent('div');

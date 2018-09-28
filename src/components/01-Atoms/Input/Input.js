@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 import InputStyles from './Input.styles';
 import { isHex, hexToHsl, hslToHex } from '../../Utils';
 
 class Input extends Component {
   state = {
-    hex: hslToHex(this.props.value)
+    hex: hslToHex(this.props.value),
+    copied: false
   };
 
   handleHexChange = async ({ target }) => {
@@ -13,7 +15,7 @@ class Input extends Component {
     const isHexCode = isHex(target.value);
     const isnum = /^\d+$/.test(target.value);
 
-    await this.setState({ hex: target.value });
+    await this.setState({ hex: target.value, copied: false });
 
     if (target.value.length === 6 && !valueHasHash && isHexCode && isnum) {
       target.value = `#${target.value}`;
@@ -34,6 +36,10 @@ class Input extends Component {
     this.setState({ hex: hslToHex(value) });
   }
 
+  setCopiedState = () => {
+    this.setState({ copied: true });
+  }
+
   componentDidUpdate(prevProps) {
     const { value } = this.props;
     
@@ -44,13 +50,19 @@ class Input extends Component {
 
   render() {
     return (
-      <InputStyles
-        type="text"
-        minLength="7"
-        value={this.state.hex}
-        id={this.props.id}
-        onChange={this.handleHexChange}
-      />
+      <div>
+        <InputStyles
+          type="text"
+          minLength="7"
+          value={this.state.hex}
+          id={this.props.id}
+          onChange={this.handleHexChange}
+        />
+
+        <CopyToClipboard text={this.state.hex} onCopy={this.setCopiedState}>
+          <button type="button">copy</button>
+        </CopyToClipboard>
+      </div>
     );
   }
 }

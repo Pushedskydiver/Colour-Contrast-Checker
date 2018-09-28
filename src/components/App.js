@@ -11,7 +11,7 @@ import Swatch from '../components/01-Atoms/Swatch/Swatch.styles';
 import Divider from '../components/01-Atoms/Divider/Divider.styles';
 import Input from '../components/01-Atoms/Input/Input';
 import Header from '../components/02-Molecules/Header/Header.styles';
-import Block from '../components/02-Molecules/Block/Block.styles';
+import { BlockSection, BlockDiv } from '../components/02-Molecules/Block/Block.styles';
 import Result from '../components/02-Molecules/Result/Result.styles';
 import Example from '../components/02-Molecules/Example/Example.styles';
 import Controls from '../components/02-Molecules/Controls/Controls';
@@ -156,7 +156,7 @@ class App extends Component {
           <Heading1 medium noMargin>Colour Contrast Checker</Heading1>
         </Header>
 
-        <Block flex color={colorState}>
+        <BlockSection flex color={colorState}>
           <Span grade noMargin>Aa</Span>
           <Ratio>{contrast.toFixed(2)}</Ratio>
 
@@ -178,10 +178,10 @@ class App extends Component {
               <Grade>AAA Normal</Grade>
             </Result>
           </Wcag>
-        </Block>
+        </BlockSection>
 
         <Flex justify="between" align="center">
-          <Block inputs color={colorState}>
+          <BlockDiv inputs color={colorState}>
             <Label htmlFor="background">Background Hex Colour</Label>
             <Input
               value={background}
@@ -198,9 +198,9 @@ class App extends Component {
               color={colorState}
               onChange={this.handleContrastCheck}
             />
-          </Block>
+          </BlockDiv>
 
-          <Block inputs color={colorState}>
+          <BlockDiv inputs color={colorState}>
             <Label htmlFor="foreground">Foreground Hex Colour</Label>
             <Input
               value={foreground}
@@ -217,7 +217,7 @@ class App extends Component {
               color={colorState}
               onChange={this.handleContrastCheck}
             />
-          </Block>
+          </BlockDiv>
         </Flex>
 
         <Flex align="center">
