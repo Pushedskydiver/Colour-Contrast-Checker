@@ -44,11 +44,11 @@ export const getLevel = contrast => {
   return [{ AALarge: 'Fail' }, { AA: 'Fail' }, { AAALarge: 'Fail' }, { AAA: 'Fail' }];
 };
 
-export const updatePath = throttle((state) => {
-  const background = hslToHex(state.background).replace(/^#/, '');
-  const foreground = hslToHex(state.foreground).replace(/^#/, '');
+export const updatePath = throttle((background, foreground) => {
+  const backgroundHex = hslToHex(background).replace(/^#/, '');
+  const foregroundHex = hslToHex(foreground).replace(/^#/, '');
 
-  history.push(`/${background}/${foreground}`);
+  history.push(`/${backgroundHex}/${foregroundHex}`);
 }, 250);
 
 export const isDark = hsl => chroma.hsl(hsl).luminance() < 0.5;

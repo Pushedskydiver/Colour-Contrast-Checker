@@ -4,17 +4,14 @@ import { typography } from '../../../styles/settings.typography.styles';
 import { minWidth } from '../../../styles/settings.breakpoints.styles';
 import spacing from '../../../styles/settings.spacing.styles';
 
-const Button = styled.button`
+export const Button = styled.button`
   display: block;
   width: 100%;
   margin-bottom: ${spacing.margin * 1.5}px;
   padding: ${(spacing.padding * 1.3).toFixed(0)}px ${spacing.padding * 1.5}px;
-  border: none;
   border-radius: 4px;
   font-size: ${typography.body.size.regular};
   font-variation-settings: "wght" ${typography.weight.medium};
-  cursor: pointer;
-  appearance: none;
 
   ${minWidth('768', () => css`
     display: inline-block;
@@ -39,4 +36,17 @@ const Button = styled.button`
   `}
 `;
 
-export default Button;
+export const CopyButton = styled.button`
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 25px;
+  height: 25px;
+  border: none;
+  transform : translateY(-50%);
+
+  ${minWidth('640', () => css`
+    width: 30px;
+    height: 30px;
+  `)}
+`;

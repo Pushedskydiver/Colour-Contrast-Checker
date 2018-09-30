@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import InputStyles from './Input.styles';
+import { Clipboard } from '../Icon/Icon';
+import { CopyButton } from '../Button/Button.styles';
+import { BlockDiv } from '../../02-Molecules/Block/Block.styles';
 import { isHex, hexToHsl, hslToHex } from '../../Utils';
 
 class Input extends Component {
@@ -32,7 +35,7 @@ class Input extends Component {
     this.props.onChange(hexToHsl(target.value), name);
   }
 
-  updateState = (value) => {
+  updateState = value => {
     this.setState({ hex: hslToHex(value) });
   }
 
@@ -50,7 +53,7 @@ class Input extends Component {
 
   render() {
     return (
-      <div>
+      <BlockDiv noMargin>
         <InputStyles
           type="text"
           minLength="7"
@@ -60,9 +63,11 @@ class Input extends Component {
         />
 
         <CopyToClipboard text={this.state.hex} onCopy={this.setCopiedState}>
-          <button type="button">copy</button>
+          <CopyButton type="button" aria-label={`Copy ${this.state.hex} to clibboard`}>
+            <Clipboard fill={this.props.color} />
+          </CopyButton>
         </CopyToClipboard>
-      </div>
+      </BlockDiv>
     );
   }
 }

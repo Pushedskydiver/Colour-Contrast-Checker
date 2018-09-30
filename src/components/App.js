@@ -6,7 +6,7 @@ import Badge from '../components/01-Atoms/Badge/Badge.styles';
 import Grade from '../components/01-Atoms/Grade/Grade.styles';
 import Copy from '../components/01-Atoms/Copy/Copy.styles';
 import Label from '../components/01-Atoms/Label/Label.styles';
-import Button from '../components/01-Atoms/Button/Button.styles';
+import { Button } from '../components/01-Atoms/Button/Button.styles';
 import Swatch from '../components/01-Atoms/Swatch/Swatch.styles';
 import Divider from '../components/01-Atoms/Divider/Divider.styles';
 import Input from '../components/01-Atoms/Input/Input';
@@ -41,12 +41,11 @@ class App extends Component {
 
   handleContrastCheck = async (value, name) => {
     await this.setState({ [name]: value });
-
     const { background, foreground } = this.state;
 
     document.body.style.setProperty(`--${name}`, hslToHex(value));
     this.checkContrast(hslToHex(background), hslToHex(foreground));
-    updatePath(this.state);
+    updatePath(background, foreground);
   }
 
   updateView = (background, foreground) => {
@@ -90,6 +89,7 @@ class App extends Component {
     document.body.style.setProperty('--background', background);
     document.body.style.setProperty('--foreground', foreground);
 
+    updatePath(hexToHsl(background), hexToHsl(foreground));
     this.checkContrast(background, foreground);
     this.setState({
       background: hexToHsl(background),
@@ -148,7 +148,7 @@ class App extends Component {
 
   render() {
     const { colors, background, foreground, contrast, level } = this.state;
-    const colorState = contrast < 7 ? isDark(background) ? '#ffffff' : '#222222' : hslToHex(foreground);
+    const colorState = contrast < 3 ? isDark(background) ? '#ffffff' : '#222222' : hslToHex(foreground);
 
     return (
       <Container>

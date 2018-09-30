@@ -12,7 +12,7 @@ const Badge = styled.span`
   font-variation-settings: "wght" ${typography.weight.medium};
   line-height: normal;
 
-  ${minWidth('992', () => css`
+  ${minWidth('768', () => css`
     padding-top: ${spacing.padding / 2}px;
     padding-bottom: ${spacing.padding / 2}px;
     font-size: ${typography.heading.size.small};

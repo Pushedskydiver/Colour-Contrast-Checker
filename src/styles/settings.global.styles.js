@@ -57,6 +57,15 @@ export default () => injectGlobal`
     margin-bottom: ${spacing.margin}px;
   }
 
+  button {
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    appearance: none;
+  }
+
   input {
     margin: 0;
     padding: 0;

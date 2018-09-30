@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import { typography } from '../../../styles/settings.typography.styles';
 
 const Label = styled.label`
-  display: block;
+  display: inline-block;
   color: inherit;
   cursor: pointer;
 
