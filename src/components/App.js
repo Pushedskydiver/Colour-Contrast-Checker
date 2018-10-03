@@ -182,7 +182,7 @@ class App extends Component {
 
         <Flex justify="between" align="center">
           <BlockDiv inputs color={colorState}>
-            <Label htmlFor="background">Background Hex Colour</Label>
+            <Label htmlFor="background">Background Colour</Label>
             <Input
               value={background}
               id="background"
@@ -201,7 +201,7 @@ class App extends Component {
           </BlockDiv>
 
           <BlockDiv inputs color={colorState}>
-            <Label htmlFor="foreground">Foreground Hex Colour</Label>
+            <Label htmlFor="foreground">Foreground Colour</Label>
             <Input
               value={foreground}
               id="foreground"

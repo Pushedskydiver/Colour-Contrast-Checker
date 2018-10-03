@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { rgba } from '../../../styles/settings.colors.styles';
+import { minWidth } from '../../../styles/settings.breakpoints.styles';
 import spacing from '../../../styles/settings.spacing.styles';
 
 const Range = styled.input`
@@ -11,12 +12,19 @@ const Range = styled.input`
   border-radius: 20px;
 
   &::-webkit-slider-thumb {
-    width: 25px;
-    height: 25px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     cursor: pointer;
     appearance: none;
   }
+
+  ${minWidth('992', () => css`
+    &::-webkit-slider-thumb {
+      width: 25px;
+      height: 25px;
+    }
+  `)}
 
   ${props => props.color && css`
     background-color: ${rgba(props.color, 0.3)};
