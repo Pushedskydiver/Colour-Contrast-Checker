@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Container } from '../styles/generic.container.styles';
+import SkipLink from '../components/01-Atoms/SkipLink/SkipLink.styles';
 import { Heading1, Heading2, Span } from '../components/01-Atoms/Heading/Heading.styles';
 import Ratio from '../components/01-Atoms/Ratio/Ratio.styles';
 import Badge from '../components/01-Atoms/Badge/Badge.styles';
@@ -49,7 +50,13 @@ class App extends Component {
   }
 
   updateView = (background, foreground) => {
-    this.checkContrast(hslToHex(background), hslToHex(foreground));
+    const backgroundHex = hslToHex(background);
+    const foregroundHex = hslToHex(foreground);
+
+    document.body.style.setProperty('--background', backgroundHex);
+    document.body.style.setProperty('--foreground', foregroundHex);
+
+    this.checkContrast(backgroundHex, foregroundHex);
     this.setState({ background, foreground });
   }
 
@@ -82,19 +89,12 @@ class App extends Component {
     }
   }
 
-  appendColors = ({ target }) => {
-    const background = target.getAttribute('data-background');
-    const foreground = target.getAttribute('data-foreground');
+  appendColors = async ({ target }) => {
+    const background = hexToHsl(target.getAttribute('data-background'));
+    const foreground = hexToHsl(target.getAttribute('data-foreground'));
 
-    document.body.style.setProperty('--background', background);
-    document.body.style.setProperty('--foreground', foreground);
-
-    updatePath(hexToHsl(background), hexToHsl(foreground));
-    this.checkContrast(background, foreground);
-    this.setState({
-      background: hexToHsl(background),
-      foreground: hexToHsl(foreground)
-    });
+    await this.updateView(background, foreground);
+    updatePath(background, foreground);
   }
 
   async componentDidMount() {
@@ -106,8 +106,6 @@ class App extends Component {
       return;
     }
 
-    document.body.style.setProperty('--background', hslToHex(background));
-    document.body.style.setProperty('--foreground', hslToHex(foreground));
     await this.updateView(background, foreground);
   }
 
@@ -154,6 +152,11 @@ class App extends Component {
       <Container>
         <Header>
           <Heading1 medium noMargin>Colour Contrast Checker</Heading1>
+
+          <SkipLink href="#background" color={colorState}>Skip to background colour input</SkipLink>
+          <SkipLink href="#foreground" color={colorState}>Skip to foreground colour input</SkipLink>
+          <SkipLink href="#largeCopy" color={colorState}>Skip to large text example copy</SkipLink>
+          <SkipLink href="#normalCopy" color={colorState}>Skip to normal text example copy</SkipLink>
         </Header>
 
         <BlockSection flex color={colorState}>
