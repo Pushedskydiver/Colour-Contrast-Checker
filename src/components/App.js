@@ -263,11 +263,19 @@ class App extends Component {
         </Flex>
 
         <Footer>
-          <Link href="https://github.com/Pushedskydiver/Colour-Contrast-Checker" iconLink>
+          <Link
+            href="https://github.com/Pushedskydiver/Colour-Contrast-Checker"
+            title="Go to GitHub project"
+            iconLink
+          >
             <GitHub fill={colorState} />
           </Link>
 
-          <Link href="https://twitter.com/alexmclapperton" iconLink>
+          <Link
+            href="https://twitter.com/alexmclapperton"
+            title="Go to Alex's Twitter profile"
+            iconLink
+          >
             <Twitter fill={colorState} />
           </Link>
         </Footer>
