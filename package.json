@@ -1,8 +1,8 @@
 {
   "name": "colour-contrast-checker",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "WCAG accessibility colour contrast checker",
-  "license": "ISC",
+  "license": "MIT",
   "author": {
     "name": "Alex Clapperton",
     "email": "hi@alexclapperton.co.uk",
