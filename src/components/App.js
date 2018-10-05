@@ -11,11 +11,14 @@ import { Button } from '../components/01-Atoms/Button/Button.styles';
 import Swatch from '../components/01-Atoms/Swatch/Swatch.styles';
 import Divider from '../components/01-Atoms/Divider/Divider.styles';
 import Input from '../components/01-Atoms/Input/Input';
+import Link from '../components/01-Atoms/Link/Link.styles';
+import { GitHub, Twitter } from '../components/01-Atoms/Icon/Icon';
 import Header from '../components/02-Molecules/Header/Header.styles';
 import { BlockSection, BlockDiv } from '../components/02-Molecules/Block/Block.styles';
 import Result from '../components/02-Molecules/Result/Result.styles';
 import Example from '../components/02-Molecules/Example/Example.styles';
 import Controls from '../components/02-Molecules/Controls/Controls';
+import Footer from '../components/02-Molecules/Footer/Footer.styles';
 import Flex from '../components/03-Organisms/Flex/Flex.styles';
 import Wcag from '../components/03-Organisms/Wcag/Wcag.styles';
 import { isHsl, isDark, hexToHsl, hslToHex, hexToRgb, getContrast, getLevel, updatePath } from '../components/Utils';
@@ -258,6 +261,16 @@ class App extends Component {
             />
           </Example>
         </Flex>
+
+        <Footer>
+          <Link href="https://github.com/Pushedskydiver/Colour-Contrast-Checker" iconLink>
+            <GitHub fill={colorState} />
+          </Link>
+
+          <Link href="https://twitter.com/alexmclapperton" iconLink>
+            <Twitter fill={colorState} />
+          </Link>
+        </Footer>
       </Container>
     );
   }
