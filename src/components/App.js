@@ -86,6 +86,14 @@ class App extends Component {
     this.setState({ colors });
   }
 
+  reverseColors = () => {
+    const background = this.state.foreground;
+    const foreground = this.state.background;
+
+    this.updateView(background, foreground);
+    updatePath(background, foreground);
+  }
+
   checkDataInput = ({ target }) => {
     if (target.value.length === 0) {
       return target.value = defaultText;
@@ -230,6 +238,7 @@ class App extends Component {
         </Flex>
 
         <Flex align="center">
+          <Button type="button" color={colorState} onClick={this.reverseColors}>Reverse Colours</Button>
           <Button type="button" color={colorState} onClick={this.saveColors}>Save Colours</Button>
 
           {colors.map((color, index) => this.renderSwatch(color, index))}

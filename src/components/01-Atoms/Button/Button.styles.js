@@ -18,6 +18,16 @@ export const Button = styled.button`
     width: auto;
     margin-bottom: 0;
     vertical-align: middle;
+
+    &:first-child {
+      margin-right: ${spacing.margin}px;
+    }
+  `)}
+
+  ${minWidth('992', () => css`
+    &:first-child {
+      margin-right: ${spacing.margin * 2}px;
+    }
   `)}
 
   ${props => props.color === '#222222' && css`

@@ -28,10 +28,16 @@ const Swatch = styled.button`
   `)}
 
   ${minWidth('768', () => css`
+    &:nth-of-type(3) {
+      margin-left: ${spacing.margin}px;
+    }
+  `)}
+
+  ${minWidth('992', () => css`
     margin-right: ${spacing.margin}px;
 
-    &:nth-of-type(2) {
-      margin-left: ${spacing.margin * 3}px;
+    &:nth-of-type(3) {
+      margin-left: ${spacing.margin * 2}px;
     }
   `)}
 
