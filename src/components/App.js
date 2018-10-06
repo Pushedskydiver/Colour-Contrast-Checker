@@ -153,7 +153,7 @@ class App extends Component {
       data-foreground={foreground}
       onClick={this.appendColors}
       aria-label={`Swatch - Background = ${background}. Foreground = ${foreground}. Append these colour values`}
-    >A</Swatch>
+    >Aa</Swatch>
   )
 
   render() {
