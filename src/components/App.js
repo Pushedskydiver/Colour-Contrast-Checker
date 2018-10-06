@@ -144,6 +144,7 @@ class App extends Component {
       data-background={background}
       data-foreground={foreground}
       onClick={this.appendColors}
+      aria-label={`Swatch - Background = ${background}. Foreground = ${foreground}. Append these colour values`}
     >A</Swatch>
   )
 
@@ -156,6 +157,8 @@ class App extends Component {
         <Header>
           <Heading1 medium noMargin>Colour Contrast Checker</Heading1>
 
+          <SkipLink href="#ratio" color={colorState}>Skip to colour contrast ratio</SkipLink>
+          <SkipLink href="#grades" color={colorState}>Skip to colour contrast grades</SkipLink>
           <SkipLink href="#background" color={colorState}>Skip to background colour input</SkipLink>
           <SkipLink href="#foreground" color={colorState}>Skip to foreground colour input</SkipLink>
           <SkipLink href="#largeCopy" color={colorState}>Skip to large text example copy</SkipLink>
@@ -164,9 +167,9 @@ class App extends Component {
 
         <BlockSection flex color={colorState}>
           <Span grade noMargin>Aa</Span>
-          <Ratio>{contrast.toFixed(2)}</Ratio>
+          <Ratio id="ratio">{contrast.toFixed(2)}</Ratio>
 
-          <Wcag>
+          <Wcag id="grades">
             <Result>
               <Badge color={colorState}>{level[0].AALarge}</Badge>
               <Grade>AA Large</Grade>
