@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import { minWidth } from '../../../styles/settings.breakpoints.styles';
 import spacing from '../../../styles/settings.spacing.styles';
 
-const Footer = styled.footer`
+const FooterStyles = styled.footer`
   position: relative;
   padding-top: ${spacing.padding * 2.5}px;
   padding-bottom: ${spacing.padding * 2.5}px;
@@ -13,4 +13,4 @@ const Footer = styled.footer`
   `)}
 `;
 
-export default Footer;
+export default FooterStyles;

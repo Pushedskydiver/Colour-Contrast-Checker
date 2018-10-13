@@ -1,26 +1,20 @@
 import React, { Component } from 'react';
 import { Container } from '../styles/generic.container.styles';
-import SkipLink from '../components/01-Atoms/SkipLink/SkipLink.styles';
-import { Heading1, Heading2, Span } from '../components/01-Atoms/Heading/Heading.styles';
+import { Heading2, Span } from '../components/01-Atoms/Heading/Heading.styles';
 import Ratio from '../components/01-Atoms/Ratio/Ratio.styles';
-import Badge from '../components/01-Atoms/Badge/Badge.styles';
-import Grade from '../components/01-Atoms/Grade/Grade.styles';
 import Copy from '../components/01-Atoms/Copy/Copy.styles';
 import Label from '../components/01-Atoms/Label/Label.styles';
 import { Button } from '../components/01-Atoms/Button/Button.styles';
 import Swatch from '../components/01-Atoms/Swatch/Swatch.styles';
 import Divider from '../components/01-Atoms/Divider/Divider.styles';
 import Input from '../components/01-Atoms/Input/Input';
-import Link from '../components/01-Atoms/Link/Link.styles';
-import { GitHub, Twitter } from '../components/01-Atoms/Icon/Icon';
-import Header from '../components/02-Molecules/Header/Header.styles';
+import Header from '../components/02-Molecules/Header/Header';
 import { BlockSection, BlockDiv } from '../components/02-Molecules/Block/Block.styles';
-import Result from '../components/02-Molecules/Result/Result.styles';
 import Example from '../components/02-Molecules/Example/Example.styles';
 import Controls from '../components/02-Molecules/Controls/Controls';
-import Footer from '../components/02-Molecules/Footer/Footer.styles';
+import Footer from '../components/02-Molecules/Footer/Footer';
 import Flex from '../components/03-Organisms/Flex/Flex.styles';
-import Wcag from '../components/03-Organisms/Wcag/Wcag.styles';
+import Wcag from '../components/03-Organisms/Wcag/Wcag';
 import { isHsl, isDark, hexToHsl, hslToHex, hexToRgb, getContrast, getLevel, updatePath } from '../components/Utils';
 
 const defaultText = 'Click/Tap to edit me. That Biff, what a character. Always trying to get away with something. Been on top of Biff ever since high school. Although, if it wasn\'t for him - Yes, yes, I\'m George, George McFly, and I\'m your density. I mean, I\'m your destiny. Right. Alright, take it up, go. Doc. Something wrong with the starter, so I hid it.';
@@ -61,18 +55,6 @@ class App extends Component {
     document.body.style.setProperty(`--${name}`, hslToHex(value));
     this.checkContrast(hslToHex(background), hslToHex(foreground));
     updatePath(background, foreground);
-  }
-
-  storeFontsData = ({ items }) => {
-    console.log(items, 'data');
-  }
-
-  fetchGoogleFontsData = () => {
-    const googleFontsApi = 'https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyCJWeN5Dj1r9nEn3c7YvKzkKBtlQKqDMHU&sort=alpha';
-
-    this.fetchData(googleFontsApi)
-      .then(data => this.storeFontsData(data))
-      .catch(error => console.error(error));
   }
 
   updateView = (background, foreground) => {
@@ -133,20 +115,13 @@ class App extends Component {
 
   async componentDidMount() {
     const path = this.props.location.pathname.split('/');
-    const fontsData = localStorage.getItem('googleFonts');
     const background = hexToHsl(path[1]);
     const foreground = hexToHsl(path[2]);
-
-    console.log(fontsData, 'fontsData');
-
-    if (fontsData === null) {
-      this.fetchGoogleFontsData();
-    }
 
     if (!isHsl(background) || !isHsl(foreground)) {
       return;
     }
-    
+
     await this.updateView(background, foreground);
   }
 
@@ -182,13 +157,9 @@ class App extends Component {
       data-background={background}
       data-foreground={foreground}
       onClick={this.appendColors}
-      aria-label={`Swatch - Background = ${background}. Foreground = ${foreground}. Append these colour values`}
+      aria-label={`Swatch - Background = ${background}. Foreground = ${foreground}. Click/Tap to append these colour values.`}
     >Aa</Swatch>
   )
-
-  renderFontOptions = () => {
-    
-  }
 
   render() {
     const { colors, background, foreground, contrast, level } = this.state;
@@ -196,39 +167,13 @@ class App extends Component {
 
     return (
       <Container>
-        <Header>
-          <Heading1 medium noMargin>Colour Contrast Checker</Heading1>
-
-          <SkipLink href="#ratio" color={colorState}>Skip to colour contrast ratio</SkipLink>
-          <SkipLink href="#grades" color={colorState}>Skip to colour contrast grades</SkipLink>
-          <SkipLink href="#background" color={colorState}>Skip to background colour input</SkipLink>
-          <SkipLink href="#foreground" color={colorState}>Skip to foreground colour input</SkipLink>
-          <SkipLink href="#largeCopy" color={colorState}>Skip to large text example copy</SkipLink>
-          <SkipLink href="#normalCopy" color={colorState}>Skip to normal text example copy</SkipLink>
-        </Header>
+        <Header colorState={colorState} />
 
         <BlockSection flex color={colorState}>
           <Span grade noMargin>Aa</Span>
           <Ratio id="ratio">{contrast.toFixed(2)}</Ratio>
 
-          <Wcag id="grades">
-            <Result>
-              <Badge color={colorState}>{level[0].AALarge}</Badge>
-              <Grade>AA Large</Grade>
-            </Result>
-            <Result>
-              <Badge color={colorState}>{level[2].AAALarge}</Badge>
-              <Grade>AAA Large</Grade>
-            </Result>
-            <Result>
-              <Badge color={colorState}>{level[1].AA}</Badge>
-              <Grade color={colorState}>AA Normal</Grade>
-            </Result>
-            <Result>
-              <Badge color={colorState}>{level[3].AAA}</Badge>
-              <Grade>AAA Normal</Grade>
-            </Result>
-          </Wcag>
+          <Wcag id="grades" colorState={colorState} level={level} />
         </BlockSection>
 
         <Flex justify="between" align="center">
@@ -280,8 +225,6 @@ class App extends Component {
 
         <Divider color={colorState} />
 
-        {this.renderFontOptions()}
-
         <Heading2 medium>Example Copy</Heading2>
 
         <Flex justify="between">
@@ -310,23 +253,7 @@ class App extends Component {
           </Example>
         </Flex>
 
-        <Footer>
-          <Link
-            href="https://github.com/Pushedskydiver/Colour-Contrast-Checker"
-            title="Go to GitHub project"
-            iconLink
-          >
-            <GitHub fill={colorState} />
-          </Link>
-
-          <Link
-            href="https://twitter.com/alexmclapperton"
-            title="Go to Alex's Twitter profile"
-            iconLink
-          >
-            <Twitter fill={colorState} />
-          </Link>
-        </Footer>
+        <Footer colorState={colorState} />
       </Container>
     );
   }
