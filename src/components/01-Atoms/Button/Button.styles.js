@@ -53,7 +53,14 @@ export const CopyButton = styled.button`
   width: 25px;
   height: 25px;
   border: none;
+  outline: none;
   transform : translateY(-50%);
+
+  &:active svg,
+  &:focus svg {
+    outline: -webkit-focus-ring-color auto 5px;
+    outline-offset: -2px;
+  }
 
   ${minWidth('640', () => css`
     width: 30px;
