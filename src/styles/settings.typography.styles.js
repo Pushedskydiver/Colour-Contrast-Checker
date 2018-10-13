@@ -4,13 +4,10 @@ function calcFontSize(number) {
 }
 
 export const typography = {
+  family: 'Avenir Next, sans-serif',
   lineHeight: {
     heading: 1.3,
     body: 1.7
-  },
-  family: {
-    primary: 'Avenir Next, sans-serif',
-    secondary: 'Nunito VF, sans-serif'
   },
   heading: {
     size: {

@@ -4,7 +4,7 @@ import { minWidth } from '../../../styles/settings.breakpoints.styles';
 import spacing from '../../../styles/settings.spacing.styles';
 
 export const Heading1 = styled.h1`
-  font-family: ${typography.family.primary};
+  font-family: var(--font);
   
   ${props => !props.grade && css`
     font-variation-settings: "wght" ${typography.weight.bold};

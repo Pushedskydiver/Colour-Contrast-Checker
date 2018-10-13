@@ -34,6 +34,17 @@ class App extends Component {
     level: [{ AALarge: 'Pass' }, { AA: 'Pass' }, { AAALarge: 'Pass' }, { AAA: 'Pass' }]
   };
 
+  fetchData = async api => {
+    const response = await fetch(api);
+    const body = await response.json();
+
+    if (response.status !== 200) {
+      throw Error('Error', body.message);
+    }
+
+    return body;
+  };
+
   checkContrast = (background, foreground) => {
     const backgroundRgb = hexToRgb(background);
     const foregroundRgb = hexToRgb(foreground);
@@ -50,6 +61,18 @@ class App extends Component {
     document.body.style.setProperty(`--${name}`, hslToHex(value));
     this.checkContrast(hslToHex(background), hslToHex(foreground));
     updatePath(background, foreground);
+  }
+
+  storeFontsData = ({ items }) => {
+    console.log(items, 'data');
+  }
+
+  fetchGoogleFontsData = () => {
+    const googleFontsApi = 'https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyCJWeN5Dj1r9nEn3c7YvKzkKBtlQKqDMHU&sort=alpha';
+
+    this.fetchData(googleFontsApi)
+      .then(data => this.storeFontsData(data))
+      .catch(error => console.error(error));
   }
 
   updateView = (background, foreground) => {
@@ -110,13 +133,20 @@ class App extends Component {
 
   async componentDidMount() {
     const path = this.props.location.pathname.split('/');
+    const fontsData = localStorage.getItem('googleFonts');
     const background = hexToHsl(path[1]);
     const foreground = hexToHsl(path[2]);
+
+    console.log(fontsData, 'fontsData');
+
+    if (fontsData === null) {
+      this.fetchGoogleFontsData();
+    }
 
     if (!isHsl(background) || !isHsl(foreground)) {
       return;
     }
-
+    
     await this.updateView(background, foreground);
   }
 
@@ -155,6 +185,10 @@ class App extends Component {
       aria-label={`Swatch - Background = ${background}. Foreground = ${foreground}. Append these colour values`}
     >Aa</Swatch>
   )
+
+  renderFontOptions = () => {
+    
+  }
 
   render() {
     const { colors, background, foreground, contrast, level } = this.state;
@@ -245,6 +279,8 @@ class App extends Component {
         </Flex>
 
         <Divider color={colorState} />
+
+        {this.renderFontOptions()}
 
         <Heading2 medium>Example Copy</Heading2>
 

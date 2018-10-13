@@ -8,6 +8,7 @@ export default () => injectGlobal`
   :root {
     --background: ${colors.core};
     --foreground: ${colors.dark};
+    --font: ${typography.family};
   }
 
   *,
@@ -28,7 +29,7 @@ export default () => injectGlobal`
     margin: 0;
     background-color: var(--background);
     color: var(--foreground);
-    font-family: ${typography.family.primary};
+    font-family: var(--font);
     font-variation-settings: "wght" ${typography.weight.regular};
     line-height: ${typography.lineHeight.body};
     transition: background-color 0.3s ease-in-out;

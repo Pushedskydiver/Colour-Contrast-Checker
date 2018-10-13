@@ -13,7 +13,7 @@ export const Container = styled.div`
   ${minWidth('992', () => css`
     max-width: 1400px;
     margin: 0 auto;
-    padding-right: 15px;
-    padding-left: 15px;
+    padding-right: 25px;
+    padding-left: 25px;
   `)}
 `;
