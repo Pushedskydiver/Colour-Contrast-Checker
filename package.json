@@ -31,12 +31,14 @@
     "jest-enzyme": "^6.1.2",
     "jest-localstorage-mock": "^2.2.0",
     "jest-styled-components": "^6.2.1",
-    "react-test-renderer": "^16.5.2"
+    "react-test-renderer": "^16.5.2",
+    "source-map-explorer": "^1.6.0"
   },
   "eslintConfig": {
     "extends": "eslint-config-synacor"
   },
   "scripts": {
+    "analyze": "source-map-explorer build/static/js/main.*",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "serve": "npm run build && serve -s build",
