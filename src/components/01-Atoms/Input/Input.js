@@ -17,12 +17,17 @@ class Input extends Component {
     const name = target.getAttribute('id');
     const valueHasHash = target.value.indexOf('#') !== -1;
     const isHexCode = isHex(target.value);
-    const isnum = /^\d+$/.test(target.value);
+    const isNum = /^\d+$/.test(target.value);
+    const isRed = target.value.toLowerCase() === 'red';
 
     await this.setState({ hex: target.value, copied: false });
 
-    if (target.value.length === 6 && !valueHasHash && isHexCode && isnum) {
+    if (target.value.length === 6 && !valueHasHash && isHexCode && isNum) {
       target.value = `#${target.value}`;
+    }
+
+    if (target.value.length <= 3 && /[0-9a-f]$/.test(target.value) && !isRed) {
+      return;
     }
 
     if (target.value.length < 7 && !isHex(target.value)) {
@@ -60,7 +65,7 @@ class Input extends Component {
   render() {
     return (
       <BlockDiv noMargin>
-        <InputStyles type="text" minLength="7" value={this.state.hex} id={this.props.id} onChange={this.handleHexChange}/>
+        <InputStyles type="text" minLength="7" value={this.state.hex} id={this.props.id} onChange={this.handleHexChange} />
 
         <CopyToClipboard text={this.state.hex} onCopy={this.setCopiedState}>
           <CopyButton type="button" aria-labelledby="copiedColorState">
