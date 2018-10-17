@@ -28,17 +28,6 @@ class App extends Component {
     level: [{ AALarge: 'Pass' }, { AA: 'Pass' }, { AAALarge: 'Pass' }, { AAA: 'Pass' }]
   };
 
-  fetchData = async api => {
-    const response = await fetch(api);
-    const body = await response.json();
-
-    if (response.status !== 200) {
-      throw Error('Error', body.message);
-    }
-
-    return body;
-  };
-
   checkContrast = (background, foreground) => {
     const backgroundRgb = hexToRgb(background);
     const foregroundRgb = hexToRgb(foreground);

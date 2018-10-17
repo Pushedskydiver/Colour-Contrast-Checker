@@ -51,7 +51,7 @@ export const updatePath = throttle((background, foreground) => {
   history.push(`/${backgroundHex}/${foregroundHex}`);
 }, 250);
 
-export const isDark = hsl => chroma.hsl(hsl).luminance() < 0.5;
+export const isDark = hsl => chroma.hsl(hsl).get('lab.l') < 60;
 
 export const hexToHsl = hex => isHex(hex) ? chroma(hex).hsl() : null;
 
