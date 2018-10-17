@@ -73,10 +73,10 @@ class Input extends Component {
         <InputStyles type="text" minLength="7" value={this.state.hex} id={this.props.id} spellcheck="false" onChange={this.handleHexChange} />
 
         <CopyToClipboard text={this.state.hex} onCopy={this.setCopiedState}>
-          <CopyButton type="button" aria-labelledby="copiedColorState">
+          <CopyButton type="button" aria-labelledby={`${this.props.id}CopiedSate`}>
             <Clipboard fill={this.props.color} />
             <Tooltip
-              id="copiedColorState"
+              id={`${this.props.id}CopiedSate`}
               aria-hidden={this.state.copied}
               aria-live="polite"
               role="tooltip"
