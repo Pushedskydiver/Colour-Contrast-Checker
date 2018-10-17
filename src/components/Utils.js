@@ -34,14 +34,14 @@ export const isHsl = hsl => {
 
 export const getLevel = contrast => {
   if (contrast > 7) {
-    return [{ AALarge: 'Pass' }, { AA: 'Pass' }, { AAALarge: 'Pass' }, { AAA: 'Pass' }];
+    return { AALarge: 'Pass', AA: 'Pass', AAALarge: 'Pass', AAA: 'Pass' };
   } else if (contrast > 4.5) {
-    return [{ AALarge: 'Pass' }, { AA: 'Pass' }, { AAALarge: 'Pass' }, { AAA: 'Fail' }];
+    return { AALarge: 'Pass', AA: 'Pass', AAALarge: 'Pass', AAA: 'Fail' };
   } else if (contrast > 3) {
-    return [{ AALarge: 'Pass' }, { AA: 'Fail' }, { AAALarge: 'Fail' }, { AAA: 'Fail' }];
+    return { AALarge: 'Pass', AA: 'Fail', AAALarge: 'Fail', AAA: 'Fail' };
   }
 
-  return [{ AALarge: 'Fail' }, { AA: 'Fail' }, { AAALarge: 'Fail' }, { AAA: 'Fail' }];
+  return { AALarge: 'Fail', AA: 'Fail', AAALarge: 'Fail', AAA: 'Fail' };
 };
 
 export const updatePath = throttle((background, foreground) => {

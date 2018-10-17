@@ -7,19 +7,19 @@ import WcagStyles from './Wcag.styles';
 const Wcag = props => (
   <WcagStyles {...props}>
     <Result>
-      <Badge color={props.colorState}>{props.level[0].AALarge}</Badge>
+      <Badge color={props.colorState}>{props.level.AALarge}</Badge>
       <Grade>AA Large</Grade>
     </Result>
     <Result>
-      <Badge color={props.colorState}>{props.level[2].AAALarge}</Badge>
+      <Badge color={props.colorState}>{props.level.AAALarge}</Badge>
       <Grade>AAA Large</Grade>
     </Result>
     <Result>
-      <Badge color={props.colorState}>{props.level[1].AA}</Badge>
+      <Badge color={props.colorState}>{props.level.AA}</Badge>
       <Grade>AA Normal</Grade>
     </Result>
     <Result>
-      <Badge color={props.colorState}>{props.level[3].AAA}</Badge>
+      <Badge color={props.colorState}>{props.level.AAA}</Badge>
       <Grade>AAA Normal</Grade>
     </Result>
   </WcagStyles>

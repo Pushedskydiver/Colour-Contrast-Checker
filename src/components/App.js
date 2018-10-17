@@ -25,7 +25,7 @@ class App extends Component {
     background: [49.73, 1, 0.71],
     foreground: [NaN, 0, 0.133],
     contrast: 12.72,
-    level: [{ AALarge: 'Pass' }, { AA: 'Pass' }, { AAALarge: 'Pass' }, { AAA: 'Pass' }]
+    level: { AALarge: 'Pass', AA: 'Pass', AAALarge: 'Pass', AAA: 'Pass' }
   };
 
   checkContrast = (background, foreground) => {
