@@ -18,7 +18,7 @@ class Input extends Component {
     const valueHasHash = target.value.indexOf('#') !== -1;
     const isHexCode = isHex(target.value);
     const isNum = /^\d+$/.test(target.value);
-    const isShortHand = /([0-9a-f]|#[0-9a-f])$/.test(target.value);
+    const isShortHand = /(^#[0-9a-f]{3}|[0-9a-f]{3])$/gim.test(target.value);
     const isRed = target.value.toLowerCase() === 'red';
 
     await this.setState({ hex: target.value, copied: false });
@@ -27,15 +27,19 @@ class Input extends Component {
       target.value = `#${target.value}`;
     }
 
-    if (target.value.length <= 3 && isShortHand && !isRed) {
+    if (target.value.length <= 3 && !valueHasHash && !isRed) {
       return;
     }
 
-    if (target.value.length < 7 && !isHex(target.value)) {
+    if (isShortHand && !isRed) {
       return;
     }
 
-    if (!isHex(target.value)) {
+    if (target.value.length < 7 && !isHexCode) {
+      return;
+    }
+
+    if (!isHexCode) {
       return;
     }
 
