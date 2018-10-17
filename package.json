@@ -1,6 +1,6 @@
 {
   "name": "colour-contrast-checker",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "WCAG accessibility colour contrast checker",
   "license": "ISC",
   "author": {
