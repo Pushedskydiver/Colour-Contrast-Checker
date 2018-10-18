@@ -22,11 +22,40 @@ const defaultText = 'Click/Tap to edit me. That Biff, what a character. Always t
 class App extends Component {
   state = {
     colors: JSON.parse(localStorage.getItem('colors')) || [],
+    fonts: JSON.parse(localStorage.getItem('fonts')) || [],
     background: [49.73, 1, 0.71],
     foreground: [NaN, 0, 0.133],
     contrast: 12.72,
     level: { AALarge: 'Pass', AA: 'Pass', AAALarge: 'Pass', AAA: 'Pass' }
   };
+
+  fetchData = async api => {
+    const response = await fetch(api);
+    const body = await response.json();
+
+    if (response.status !== 200) {
+      throw Error('Error', body.message);
+    }
+
+    return body;
+  };
+
+  storeFontsData = ({ items }) => {
+    let fonts = [];
+
+    items.forEach(item => fonts.push(item.family));
+
+    localStorage.setItem('fonts', JSON.stringify(fonts));
+    this.setState({ fonts });
+  }
+
+  fetchGoogleFontsData = () => {
+    const googleFontsApi = 'https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyCJWeN5Dj1r9nEn3c7YvKzkKBtlQKqDMHU&sort=trending';
+
+    this.fetchData(googleFontsApi)
+      .then(data => this.storeFontsData(data))
+      .catch(error => console.error(error));
+  }
 
   checkContrast = (background, foreground) => {
     const backgroundRgb = hexToRgb(background);
@@ -102,10 +131,19 @@ class App extends Component {
     updatePath(background, foreground);
   }
 
+  changeFont = ({ target }) => {
+    console.log(target.options[target.selectedIndex].value, 'target');
+  }
+
   async componentDidMount() {
     const path = this.props.location.pathname.split('/');
+    const fontsData = localStorage.getItem('fonts');
     const background = hexToHsl(path[1]);
     const foreground = hexToHsl(path[2]);
+
+    if (fontsData === null) {
+      this.fetchGoogleFontsData();
+    }
 
     if (!isHsl(background) || !isHsl(foreground)) {
       return;
@@ -116,6 +154,10 @@ class App extends Component {
 
   shouldComponentUpdate(nextProps, nextState) {
     if (this.state.colors !== nextState.colors) {
+      return true;
+    }
+
+    if (this.state.fonts !== nextState.fonts) {
       return true;
     }
 
@@ -150,8 +192,12 @@ class App extends Component {
     >Aa</Swatch>
   )
 
+  renderFontOptions = (font, index) => (
+    <option value={font} key={index}>{font}</option>
+  )
+
   render() {
-    const { colors, background, foreground, contrast, level } = this.state;
+    const { colors, fonts, background, foreground, contrast, level } = this.state;
     const colorState = contrast < 3 ? isDark(background) ? '#ffffff' : '#222222' : hslToHex(foreground);
 
     return (
@@ -213,6 +259,12 @@ class App extends Component {
         </Flex>
 
         <Divider color={colorState} />
+
+        {fonts.length === 0 ? '' :
+          <select onChange={this.changeFont}>
+            {fonts.map((font, index) => this.renderFontOptions(font, index))}
+          </select>
+        }
 
         <Heading2 medium>Example Copy</Heading2>
 
