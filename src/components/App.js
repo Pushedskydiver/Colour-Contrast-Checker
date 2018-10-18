@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
+import WebFont from 'webfontloader';
 import { Container } from '../styles/generic.container.styles';
 import { Heading2, Span } from '../components/01-Atoms/Heading/Heading.styles';
+import { Button } from '../components/01-Atoms/Button/Button.styles';
+import { Chevron } from '../components/01-Atoms/Icon/Icon';
 import Ratio from '../components/01-Atoms/Ratio/Ratio.styles';
 import Copy from '../components/01-Atoms/Copy/Copy.styles';
 import Label from '../components/01-Atoms/Label/Label.styles';
-import { Button } from '../components/01-Atoms/Button/Button.styles';
 import Swatch from '../components/01-Atoms/Swatch/Swatch.styles';
 import Divider from '../components/01-Atoms/Divider/Divider.styles';
 import Input from '../components/01-Atoms/Input/Input';
+import Select from '../components/01-Atoms/Select/Select.styles';
 import Header from '../components/02-Molecules/Header/Header';
 import { BlockSection, BlockDiv } from '../components/02-Molecules/Block/Block.styles';
 import Example from '../components/02-Molecules/Example/Example.styles';
@@ -133,7 +136,14 @@ class App extends Component {
   }
 
   changeFont = ({ target }) => {
-    console.log(target.options[target.selectedIndex].value, 'target');
+    const font = target.options[target.selectedIndex].value;
+
+    WebFont.load({
+      google: { families: [font, 'sans-serif'] },
+      fontactive: () => {
+        document.body.style.setProperty('--font', `${font}, sans-serif`);
+      }
+    });
   }
 
   async componentDidMount() {
@@ -261,10 +271,15 @@ class App extends Component {
 
         <Divider color={colorState} />
 
+        <Label htmlFor="font" medium>Select A Google Font</Label>
+
         {fonts.length === 0 ? '' :
-          <select onChange={this.changeFont}>
-            {fonts.map((font, index) => this.renderFontOptions(font, index))}
-          </select>
+          <BlockDiv select>
+            <Select id="font" onChange={this.changeFont}>
+              {fonts.map((font, index) => this.renderFontOptions(font, index))}
+            </Select>
+            <Chevron fill={colorState} />
+          </BlockDiv>
         }
 
         <Heading2 medium>Example Copy</Heading2>

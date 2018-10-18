@@ -7,6 +7,7 @@ const InputStyles = styled.input`
   border-bottom: 2px solid currentColor;
   color: inherit;
   font-size: ${typography.heading.size.big};
+  font-variation-settings: "wght" ${typography.weight.medium};
   transition: border-bottom-color 0.3s ease-in-out;
 
   ${minWidth('768', () => css`

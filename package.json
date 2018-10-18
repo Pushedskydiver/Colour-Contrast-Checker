@@ -21,7 +21,8 @@
     "react-dom": "^16.5.2",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.0.3",
-    "styled-components": "^3.4.9"
+    "styled-components": "^3.4.9",
+    "webfontloader": "^1.6.28"
   },
   "devDependencies": {
     "enzyme": "^3.6.0",

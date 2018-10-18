@@ -4,7 +4,7 @@ import spacing from '../../../styles/settings.spacing.styles';
 const Divider = styled.hr`
   display: block;
   margin-top: 0;
-  margin-bottom: ${spacing.margin * 4.5}px;
+  margin-bottom: ${spacing.margin * 4}px;
   padding-top: ${spacing.padding * 1.5}px;
   background-color: transparent;
   border-top: none;

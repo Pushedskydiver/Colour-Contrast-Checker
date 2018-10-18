@@ -63,16 +63,19 @@ export default () => injectGlobal`
     background-color: transparent;
     border: none;
     border-radius: 0;
+    font-family: inherit;
     cursor: pointer;
     appearance: none;
   }
 
-  input {
+  input,
+  select {
     margin: 0;
     padding: 0;
     background-color: transparent;
     border: none;
     border-radius: 0;
+    font-family: inherit;
     appearance: none;
   }
 `;

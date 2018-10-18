@@ -26,6 +26,10 @@ export const BlockSection = styled.section`
   ${props => props.color && css`
     color: ${props.color};
   `}
+
+  ${props => props.select && css`
+    max-width: 400px;
+  `}
 `;
 
 export const BlockDiv = BlockSection.withComponent('div');
