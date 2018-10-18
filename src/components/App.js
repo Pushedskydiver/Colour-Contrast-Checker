@@ -50,7 +50,8 @@ class App extends Component {
   }
 
   fetchGoogleFontsData = () => {
-    const googleFontsApi = 'https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyCJWeN5Dj1r9nEn3c7YvKzkKBtlQKqDMHU&sort=trending';
+    const apiKey = process.env.REACT_APP_GOOGLE_FONT_API_KEY;
+    const googleFontsApi = `https://www.googleapis.com/webfonts/v1/webfonts?key=${apiKey}&sort=trending`;
 
     this.fetchData(googleFontsApi)
       .then(data => this.storeFontsData(data))
