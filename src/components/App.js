@@ -271,11 +271,12 @@ class App extends Component {
 
         <Divider color={colorState} />
 
-        <Label htmlFor="font" medium>Select A Google Font</Label>
+        <Label htmlFor="font" medium>Select Typeface</Label>
 
         {fonts.length === 0 ? '' :
           <BlockDiv select>
-            <Select id="font" onChange={this.changeFont}>
+            <Select defaultValue="Google Fonts" id="font" onChange={this.changeFont}>
+              <option disabled>Google Fonts</option>
               {fonts.map((font, index) => this.renderFontOptions(font, index))}
             </Select>
             <Chevron fill={colorState} />
