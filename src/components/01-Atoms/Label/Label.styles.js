@@ -17,6 +17,10 @@ const Label = styled.label`
   ${props => props.heading && css`
     font-size: ${typography.heading.size.regular};
   `}
+
+  ${props => props.select && css`
+    font-size: ${typography.heading.size.small};
+  `}
 `;
 
 export default Label;

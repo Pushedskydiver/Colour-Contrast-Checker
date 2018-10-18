@@ -10,7 +10,7 @@ import Label from '../components/01-Atoms/Label/Label.styles';
 import Swatch from '../components/01-Atoms/Swatch/Swatch.styles';
 import Divider from '../components/01-Atoms/Divider/Divider.styles';
 import Input from '../components/01-Atoms/Input/Input';
-import Select from '../components/01-Atoms/Select/Select.styles';
+import Select, { SelectWrapper } from '../components/01-Atoms/Select/Select.styles';
 import Header from '../components/02-Molecules/Header/Header';
 import { BlockSection, BlockDiv } from '../components/02-Molecules/Block/Block.styles';
 import Example from '../components/02-Molecules/Example/Example.styles';
@@ -271,16 +271,19 @@ class App extends Component {
 
         <Divider color={colorState} />
 
-        <Label htmlFor="font" medium>Select Typeface</Label>
-
         {fonts.length === 0 ? '' :
-          <BlockDiv select>
-            <Select defaultValue="Google Fonts" id="font" onChange={this.changeFont}>
-              <option disabled>Google Fonts</option>
-              {fonts.map((font, index) => this.renderFontOptions(font, index))}
-            </Select>
-            <Chevron fill={colorState} />
-          </BlockDiv>
+          <Flex justify="between">
+            <BlockDiv noMargin select>
+              <Label htmlFor="font" select bold>Typeface:</Label>
+              <SelectWrapper>
+                <Select defaultValue="Select font" id="font" onChange={this.changeFont}>
+                  <option disabled>Select font</option>
+                  {fonts.map((font, index) => this.renderFontOptions(font, index))}
+                </Select>
+                <Chevron fill={colorState} />
+              </SelectWrapper>
+            </BlockDiv>
+          </Flex>
         }
 
         <Heading2 medium>Example Copy</Heading2>

@@ -28,7 +28,13 @@ export const BlockSection = styled.section`
   `}
 
   ${props => props.select && css`
-    max-width: 400px;
+    padding-bottom: ${spacing.padding / 2}px;
+    border-bottom: 1px solid currentColor;
+
+    ${minWidth('768', () => css`
+      display: inline-flex;
+      align-items: baseline;
+    `)}
   `}
 `;
 
