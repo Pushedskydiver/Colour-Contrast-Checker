@@ -37,7 +37,8 @@ class App extends Component {
 
     items.forEach(item => {
       const { family, variants } = item;
-      const variant = variants.filter(item => item === 'regular' || item === 'italic' || item === '300' || item === '700' || item === '800').splice(1, 1).toString();
+      const weight = variants.filter(item => item === 'regular' || item === 'italic' || item === '300' || item === '700' || item === '800').sort();
+      const variant = weight[weight.length - 1];
 
       fonts.push({ family, variant });
     });
@@ -136,6 +137,9 @@ class App extends Component {
 
     WebFont.load({
       google: { families: [`${font}:${fontWeight}`] },
+      loading: () => {
+        document.documentElement.className = '';
+      },
       fontactive: () => {
         document.body.style.setProperty('--copy', `${font}, sans-serif`);
       }

@@ -17,7 +17,7 @@ export const SelectWrapper = styled.div`
   position: relative;
 
   ${maxWidth('768', () => css`
-    margin-top: ${spacing.margin}px
+    margin-top: ${spacing.margin}px;
   `)}
 
   ${minWidth('768', () => css`
