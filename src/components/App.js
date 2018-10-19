@@ -131,6 +131,8 @@ class App extends Component {
   }
 
   changeFont = ({ target }) => {
+    const head = document.querySelector('head');
+    const fontLinkTag = head.querySelector('link[rel="stylesheet"');
     const option = target.options[target.selectedIndex];
     const font = option.value;
     const fontWeight = option.getAttribute('data-font-weight');
@@ -139,6 +141,7 @@ class App extends Component {
       google: { families: [`${font}:${fontWeight}`] },
       loading: () => {
         document.documentElement.className = '';
+        if (fontLinkTag !== null) head.removeChild(fontLinkTag);
       },
       fontactive: () => {
         document.body.style.setProperty('--copy', `${font}, sans-serif`);

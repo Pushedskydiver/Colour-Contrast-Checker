@@ -18,7 +18,8 @@ const Tooltip = styled.span`
   top: -40px;
   left: 50%;
   padding: ${spacing.padding / 2}px ${spacing.padding}px;
-  font-size: ${typography.body.size.small};
+  font-size: ${typography.body.size.regular};
+  font-variation-settings: "wght" ${typography.weight.medium};
   opacity: 0;
   transform: translateX(-50%);
 
