@@ -13,6 +13,7 @@ const Copy = styled.textarea`
   padding-left: 0;
   border: none;
   background-color: transparent;
+  font-family: var(--copy);
   line-height: inherit;
   resize: none;
 

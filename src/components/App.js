@@ -18,7 +18,7 @@ import Controls from '../components/02-Molecules/Controls/Controls';
 import Footer from '../components/02-Molecules/Footer/Footer';
 import Flex from '../components/03-Organisms/Flex/Flex.styles';
 import Wcag from '../components/03-Organisms/Wcag/Wcag';
-import { isHsl, isDark, hexToHsl, hslToHex, hexToRgb, getContrast, getLevel, updatePath } from '../components/Utils';
+import { fetchData, isHsl, isDark, hexToHsl, hslToHex, hexToRgb, getContrast, getLevel, updatePath } from '../components/Utils';
 
 const defaultText = 'Click/Tap to edit me. That Biff, what a character. Always trying to get away with something. Been on top of Biff ever since high school. Although, if it wasn\'t for him - Yes, yes, I\'m George, George McFly, and I\'m your density. I mean, I\'m your destiny. Right. Alright, take it up, go. Doc. Something wrong with the starter, so I hid it.';
 
@@ -32,21 +32,15 @@ class App extends Component {
     level: { AALarge: 'Pass', AA: 'Pass', AAALarge: 'Pass', AAA: 'Pass' }
   };
 
-  fetchData = async api => {
-    const response = await fetch(api);
-    const body = await response.json();
-
-    if (response.status !== 200) {
-      throw Error('Error', body.message);
-    }
-
-    return body;
-  };
-
   storeFontsData = ({ items }) => {
     let fonts = [];
 
-    items.forEach(item => fonts.push(item.family));
+    items.forEach(item => {
+      const { family, variants } = item;
+      const variant = variants.filter(item => item === 'regular' || item === 'italic' || item === '300' || item === '700' || item === '800').splice(1, 1).toString();
+
+      fonts.push({ family, variant });
+    });
 
     localStorage.setItem('fonts', JSON.stringify(fonts));
     this.setState({ fonts });
@@ -54,9 +48,9 @@ class App extends Component {
 
   fetchGoogleFontsData = () => {
     const apiKey = process.env.REACT_APP_GOOGLE_FONT_API_KEY;
-    const googleFontsApi = `https://www.googleapis.com/webfonts/v1/webfonts?key=${apiKey}&sort=trending`;
+    const googleFontsApi = `https://www.googleapis.com/webfonts/v1/webfonts?key=${apiKey}&sort=popularity`;
 
-    this.fetchData(googleFontsApi)
+    fetchData(googleFontsApi)
       .then(data => this.storeFontsData(data))
       .catch(error => console.error(error));
   }
@@ -136,12 +130,14 @@ class App extends Component {
   }
 
   changeFont = ({ target }) => {
-    const font = target.options[target.selectedIndex].value;
+    const option = target.options[target.selectedIndex];
+    const font = option.value;
+    const fontWeight = option.getAttribute('data-font-weight');
 
     WebFont.load({
-      google: { families: [font, 'sans-serif'] },
+      google: { families: [`${font}:${fontWeight}`] },
       fontactive: () => {
-        document.body.style.setProperty('--font', `${font}, sans-serif`);
+        document.body.style.setProperty('--copy', `${font}, sans-serif`);
       }
     });
   }
@@ -203,8 +199,8 @@ class App extends Component {
     >Aa</Swatch>
   )
 
-  renderFontOptions = (font, index) => (
-    <option value={font} key={index}>{font}</option>
+  renderFontOptions = ({ family, variant }, index) => (
+    <option key={index} value={family} data-font-weight={variant}>{family}</option>
   )
 
   render() {

@@ -9,6 +9,7 @@ export default () => injectGlobal`
     --background: ${colors.core};
     --foreground: ${colors.dark};
     --font: ${typography.family};
+    --copy: inherit;
   }
 
   *,

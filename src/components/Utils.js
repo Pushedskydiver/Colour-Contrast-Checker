@@ -5,6 +5,17 @@ import throttle from 'lodash.throttle';
 const isClient = typeof document !== 'undefined';
 const history = isClient ? createBrowserHistory() : {};
 
+export const fetchData = async api => {
+  const response = await fetch(api);
+  const body = await response.json();
+
+  if (response.status !== 200) {
+    throw Error('Error', body.message);
+  }
+
+  return body;
+};
+
 export const isHex = hex => {
   try {
     const color = chroma(hex);
