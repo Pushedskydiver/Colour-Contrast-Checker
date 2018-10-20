@@ -38,7 +38,7 @@ class App extends Component {
 
     fonts.forEach(font => {
       const { family, variants } = font;
-      const weight = variants.filter(font => font === 'regular' || font === 'italic' || font === '300' || font === '700' || font === '800').sort();
+      const weight = variants.sort();
       const variant = weight[weight.length - 1];
 
       families.push({ family, variant });
