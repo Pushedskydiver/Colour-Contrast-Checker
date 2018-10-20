@@ -99,10 +99,7 @@ class App extends Component {
       colors.pop();
     }
 
-    colors.unshift({
-      background,
-      foreground
-    });
+    colors.unshift({ background, foreground });
 
     localStorage.setItem('colors', JSON.stringify(colors));
     this.setState({ colors });
