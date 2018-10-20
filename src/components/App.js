@@ -33,19 +33,19 @@ class App extends Component {
   };
 
   storeFontsData = ({ items }) => {
-    const fonts = items.slice(0, 50);
-    const families = [];
+    const families = items.slice(0, 50);
+    const fonts = [];
 
-    fonts.forEach(font => {
-      const { family, variants } = font;
+    families.forEach(item => {
+      const { family, variants } = item;
       const weight = variants.sort();
       const variant = weight[weight.length - 1];
 
-      families.push({ family, variant });
+      fonts.push({ family, variant });
     });
 
     localStorage.setItem('fonts', JSON.stringify(families));
-    this.setState({ fonts: families });
+    this.setState({ fonts });
   }
 
   fetchGoogleFontsData = () => {
