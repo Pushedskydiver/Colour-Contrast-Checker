@@ -70,7 +70,7 @@ class Input extends Component {
   render() {
     return (
       <BlockDiv noMargin>
-        <InputStyles type="text" minLength="7" value={this.state.hex} id={this.props.id} spellcheck="false" onChange={this.handleHexChange} />
+        <InputStyles type="text" minLength="7" value={this.state.hex} id={this.props.id} spellCheck="false" onChange={this.handleHexChange} />
 
         <CopyToClipboard text={this.state.hex} onCopy={this.setCopiedState}>
           <CopyButton type="button" aria-labelledby={`${this.props.id}CopiedSate`}>
