@@ -130,7 +130,7 @@ class App extends Component {
 
   changeFont = ({ target }) => {
     const head = document.querySelector('head');
-    const fontLinkTag = head.querySelector('link[rel="stylesheet"');
+    const fontLinkTag = head.querySelector('link[rel="stylesheet"]');
     const option = target.options[target.selectedIndex];
     const font = option.value;
     const fontWeight = option.getAttribute('data-font-weight');
