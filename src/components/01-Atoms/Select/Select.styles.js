@@ -6,6 +6,7 @@ import spacing from '../../../styles/settings.spacing.styles';
 const Select = styled.select`
   display: block;
   width: 100%;
+  padding-right: ${spacing.padding * 3}px;
   color: inherit;
   font-size: ${typography.heading.size.small};
   line-height: normal;
