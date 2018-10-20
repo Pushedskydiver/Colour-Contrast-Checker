@@ -8,7 +8,6 @@ const Select = styled.select`
   width: 100%;
   color: inherit;
   font-size: ${typography.heading.size.small};
-  font-variation-settings: "wght" ${typography.weight.medium};
   line-height: normal;
   cursor: pointer;
 `;
