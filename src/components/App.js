@@ -139,7 +139,7 @@ class App extends Component {
 
     WebFont.load({
       google: { families: [`${font}:${fontWeight}`] },
-      loading: () => {
+      fontloading: () => {
         document.documentElement.className = '';
         if (fontLinkTag !== null) head.removeChild(fontLinkTag);
       },
