@@ -7,7 +7,7 @@ import Badge from './Badge.styles';
 it('Should render a dark badge when color props is #222222', () => {
   const component = <Badge color="#222222">AA</Badge>;
   const tree = renderer.create(component).toJSON();
-  
+
   expect(tree).toMatchSnapshot();
   expect(tree).toHaveStyleRule('color', '#ffffff');
 });
