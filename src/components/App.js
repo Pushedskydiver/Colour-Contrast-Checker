@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import GAnalytics from 'ganalytics';
 import WebFont from 'webfontloader';
 import { Container } from '../styles/generic.container.styles';
 import { Heading2, Span } from '../components/01-Atoms/Heading/Heading.styles';
@@ -20,7 +21,10 @@ import Flex from '../components/03-Organisms/Flex/Flex.styles';
 import Wcag from '../components/03-Organisms/Wcag/Wcag';
 import { fetchData, isHsl, isDark, hexToHsl, hslToHex, hexToRgb, getContrast, getLevel, updatePath } from '../components/Utils';
 
+const ga = new GAnalytics('UA-86474726-2', { aid: 1 });
 const defaultText = 'Click/Tap to edit me. That Biff, what a character. Always trying to get away with something. Been on top of Biff ever since high school. Although, if it wasn\'t for him - Yes, yes, I\'m George, George McFly, and I\'m your density. I mean, I\'m your destiny. Right. Alright, take it up, go. Doc. Something wrong with the starter, so I hid it.';
+
+ga.send('pageview');
 
 class App extends Component {
   state = {
