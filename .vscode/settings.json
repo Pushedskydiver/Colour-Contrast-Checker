@@ -1,5 +1,8 @@
 {
   "eslint.options": {
     "configFile": "./_config/eslint.json"
+  },
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
   }
 }
