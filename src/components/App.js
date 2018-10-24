@@ -285,7 +285,7 @@ class App extends Component {
                   <option disabled>Select font</option>
                   {fonts.map((font, index) => this.renderFontOptions(font, index))}
                 </Select>
-                <Chevron fill={colorState} />
+                <Chevron fill="currentColor" />
               </SelectWrapper>
             </BlockDiv>
           </Flex>
