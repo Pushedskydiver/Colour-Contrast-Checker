@@ -1,17 +1,14 @@
-import React, { Component } from 'react';
-import GAnalytics from 'ganalytics';
+import React, { Component, lazy, Suspense } from 'react';
 import WebFont from 'webfontloader';
 import { Container } from '../styles/generic.container.styles';
 import { Heading2, Span } from '../components/01-Atoms/Heading/Heading.styles';
 import { Button } from '../components/01-Atoms/Button/Button.styles';
-import { Chevron } from '../components/01-Atoms/Icon/Icon';
-import Ratio from '../components/01-Atoms/Ratio/Ratio.styles';
+import Ratio from '../components/01-Atoms/Ratio/Ratio';
 import Copy from '../components/01-Atoms/Copy/Copy.styles';
 import Label from '../components/01-Atoms/Label/Label.styles';
-import Swatch from '../components/01-Atoms/Swatch/Swatch.styles';
+import Swatch from '../components/01-Atoms/Swatch/Swatch';
 import Divider from '../components/01-Atoms/Divider/Divider.styles';
 import Input from '../components/01-Atoms/Input/Input';
-import Select, { SelectWrapper } from '../components/01-Atoms/Select/Select.styles';
 import Header from '../components/02-Molecules/Header/Header';
 import { BlockSection, BlockDiv } from '../components/02-Molecules/Block/Block.styles';
 import Example from '../components/02-Molecules/Example/Example.styles';
@@ -21,10 +18,9 @@ import Flex from '../components/03-Organisms/Flex/Flex.styles';
 import Wcag from '../components/03-Organisms/Wcag/Wcag';
 import { fetchData, isHsl, isDark, hexToHsl, hslToHex, hexToRgb, getContrast, getLevel, updatePath } from '../components/Utils';
 
-const ga = new GAnalytics('UA-86474726-2', { aid: 1 });
-const defaultText = 'Click/Tap to edit me. That Biff, what a character. Always trying to get away with something. Been on top of Biff ever since high school. Although, if it wasn\'t for him - Yes, yes, I\'m George, George McFly, and I\'m your density. I mean, I\'m your destiny. Right. Alright, take it up, go. Doc. Something wrong with the starter, so I hid it.';
+const Select = lazy(() => import('../components/01-Atoms/Select/Select'));
 
-ga.send('pageview');
+const defaultText = 'Click/Tap to edit me. That Biff, what a character. Always trying to get away with something. Been on top of Biff ever since high school. Although, if it wasn\'t for him - Yes, yes, I\'m George, George McFly, and I\'m your density. I mean, I\'m your destiny. Right. Alright, take it up, go. Doc. Something wrong with the starter, so I hid it.';
 
 class App extends Component {
   state = {
@@ -168,44 +164,28 @@ class App extends Component {
     await this.updateView(background, foreground);
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    if (this.state.colors !== nextState.colors) {
-      return true;
-    }
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   if (this.state.colors !== nextState.colors) {
+  //     return true;
+  //   }
 
-    if (this.state.fonts !== nextState.fonts) {
-      return true;
-    }
+  //   if (this.state.fonts !== nextState.fonts) {
+  //     return true;
+  //   }
 
-    if (this.state.background !== nextState.background) {
-      return true;
-    }
+  //   if (this.state.background !== nextState.background) {
+  //     return true;
+  //   }
 
-    if (this.state.foreground !== nextState.foreground) {
-      return true;
-    }
+  //   if (this.state.foreground !== nextState.foreground) {
+  //     return true;
+  //   }
 
-    if (this.state.contrast !== nextState.contrast) {
-      return true;
-    }
+  //   return false;
+  // }
 
-    if (this.state.level !== nextState.level) {
-      return true;
-    }
-
-    return false;
-  }
-
-  renderSwatch = ({ background, foreground } = {}, index) => (
-    <Swatch
-      key={index}
-      background={background}
-      foreground={foreground}
-      data-background={background}
-      data-foreground={foreground}
-      onClick={this.appendColors}
-      aria-label={`Swatch - Background = ${background}. Foreground = ${foreground}. Click/Tap to append these colour values.`}
-    >Aa</Swatch>
+  renderSwatch = ({ background, foreground }, index) => (
+    <Swatch key={index} background={background} foreground={foreground} onClick={this.appendColors} />
   )
 
   renderFontOptions = ({ family, variant }, index) => (
@@ -213,7 +193,7 @@ class App extends Component {
   )
 
   render() {
-    const { colors, fonts, background, foreground, contrast, level } = this.state;
+    const { colors, fonts, background, foreground, contrast } = this.state;
     const colorState = contrast < 3 ? isDark(background) ? '#ffffff' : '#222222' : hslToHex(foreground);
 
     return (
@@ -222,9 +202,9 @@ class App extends Component {
 
         <BlockSection flex color={colorState}>
           <Span grade noMargin>Aa</Span>
-          <Ratio id="ratio">{contrast.toFixed(2)}</Ratio>
+          <Ratio contrast={contrast} />
 
-          <Wcag id="grades" colorState={colorState} level={level} />
+          <Wcag id="grades" colorState={colorState} level={this.state.level} />
         </BlockSection>
 
         <Flex justify="between" align="center">
@@ -280,13 +260,10 @@ class App extends Component {
           <Flex justify="between">
             <BlockDiv noMargin select>
               <Label htmlFor="font" select bold>Typeface:</Label>
-              <SelectWrapper>
-                <Select defaultValue="Select font" id="font" onChange={this.changeFont}>
-                  <option disabled>Select font</option>
-                  {fonts.map((font, index) => this.renderFontOptions(font, index))}
-                </Select>
-                <Chevron fill="currentColor" />
-              </SelectWrapper>
+
+              <Suspense fallback={<span>Loading Fonts...</span>}>
+                <Select onChange={this.changeFont} fonts={fonts} renderFontOptions={this.renderFontOptions} />
+              </Suspense>
             </BlockDiv>
           </Flex>
         }

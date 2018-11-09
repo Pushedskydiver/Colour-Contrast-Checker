@@ -4,7 +4,7 @@ import Grade from '../../01-Atoms/Grade/Grade.styles';
 import Result from '../../02-Molecules/Result/Result.styles';
 import WcagStyles from './Wcag.styles';
 
-const Wcag = props => (
+const Wcag = React.memo(props => (
   <WcagStyles {...props}>
     <Result>
       <Badge color={props.colorState}>{props.level.AALarge}</Badge>
@@ -23,6 +23,6 @@ const Wcag = props => (
       <Grade>AAA Normal</Grade>
     </Result>
   </WcagStyles>
-);
+));
 
 export default Wcag;

@@ -3,7 +3,7 @@ import { typography } from '../../../styles/settings.typography.styles';
 import { minWidth } from '../../../styles/settings.breakpoints.styles';
 import spacing from '../../../styles/settings.spacing.styles';
 
-const Swatch = styled.button`
+const SwatchStyles = styled.button`
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -51,4 +51,4 @@ const Swatch = styled.button`
   `}
 `;
 
-export default Swatch;
+export default SwatchStyles;

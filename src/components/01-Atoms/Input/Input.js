@@ -7,6 +7,10 @@ import Tooltip from '../Tooltip/Tooltip.styles';
 import { BlockDiv } from '../../02-Molecules/Block/Block.styles';
 import { isHex, hexToHsl, hslToHex } from '../../Utils';
 
+const InputMemo = React.memo(props =>
+  <InputStyles type="text" minLength="7" value={props.hex} id={props.id} spellCheck="false" onChange={props.onChange} />
+);
+
 class Input extends Component {
   state = {
     hex: hslToHex(this.props.value),
@@ -70,7 +74,7 @@ class Input extends Component {
   render() {
     return (
       <BlockDiv noMargin>
-        <InputStyles type="text" minLength="7" value={this.state.hex} id={this.props.id} spellCheck="false" onChange={this.handleHexChange} />
+        <InputMemo hex={this.state.hex} id={this.props.id} onChange={this.handleHexChange} />
 
         <CopyToClipboard text={this.state.hex} onCopy={this.setCopiedState}>
           <CopyButton type="button" aria-labelledby={`${this.props.id}CopiedSate`}>

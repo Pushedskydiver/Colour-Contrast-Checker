@@ -3,7 +3,7 @@ import { typography } from '../../../styles/settings.typography.styles';
 import { minWidth } from '../../../styles/settings.breakpoints.styles';
 import spacing from '../../../styles/settings.spacing.styles';
 
-const Ratio = styled.span`
+const RatioStyles = styled.span`
   display: inline-block;
   margin-right: ${spacing.margin}px;
   margin-left: ${spacing.margin}px;
@@ -19,4 +19,4 @@ const Ratio = styled.span`
   `)}
 `;
 
-export default Ratio;
+export default RatioStyles;

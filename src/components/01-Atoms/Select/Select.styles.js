@@ -3,7 +3,7 @@ import { typography } from '../../../styles/settings.typography.styles';
 import { minWidth, maxWidth } from '../../../styles/settings.breakpoints.styles';
 import spacing from '../../../styles/settings.spacing.styles';
 
-const Select = styled.select`
+const SelectStyles = styled.select`
   display: block;
   width: 100%;
   padding-right: ${spacing.padding * 3}px;
@@ -25,4 +25,4 @@ export const SelectWrapper = styled.div`
   `)}
 `;
 
-export default Select;
+export default SelectStyles;
