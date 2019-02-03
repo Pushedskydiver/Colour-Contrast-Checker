@@ -128,14 +128,14 @@ class App extends Component {
     updatePath(background, foreground);
   }
 
-  changeFont = ({ target }) => {
+  changeFont = async ({ target }) => {
     const head = document.querySelector('head');
     const fontLinkTag = head.querySelector('link[rel="stylesheet"]');
     const option = target.options[target.selectedIndex];
     const font = option.value;
     const fontWeight = option.getAttribute('data-font-weight');
 
-    WebFont.load({
+    await WebFont.load({
       google: { families: [`${font}:${fontWeight}`] },
       fontloading: () => {
         document.documentElement.className = '';
@@ -163,26 +163,6 @@ class App extends Component {
 
     await this.updateView(background, foreground);
   }
-
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   if (this.state.colors !== nextState.colors) {
-  //     return true;
-  //   }
-
-  //   if (this.state.fonts !== nextState.fonts) {
-  //     return true;
-  //   }
-
-  //   if (this.state.background !== nextState.background) {
-  //     return true;
-  //   }
-
-  //   if (this.state.foreground !== nextState.foreground) {
-  //     return true;
-  //   }
-
-  //   return false;
-  // }
 
   renderSwatch = ({ background, foreground }, index) => (
     <Swatch key={index} background={background} foreground={foreground} onClick={this.appendColors} />
