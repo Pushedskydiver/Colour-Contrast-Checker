@@ -5,7 +5,7 @@ import spacing from '../../../styles/settings.spacing.styles';
 
 export const Heading1 = styled.h1`
   font-family: var(--font);
-  
+
   ${props => !props.grade && css`
     font-variation-settings: "wght" ${typography.weight.bold};
     line-height: ${typography.lineHeight.heading};
@@ -48,6 +48,7 @@ export const Heading1 = styled.h1`
   `}
 
   ${props => props.grade && css`
+    color: var(--foreground);
     font-size: ${typography.heading.size.large};
     font-variation-settings: "wght" ${typography.weight.thick};
     line-height: 0.85;
