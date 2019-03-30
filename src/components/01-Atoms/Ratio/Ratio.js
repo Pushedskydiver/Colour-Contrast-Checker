@@ -1,8 +1,8 @@
 import React from 'react';
 import RatioStyles from './Ratio.styles';
 
-const Ratio = React.memo(props =>
+const Ratio = props => (
   <RatioStyles id="ratio">{props.contrast.toFixed(2)}</RatioStyles>
 );
 
-export default Ratio;
+export default React.memo(Ratio);

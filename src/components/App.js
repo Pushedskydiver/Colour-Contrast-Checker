@@ -1,5 +1,6 @@
 import React, { Component, lazy, Suspense } from 'react';
 import WebFont from 'webfontloader';
+import GlobalStyles from '../styles/settings.global.styles';
 import { Container } from '../styles/generic.container.styles';
 import { Heading2, Span } from '../components/01-Atoms/Heading/Heading.styles';
 import { Button } from '../components/01-Atoms/Button/Button.styles';
@@ -178,6 +179,7 @@ class App extends Component {
 
     return (
       <Container>
+        <GlobalStyles />
         <Header colorState={colorState} />
 
         <BlockSection flex color={colorState}>

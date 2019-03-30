@@ -1,7 +1,7 @@
 import React from 'react';
 import SwatchStyles from './Swatch.styles';
 
-const Swatch = React.memo(props => (
+const Swatch = props => (
   <SwatchStyles
     key={props.index}
     background={props.background}
@@ -11,6 +11,6 @@ const Swatch = React.memo(props => (
     onClick={props.onClick}
     aria-label={`Swatch: Background = ${props.background}. Foreground = ${props.foreground}. Click/Tap to append these colour values.`}
   >Aa</SwatchStyles>
-));
+);
 
-export default Swatch;
+export default React.memo(Swatch);

@@ -1,10 +1,10 @@
-import { css, injectGlobal } from 'styled-components';
+import { css, createGlobalStyle } from 'styled-components';
 import { colors } from './settings.colors.styles';
 import { typography } from './settings.typography.styles';
 import { maxWidth } from './settings.breakpoints.styles';
 import spacing from './settings.spacing.styles';
 
-export default () => injectGlobal`
+const GlobalStyles = createGlobalStyle`
   :root {
     --background: ${colors.core};
     --foreground: ${colors.dark};
@@ -37,9 +37,9 @@ export default () => injectGlobal`
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
 
-    ${maxWidth('768', () => css`
+    ${maxWidth('768',() => css`
       padding-bottom: 80px;
-  `)}
+    `)}
   }
 
   body ::-moz-selection {
@@ -80,3 +80,5 @@ export default () => injectGlobal`
     appearance: none;
   }
 `;
+
+export default GlobalStyles;

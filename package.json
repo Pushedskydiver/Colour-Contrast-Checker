@@ -13,7 +13,7 @@
     "url": "https://github.com/Pushedskydiver/Colour-Contrast-Checker"
   },
   "dependencies": {
-    "chroma-js": "^1.3.7",
+    "chroma-js": "2.0.3",
     "lodash.round": "^4.0.4",
     "lodash.throttle": "^4.1.1",
     "react": "^16.7.0",
@@ -22,19 +22,19 @@
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.8",
     "react-snap": "^1.22.1",
-    "styled-components": "^3.4.9",
+    "styled-components": "4.2.0",
     "webfontloader": "^1.6.28"
   },
   "devDependencies": {
-    "enzyme": "^3.6.0",
-    "enzyme-adapter-react-16": "^1.5.0",
+    "enzyme": "3.9.0",
+    "enzyme-adapter-react-16": "1.11.2",
     "eslint-config-synacor": "^3.0.3",
-    "eslint-plugin-react": "^7.11.1",
-    "jest-enzyme": "^6.1.2",
-    "jest-localstorage-mock": "^2.2.0",
-    "jest-styled-components": "^6.2.1",
-    "react-test-renderer": "^16.5.2",
-    "source-map-explorer": "^1.6.0"
+    "eslint-plugin-react": "7.12.4",
+    "jest-enzyme": "7.0.2",
+    "jest-localstorage-mock": "2.4.0",
+    "jest-styled-components": "6.3.1",
+    "react-test-renderer": "16.8.6",
+    "source-map-explorer": "1.8.0"
   },
   "eslintConfig": {
     "extends": "eslint-config-synacor"
