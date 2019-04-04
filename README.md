@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/00b32e9b-1de2-4a3d-802a-61ed7e9c538e/deploy-status)](https://app.netlify.com/sites/colour-contrast-checker/deploys)
+
 # Colour Contrast Checker
 
 ## CLI Commands
