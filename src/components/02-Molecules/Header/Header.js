@@ -1,16 +1,16 @@
-/*global chrome*/
-
 import React from 'react';
 import { Heading1 } from '../../01-Atoms/Heading/Heading.styles';
 import SkipLink from '../../01-Atoms/SkipLink/SkipLink.styles';
 import HeaderStyles from './Header.styles';
 
 const chromeExtension = () => {
-  if (chrome.app.isInstalled) {
-    return console.log('User has installed the app');
-  }
+  if (window.chrome) {
+    if (window.chrome.app.isInstalled) {
+      return console.log('User has installed the app');
+    }
 
-  return console.log('User has not installed the app');
+    return console.log('User has not installed the app');
+  }
 };
 
 const Header = props => (
