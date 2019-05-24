@@ -4,6 +4,10 @@ import spacing from '../../../styles/settings.spacing.styles';
 
 const Header = styled.header`
   position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
   padding-top: ${spacing.padding * 2.5}px;
   padding-bottom: ${spacing.padding * 2.5}px;
 

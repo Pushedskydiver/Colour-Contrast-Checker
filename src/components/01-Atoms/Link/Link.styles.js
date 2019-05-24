@@ -10,6 +10,15 @@ const Link = styled.a`
     margin-right: ${spacing.margin * 1.5}px;
     text-decoration: none;
   `}
+
+  ${props => props.chromeBadgeLink && css`
+    display: none;
+
+    @media (hover: hover) {
+      display: block;
+      width: 200px;
+    }
+  `}
 `;
 
 export default Link;

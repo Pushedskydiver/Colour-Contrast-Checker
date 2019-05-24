@@ -59,6 +59,11 @@ const GlobalStyles = createGlobalStyle`
     margin-bottom: ${spacing.margin}px;
   }
 
+  img {
+    display: block;
+    width: 100%;
+  }
+
   button {
     padding: 0;
     background-color: transparent;
