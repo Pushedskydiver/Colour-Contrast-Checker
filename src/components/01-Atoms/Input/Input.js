@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState, memo } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import InputStyles from './Input.styles';
 import { Clipboard } from '../Icon/Icon';
@@ -7,17 +7,27 @@ import Tooltip from '../Tooltip/Tooltip.styles';
 import { BlockDiv } from '../../02-Molecules/Block/Block.styles';
 import { isHex, hexToHsl, hslToHex } from '../../Utils';
 
-const InputMemo = React.memo(props =>
-  <InputStyles type="text" minLength="7" value={props.hex} id={props.id} spellCheck="false" onChange={props.onChange} />
+const InputMemo = props => (
+  <InputStyles
+    type="text"
+    minLength="7"
+    value={props.hex}
+    id={props.id}
+    spellCheck="false"
+    onChange={props.onChange}
+  />
 );
 
-class Input extends Component {
-  state = {
-    hex: hslToHex(this.props.value),
-    copied: false
+const Input = props => {
+  const [hex, setHexState] = useState(hslToHex(props.value));
+  const [copied, setCopiedState] = useState(false);
+
+  const updateState = value => {
+    setHexState(hslToHex(value));
+    setCopiedState(false);
   };
 
-  handleHexChange = async ({ target }) => {
+  function handleHexChange({ target }) {
     const name = target.getAttribute('id');
     const valueHasHash = target.value.indexOf('#') !== -1;
     const isHexCode = isHex(target.value);
@@ -25,7 +35,8 @@ class Input extends Component {
     const isShortHand = /(^#[0-9a-f]{3}|[0-9a-f]{3])$/gim.test(target.value);
     const isRed = target.value.toLowerCase() === 'red';
 
-    await this.setState({ hex: target.value, copied: false });
+    setHexState(target.value);
+    setCopiedState(false);
 
     if (target.value.length === 6 && !valueHasHash && isHexCode && isNum) {
       target.value = `#${target.value}`;
@@ -47,53 +58,52 @@ class Input extends Component {
       return;
     }
 
-    this.props.onChange(hexToHsl(target.value), name);
+    props.onChange(hexToHsl(target.value), name);
   }
 
-  updateState = value => {
-    this.setState({ hex: hslToHex(value) });
-  }
-
-  setCopiedState = () => {
-    this.setState({ copied: true });
+  function setCopyState() {
+    setCopiedState(true);
 
     const delaySetState = setTimeout(() => {
-      this.setState({ copied: false });
+      setCopiedState(false);
       clearTimeout(delaySetState);
     }, 2000);
   }
 
-  componentDidUpdate(prevProps) {
-    const { value } = this.props;
+  useEffect(() => {
+    updateState(props.value);
+  }, [props.value]);
 
-    if (value !== prevProps.value) {
-      this.updateState(value);
-    }
-  }
+  return (
+    <BlockDiv noMargin>
+      <InputMemo
+        hex={hex}
+        id={props.id}
+        onChange={handleHexChange}
+      />
 
-  render() {
-    return (
-      <BlockDiv noMargin>
-        <InputMemo hex={this.state.hex} id={this.props.id} onChange={this.handleHexChange} />
+      <CopyToClipboard text={hex} onCopy={setCopyState}>
+        <CopyButton
+          type="button"
+          aria-labelledby={`${props.id}CopiedSate`}
+        >
+          <Clipboard fill={props.color} />
 
-        <CopyToClipboard text={this.state.hex} onCopy={this.setCopiedState}>
-          <CopyButton type="button" aria-labelledby={`${this.props.id}CopiedSate`}>
-            <Clipboard fill={this.props.color} />
-            <Tooltip
-              id={`${this.props.id}CopiedSate`}
-              aria-hidden={this.state.copied}
-              aria-live="polite"
-              role="tooltip"
-              color={this.props.color}
-              visible={this.state.copied}
-            >
-              {this.state.copied ? 'Copied' : `Copy ${this.state.hex} to clipboard`}
-            </Tooltip>
-          </CopyButton>
-        </CopyToClipboard>
-      </BlockDiv>
-    );
-  }
-}
+          <Tooltip
+            id={`${props.id}CopiedSate`}
+            aria-hidden={copied}
+            aria-live="polite"
+            role="tooltip"
+            color={props.color}
+            visible={copied}
+          >
 
-export default Input;
+            {copied ? 'Copied' : `Copy ${hex} to clipboard`}
+          </Tooltip>
+        </CopyButton>
+      </CopyToClipboard>
+    </BlockDiv>
+  );
+};
+
+export default memo(Input);

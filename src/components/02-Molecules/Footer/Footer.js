@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import Link from '../../01-Atoms/Link/Link.styles';
 import { GitHub, Twitter } from '../../01-Atoms/Icon/Icon';
 import FooterStyles from './Footer.styles';
@@ -23,4 +23,4 @@ const Footer = props => (
   </FooterStyles>
 );
 
-export default Footer;
+export default memo(Footer);

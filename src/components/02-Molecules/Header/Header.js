@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Heading1 } from '../../01-Atoms/Heading/Heading.styles';
 import SkipLink from '../../01-Atoms/SkipLink/SkipLink.styles';
 import Link from '../../01-Atoms/Link/Link.styles';
@@ -25,4 +25,4 @@ const Header = props => (
   </HeaderStyles>
 );
 
-export default Header;
+export default memo(Header);

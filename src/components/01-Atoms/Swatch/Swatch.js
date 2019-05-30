@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import SwatchStyles from './Swatch.styles';
 
 const Swatch = props => (
@@ -13,4 +13,4 @@ const Swatch = props => (
   >Aa</SwatchStyles>
 );
 
-export default React.memo(Swatch);
+export default memo(Swatch);

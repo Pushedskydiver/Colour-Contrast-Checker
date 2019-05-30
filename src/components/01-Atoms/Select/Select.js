@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import SelectStyles, { SelectWrapper } from './Select.styles';
 import { Chevron } from '../Icon/Icon';
 
@@ -16,4 +16,4 @@ const Select = props => (
   </SelectWrapper>
 );
 
-export default Select;
+export default memo(Select);
