@@ -58,7 +58,7 @@ export function ContextProvider(props) {
     const colors = JSON.parse(localStorage.getItem('colors')) || [];
     const bg = hslToHex(background);
     const fg = hslToHex(foreground);
-    const sameColors = colors.filter(color => color.background === background && color.foreground === foreground).length > 0;
+    const sameColors = colors.filter(color => color.background === bg && color.foreground === fg).length > 0;
 
     if (colors.length > 0 && sameColors) {
       return;
