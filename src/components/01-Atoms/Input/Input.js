@@ -1,4 +1,4 @@
-import React, { useEffect, useState, memo } from 'react';
+import React, { useContext, useEffect, useState, memo } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import InputStyles from './Input.styles';
 import { Clipboard } from '../Icon/Icon';
@@ -6,26 +6,20 @@ import { CopyButton } from '../Button/Button.styles';
 import Tooltip from '../Tooltip/Tooltip.styles';
 import { BlockDiv } from '../../02-Molecules/Block/Block.styles';
 import { isHex, hexToHsl, hslToHex } from '../../Utils';
+import Context from '../../Context';
 
-const InputMemo = props => (
-  <InputStyles
-    type="text"
-    minLength="7"
-    value={props.hex}
-    id={props.id}
-    spellCheck="false"
-    onChange={props.onChange}
-  />
-);
+function Input(props) {
+  const { id } = props;
+  const { background, foreground, colorState, handleContrastCheck } = useContext(Context);
+  const value = id === 'background' ? background : foreground;
 
-const Input = props => {
-  const [hex, setHexState] = useState(hslToHex(props.value));
+  const [hex, setHexState] = useState(hslToHex(value));
   const [copied, setCopiedState] = useState(false);
 
-  const updateState = value => {
-    setHexState(hslToHex(value));
+  function updateState(mans) {
+    setHexState(hslToHex(mans));
     setCopiedState(false);
-  };
+  }
 
   function handleHexChange({ target }) {
     const name = target.getAttribute('id');
@@ -58,7 +52,7 @@ const Input = props => {
       return;
     }
 
-    props.onChange(hexToHsl(target.value), name);
+    handleContrastCheck(hexToHsl(target.value), name);
   }
 
   function setCopyState() {
@@ -71,31 +65,34 @@ const Input = props => {
   }
 
   useEffect(() => {
-    updateState(props.value);
-  }, [props.value]);
+    updateState(value);
+  }, [value]);
 
   return (
     <BlockDiv noMargin>
-      <InputMemo
-        hex={hex}
-        id={props.id}
+      <InputStyles
+        type="text"
+        minLength="7"
+        value={hex}
+        id={id}
+        spellCheck="false"
         onChange={handleHexChange}
       />
 
       <CopyToClipboard text={hex} onCopy={setCopyState}>
         <CopyButton
           type="button"
-          aria-labelledby={`${props.id}CopiedSate`}
+          aria-labelledby={`${id}CopiedSate`}
         >
-          <Clipboard fill={props.color} />
+          <Clipboard />
 
           <Tooltip
-            id={`${props.id}CopiedSate`}
+            id={`${id}CopiedSate`}
             aria-hidden={copied}
             aria-live="polite"
             role="tooltip"
-            color={props.color}
             visible={copied}
+            color={colorState}
           >
 
             {copied ? 'Copied' : `Copy ${hex} to clipboard`}
@@ -104,6 +101,6 @@ const Input = props => {
       </CopyToClipboard>
     </BlockDiv>
   );
-};
+}
 
 export default memo(Input);

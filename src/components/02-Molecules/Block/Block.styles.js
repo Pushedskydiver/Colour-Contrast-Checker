@@ -23,10 +23,6 @@ export const BlockSection = styled.section`
     `)}
   `}
 
-  ${props => props.color && css`
-    color: ${props.color};
-  `}
-
   ${props => props.select && css`
     padding-bottom: ${spacing.padding / 2}px;
     border-bottom: 1px solid currentColor;

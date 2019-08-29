@@ -55,9 +55,9 @@ export const getLevel = contrast => {
   return { AALarge: 'Fail', AA: 'Fail', AAALarge: 'Fail', AAA: 'Fail' };
 };
 
-export const updatePath = throttle((background, foreground) => {
-  const backgroundHex = hslToHex(background).replace(/^#/, '');
-  const foregroundHex = hslToHex(foreground).replace(/^#/, '');
+export const updatePath = throttle((bg, fg) => {
+  const backgroundHex = hslToHex(bg).replace(/^#/, '');
+  const foregroundHex = hslToHex(fg).replace(/^#/, '');
 
   history.push(`/${backgroundHex}/${foregroundHex}`);
 }, 250);

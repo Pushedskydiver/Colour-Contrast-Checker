@@ -1,21 +1,25 @@
-import React, { memo } from 'react';
+import React, { memo, useContext } from 'react';
 import round from 'lodash.round';
 import Label from '../../01-Atoms/Label/Label.styles';
 import Range from '../../01-Atoms/Range/Range.styles';
 import ControlStyles from './Controls.styles';
+import Context from '../../Context';
 
-const Controls = (props) => {
+
+function Controls(props) {
   const nanH = h => (isNaN(h) || h === null ? 0 : h);
-  const { id, color, value } = props;
+  const { id } = props;
+  const { background, foreground, colorState, handleContrastCheck } = useContext(Context);
+  const value = id === 'background' ? background : foreground;
   const [h, s, l] = value;
 
   function handleChange({ target }) {
-    const { value, name } = props;
+    const { name } = props;
     const hsl = [...value];
     const i = parseFloat(target.getAttribute('property'));
 
     hsl[i] = parseFloat(target.value);
-    props.onChange(hsl, name);
+    handleContrastCheck(hsl, name);
   }
 
   return (
@@ -29,7 +33,7 @@ const Controls = (props) => {
         max="360"
         value={nanH(h)}
         id={`${id}Hue`}
-        color={color}
+        color={colorState}
         onChange={handleChange}
         property={0}
       />
@@ -44,7 +48,7 @@ const Controls = (props) => {
         step={1 / 256}
         value={s}
         id={`${id}Saturation`}
-        color={color}
+        color={colorState}
         onChange={handleChange}
         property={1}
       />
@@ -59,12 +63,12 @@ const Controls = (props) => {
         step={1 / 256}
         value={l}
         id={`${id}Lightness`}
-        color={color}
+        color={colorState}
         onChange={handleChange}
         property={2}
       />
     </ControlStyles>
   );
-};
+}
 
 export default memo(Controls);
