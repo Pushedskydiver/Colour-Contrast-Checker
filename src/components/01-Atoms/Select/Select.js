@@ -26,11 +26,9 @@ function Select() {
     });
   }
 
-  function renderFontOptions({ family, variant }, index) {
-    return (
-      <option key={index} value={family} data-font-weight={variant}>{family}</option>
-    );
-  }
+  const renderFontOptions = ({ family, variant }, index) => (
+    <option key={index} value={family} data-font-weight={variant}>{family}</option>
+  );
 
   return (
     <SelectWrapper>

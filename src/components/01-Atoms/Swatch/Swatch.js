@@ -15,19 +15,17 @@ function Swatch() {
     updatePath(background, foreground);
   }
 
-  function renderSwatch({ background, foreground }, index) {
-    return (
-      <SwatchStyles
-        key={index}
-        background={background}
-        foreground={foreground}
-        data-background={background}
-        data-foreground={foreground}
-        onClick={appendColors}
-        aria-label={`Swatch: Background = ${background}. Foreground = ${foreground}. Click/Tap to apply these colour values.`}
-      >Aa</SwatchStyles>
-    );
-  }
+  const renderSwatch = ({ background, foreground }, index) => (
+    <SwatchStyles
+      key={index}
+      background={background}
+      foreground={foreground}
+      data-background={background}
+      data-foreground={foreground}
+      onClick={appendColors}
+      aria-label={`Swatch: Background = ${background}. Foreground = ${foreground}. Click/Tap to apply these colour values.`}
+    >Aa</SwatchStyles>
+  );
 
   return (
     <Fragment>

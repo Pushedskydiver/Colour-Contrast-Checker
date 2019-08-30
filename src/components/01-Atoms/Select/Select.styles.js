@@ -7,7 +7,6 @@ const SelectStyles = styled.select`
   display: block;
   width: 100%;
   padding-right: ${spacing.padding * 3}px;
-  color: inherit;
   font-size: ${typography.heading.size.small};
   line-height: normal;
   cursor: pointer;

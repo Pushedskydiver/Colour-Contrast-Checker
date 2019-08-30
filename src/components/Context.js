@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { createContext, useEffect, useRef, useState } from 'react';
 import { fetchData, isDark, isHsl, hexToHsl, hslToHex, hexToRgb, getContrast, getLevel, updatePath } from '../components/Utils';
 
-const Context = React.createContext({});
+const Context = createContext({});
 
 export function ContextProvider(props) {
   const localColors = JSON.parse(localStorage.getItem('colors'));
