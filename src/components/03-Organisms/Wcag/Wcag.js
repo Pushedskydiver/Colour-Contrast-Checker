@@ -9,7 +9,7 @@ function Wcag(props) {
   const { level, colorState } = useContext(Context);
 
   return (
-    <WcagStyles {...props}>
+    <WcagStyles {...props} color={colorState}>
       <Result>
         <Badge color={colorState}>{level.AALarge}</Badge>
         <Grade>AA Large</Grade>

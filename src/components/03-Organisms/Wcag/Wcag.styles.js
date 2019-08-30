@@ -8,6 +8,10 @@ const Wcag = styled.div`
   align-items: flex-start;
   flex: 1;
 
+  ${props => props.color && css`
+    color: ${props.color};
+  `}
+
   ${maxWidth('992', () => css`
     margin-top: ${spacing.margin * 2.5}px;
   `)}
