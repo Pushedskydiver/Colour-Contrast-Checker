@@ -5,7 +5,6 @@ import Range from '../../01-Atoms/Range/Range.styles';
 import ControlStyles from './Controls.styles';
 import Context from '../../Context';
 
-
 function Controls(props) {
   const nanH = h => (isNaN(h) || h === null ? 0 : h);
   const { id } = props;
@@ -23,7 +22,7 @@ function Controls(props) {
   }
 
   return (
-    <ControlStyles>
+    <ControlStyles color={colorState}>
       <Label medium htmlFor={`${props.id}Hue`}>
         Hue {Math.round(nanH(h))}°
       </Label>

@@ -69,7 +69,7 @@ function Input(props) {
   }, [value]);
 
   return (
-    <BlockDiv noMargin>
+    <BlockDiv color={colorState} noMargin>
       <InputStyles
         type="text"
         minLength="7"

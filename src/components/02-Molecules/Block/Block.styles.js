@@ -9,6 +9,10 @@ export const BlockSection = styled.section`
     margin-bottom: ${spacing.margin * 3.5}px;
   `}
 
+  ${props => props.color && css`
+    color: ${props.color};
+  `}
+
   ${props => props.flex && css`
     ${minWidth('992', () => css`
       display: flex;

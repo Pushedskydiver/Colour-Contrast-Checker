@@ -7,10 +7,13 @@ const RatioStyles = styled.span`
   display: inline-block;
   margin-right: ${spacing.margin}px;
   margin-left: ${spacing.margin}px;
-  color: inherit;
   font-size: ${typography.heading.size.medium};
   font-variation-settings: "wght" ${typography.weight.medium};
   line-height: 1;
+
+  ${props => props.color && css`
+    color: ${props.color};
+  `}
 
   ${minWidth('768', () => css`
     margin-right: ${spacing.margin * 2}px;

@@ -14,8 +14,8 @@ import Controls from '../components/02-Molecules/Controls/Controls';
 import Footer from '../components/02-Molecules/Footer/Footer';
 import Flex from '../components/03-Organisms/Flex/Flex.styles';
 import Wcag from '../components/03-Organisms/Wcag/Wcag';
-import { ContextProvider } from './Context';
 import Swatch from './01-Atoms/Swatch/Swatch';
+import { ContextProvider } from './Context';
 
 const Select = lazy(() => import('../components/01-Atoms/Select/Select'));
 
