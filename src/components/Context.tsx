@@ -1,23 +1,64 @@
 import React, { createContext, useEffect, useRef, useState } from 'react';
-import { fetchData, isDark, isHsl, hexToHsl, hslToHex, hexToRgb, getContrast, getLevel, updatePath } from '../components/Utils';
+import { fetchData, isDark, isHsl, hexToHsl, hslToHex, hexToRgb, getContrast, getLevel, updatePath } from './Utils';
 
-const Context = createContext({});
+export interface ProviderProps {
+  children: React.ReactNode
+}
 
-export function ContextProvider(props) {
-  const localColors = JSON.parse(localStorage.getItem('colors'));
-  const localFonts = JSON.parse(localStorage.getItem('fonts'));
+export interface GoogleFontsProps {
+  family: string,
+  variants: number[]
+}
+
+export interface FontsProps {
+  family: string,
+  variant: number
+}
+
+export interface ColorsProps {
+  background: string,
+  foreground: string
+}
+
+export interface LevelsProps {
+  AALarge: string
+  AA: string
+  AAALarge: string
+  AAA: string
+}
+
+export interface ContextProps {
+  fonts: FontsProps[],
+  colors: ColorsProps[],
+  background: number[],
+  foreground: number[],
+  contrast: number,
+  level: LevelsProps,
+  colorState: string,
+  handleContrastCheck: (value: number[], name: string) => void,
+  reverseColors: () => void,
+  saveColors: () => void,
+  setColors: React.Dispatch<React.SetStateAction<ColorsProps[]>>,
+  updateView: (bg: number[], fg: number[]) => void
+}
+
+const Context = createContext<Partial<ContextProps>>({});
+
+export function ContextProvider(props: ProviderProps) {
+  const localColors = JSON.parse(localStorage.getItem('colors') as string);
+  const localFonts = JSON.parse(localStorage.getItem('fonts') as string);
   const levels = { AALarge: 'Pass', AA: 'Pass', AAALarge: 'Pass', AAA: 'Pass' };
   const updateViewRef = useRef(updateView);
 
-  const [fonts, setfonts] = useState(localFonts || []);
-  const [colors, setColors] = useState(localColors || []);
-  const [background, setBackground] = useState([49.73, 1, 0.71]);
-  const [foreground, setForeground] = useState([NaN, 0, 0.133]);
-  const [contrast, setContrast] = useState(12.72);
-  const [level, setLevel] = useState(levels);
-  const colorState = contrast < 3 ? isDark(background) ? '#ffffff' : '#222222' : hslToHex(foreground);
+  const [fonts, setfonts] = useState<FontsProps[]>(localFonts || []);
+  const [colors, setColors] = useState<ColorsProps[]>(localColors || []);
+  const [background, setBackground] = useState<number[]>([49.73, 1, 0.71]);
+  const [foreground, setForeground] = useState<number[]>([NaN, 0, 0.133]);
+  const [contrast, setContrast] = useState<number>(12.72);
+  const [level, setLevel] = useState<LevelsProps>(levels);
+  const colorState: string = contrast < 3 ? isDark(background) ? '#ffffff' : '#222222' : hslToHex(foreground);
 
-  function checkContrast(bg, fg) {
+  function checkContrast(bg: string, fg: string) {
     const backgroundRgb = hexToRgb(bg);
     const foregroundRgb = hexToRgb(fg);
     const newContrast = getContrast(backgroundRgb, foregroundRgb);
@@ -27,7 +68,7 @@ export function ContextProvider(props) {
     setLevel(newLevel);
   }
 
-  function handleContrastCheck(value, name) {
+  function handleContrastCheck(value: number[], name: string) {
     const bg = name === 'background' ? hslToHex(value) : hslToHex(background);
     const fg = name === 'foreground' ? hslToHex(value) : hslToHex(foreground);
 
@@ -38,9 +79,9 @@ export function ContextProvider(props) {
     updatePath(hexToHsl(bg), hexToHsl(fg));
   }
 
-  function storeFontsData({ items }) {
+  function storeFontsData({ items }: { items: GoogleFontsProps[] }) {
     const families = items.slice(0, 50);
-    const fonts = [];
+    const fonts: FontsProps[] = [];
 
     families.forEach(item => {
       const { family, variants } = item;
@@ -55,10 +96,10 @@ export function ContextProvider(props) {
   }
 
   function saveColors() {
-    const colors = JSON.parse(localStorage.getItem('colors')) || [];
+    const colors = JSON.parse(localStorage.getItem('colors') as string) || [];
     const bg = hslToHex(background);
     const fg = hslToHex(foreground);
-    const sameColors = colors.filter(color => color.background === bg && color.foreground === fg).length > 0;
+    const sameColors = colors.filter((color: ColorsProps) => color.background === bg && color.foreground === fg).length > 0;
 
     if (colors.length > 0 && sameColors) {
       return;
@@ -74,7 +115,7 @@ export function ContextProvider(props) {
     setColors(colors);
   }
 
-  function updateView(bg, fg) {
+  function updateView(bg: number[], fg: number[]) {
     const backgroundHex = hslToHex(bg);
     const foregroundHex = hslToHex(fg);
 

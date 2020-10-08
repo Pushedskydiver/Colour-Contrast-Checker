@@ -13,6 +13,11 @@
     "url": "https://github.com/Pushedskydiver/Colour-Contrast-Checker"
   },
   "dependencies": {
+    "@types/jest": "^26.0.14",
+    "@types/node": "^14.11.2",
+    "@types/react": "^16.9.50",
+    "@types/react-dom": "^16.9.8",
+    "@types/react-router-dom": "^5.1.5",
     "chroma-js": "2.0.3",
     "lodash.round": "^4.0.4",
     "lodash.throttle": "^4.1.1",
@@ -23,6 +28,7 @@
     "react-scripts": "^3.4.3",
     "react-snap": "^1.22.1",
     "styled-components": "4.3.2",
+    "typescript": "^4.0.3",
     "webfontloader": "^1.6.28"
   },
   "devDependencies": {

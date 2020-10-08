@@ -5,9 +5,12 @@ import registerServiceWorker from './registerServiceWorker';
 
 const rootElement = document.querySelector('#main');
 
-if (rootElement.hasChildNodes()) {
-  hydrate(<Router />, rootElement);
-} else {
-  render(<Router />, rootElement);
+if (rootElement) {
+  if (rootElement.hasChildNodes()) {
+    hydrate(<Router />, rootElement);
+  } else {
+    render(<Router />, rootElement);
+  }
+  registerServiceWorker();
 }
-registerServiceWorker();
+
