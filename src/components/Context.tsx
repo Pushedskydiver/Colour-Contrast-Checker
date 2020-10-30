@@ -39,7 +39,8 @@ export interface ContextProps {
   reverseColors: () => void,
   saveColors: () => void,
   setColors: React.Dispatch<React.SetStateAction<ColorsProps[]>>,
-  updateView: (bg: number[], fg: number[]) => void
+  updateView: (bg: number[], fg: number[]) => void,
+  updatePath: (bg: number[], fg: number[]) => void
 }
 
 const Context = createContext<Partial<ContextProps>>({});
@@ -61,7 +62,7 @@ export function ContextProvider(props: ProviderProps) {
   function checkContrast(bg: string, fg: string) {
     const backgroundRgb = hexToRgb(bg);
     const foregroundRgb = hexToRgb(fg);
-    const newContrast = getContrast(backgroundRgb, foregroundRgb);
+    const newContrast = getContrast(backgroundRgb as number[], foregroundRgb as number[]);
     const newLevel = getLevel(newContrast);
 
     setContrast(newContrast);
@@ -76,7 +77,7 @@ export function ContextProvider(props: ProviderProps) {
 
     document.body.style.setProperty(`--${name}`, hslToHex(value));
     checkContrast(bg, fg);
-    updatePath(hexToHsl(bg), hexToHsl(fg));
+    updatePath(hexToHsl(bg) as number[], hexToHsl(fg) as number[]);
   }
 
   function storeFontsData({ items }: { items: GoogleFontsProps[] }) {
@@ -110,7 +111,6 @@ export function ContextProvider(props: ProviderProps) {
     }
 
     colors.unshift({ background: bg, foreground: fg });
-
     localStorage.setItem('colors', JSON.stringify(colors));
     setColors(colors);
   }
@@ -151,11 +151,11 @@ export function ContextProvider(props: ProviderProps) {
       fetchGoogleFontsData();
     }
 
-    if (!isHsl(bg) || !isHsl(fg)) {
+    if (!isHsl(bg as number[]) || !isHsl(fg as number[])) {
       return;
     }
 
-    updateViewRef.current(bg, fg);
+    updateViewRef.current(bg as number[], fg as number[]);
   }, []);
 
   const data = {
