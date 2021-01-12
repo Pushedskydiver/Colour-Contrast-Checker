@@ -23,11 +23,11 @@ const Copy = styled.textarea<CopyProps>`
   resize: none;
 
   ${props => props.normal && css`
-    font-size: 1em;
+    font-size: 1rem;
   `}
 
   ${props => props.large && css`
-    font-size: 14pt;
+    font-size: 18pt;
   `}
 `;
 

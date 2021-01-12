@@ -9,7 +9,7 @@ import { isHex, hexToHsl, hslToHex } from '../../Utils';
 import Context from '../../Context';
 
 export interface InputProps {
-  id: string
+  id: string,
   name: string
 }
 

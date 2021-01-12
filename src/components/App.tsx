@@ -79,7 +79,7 @@ function App() {
 
         <Flex justify={JustifyContentProps.between}>
           <Example>
-            <Label htmlFor="largeCopy" heading bold>Large Text - 14pt</Label>
+            <Label htmlFor="largeCopy" heading bold>Large Text - 18pt/24px</Label>
             <Copy
               rows={5}
               defaultValue={defaultText}
