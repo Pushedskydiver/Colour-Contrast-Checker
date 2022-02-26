@@ -1,4 +1,4 @@
-import React, { memo, useContext } from 'react';
+import { memo, useContext } from 'react';
 import round from 'lodash.round';
 import Label from '../../01-Atoms/Label/Label.styles';
 import Range from '../../01-Atoms/Range/Range.styles';
@@ -11,7 +11,7 @@ export interface ControlsProps {
 }
 
 function Controls(props: ControlsProps) {
-  const nanH = (h: number) => (isNaN(h) || h === null ? 0 : h);
+  const nanH = (h: number) => (Number.isNaN(h) || h === null ? 0 : h);
   const { id } = props;
   const { background, foreground, colorState, handleContrastCheck } = useContext(Context);
   const value = id === 'background' ? background : foreground;

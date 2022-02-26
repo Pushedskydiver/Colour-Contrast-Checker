@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState, memo } from 'react';
+import { useContext, useEffect, useState, memo } from 'react';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import InputStyles from './Input.styles';
 import { Clipboard } from '../Icon/Icon';

@@ -21,9 +21,9 @@ export interface ColorsProps {
 }
 
 export interface LevelsProps {
-  AALarge: string
-  AA: string
-  AAALarge: string
+  AALarge: string,
+  AA: string,
+  AAALarge: string,
   AAA: string
 }
 

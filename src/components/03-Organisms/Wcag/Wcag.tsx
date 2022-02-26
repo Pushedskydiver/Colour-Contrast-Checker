@@ -1,4 +1,4 @@
-import React, { memo, useContext } from 'react';
+import { memo, useContext } from 'react';
 import Badge from '../../01-Atoms/Badge/Badge.styles';
 import Grade from '../../01-Atoms/Grade/Grade.styles';
 import Result from '../../02-Molecules/Result/Result.styles';

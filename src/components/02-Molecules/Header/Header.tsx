@@ -1,4 +1,4 @@
-import React, { memo, useContext } from 'react';
+import { memo, useContext } from 'react';
 import { Heading1 } from '../../01-Atoms/Heading/Heading.styles';
 import SkipLink from '../../01-Atoms/SkipLink/SkipLink.styles';
 import Link from '../../01-Atoms/Link/Link.styles';

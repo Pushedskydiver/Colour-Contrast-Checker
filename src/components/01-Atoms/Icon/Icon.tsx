@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import IconStyles from './Icon.styles';
 import Context from '../../Context';
 

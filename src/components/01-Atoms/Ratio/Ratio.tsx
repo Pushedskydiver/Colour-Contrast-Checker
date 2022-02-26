@@ -1,4 +1,4 @@
-import React, { memo, useContext } from 'react';
+import { memo, useContext } from 'react';
 import RatioStyles from './Ratio.styles';
 import Context from '../../Context';
 

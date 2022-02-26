@@ -1,4 +1,4 @@
-import React, { memo, useContext } from 'react';
+import { memo, useContext } from 'react';
 import WebFont from 'webfontloader';
 import SelectStyles, { SelectWrapper } from './Select.styles';
 import { Chevron } from '../Icon/Icon';
