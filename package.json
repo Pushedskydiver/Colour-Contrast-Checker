@@ -16,13 +16,11 @@
     "chroma-js": "2.4.2",
     "lodash.round": "^4.0.4",
     "lodash.throttle": "^4.1.1",
-    "puppeteer": "^1.20.0",
     "react": "17.0.2",
     "react-copy-to-clipboard": "^5.0.4",
     "react-dom": "17.0.2",
     "react-router-dom": "6.2.1",
     "react-scripts": "^5.0.0",
-    "react-snap": "^1.23.0",
     "styled-components": "5.3.3",
     "typescript": "^4.5.5",
     "webfontloader": "^1.6.28"
@@ -50,7 +48,6 @@
     "analyze": "source-map-explorer build/static/js/main.*",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "postbuild": "react-snap",
     "serve": "npm run build && serve -s build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
