@@ -1,62 +1,36 @@
-import React, { createContext, useEffect, useRef, useState } from 'react';
+import React, { createContext, useContext, useEffect, useRef, useState } from 'react';
 import { fetchData, isDark, isHsl, hexToHsl, hslToHex, hexToRgb, getContrast, getLevel, updatePath } from './Utils';
 
-export interface ProviderProps {
-  children: React.ReactNode
-}
-
-export interface GoogleFontsProps {
-  family: string,
-  variants: number[]
-}
-
-export interface FontsProps {
-  family: string,
-  variant: number
-}
-
-export interface ColorsProps {
-  background: string,
-  foreground: string
-}
-
-export interface LevelsProps {
-  AALarge: string,
-  AA: string,
-  AAALarge: string,
-  AAA: string
-}
-
-export interface ContextProps {
-  fonts: FontsProps[],
-  colors: ColorsProps[],
+export interface ColourContrastContextTypes {
+  fonts: CC.FontsProps[],
+  colors: CC.ColorsProps[],
   background: number[],
   foreground: number[],
   contrast: number,
-  level: LevelsProps,
+  level: CC.LevelsProps,
   colorState: string,
   handleContrastCheck: (value: number[], name: string) => void,
   reverseColors: () => void,
   saveColors: () => void,
-  setColors: React.Dispatch<React.SetStateAction<ColorsProps[]>>,
+  setColors: React.Dispatch<React.SetStateAction<CC.ColorsProps[]>>,
   updateView: (bg: number[], fg: number[]) => void,
   updatePath: (bg: number[], fg: number[]) => void
 }
 
-const Context = createContext<Partial<ContextProps>>({});
+const ColourContrastContext = createContext<ColourContrastContextTypes | undefined>(undefined);
 
-export function ContextProvider(props: ProviderProps) {
+const ColourContrastProvider = (props: { children: React.ReactNode }) => {
   const localColors = JSON.parse(localStorage.getItem('colors') as string);
   const localFonts = JSON.parse(localStorage.getItem('fonts') as string);
   const levels = { AALarge: 'Pass', AA: 'Pass', AAALarge: 'Pass', AAA: 'Pass' };
   const updateViewRef = useRef(updateView);
 
-  const [fonts, setfonts] = useState<FontsProps[]>(localFonts || []);
-  const [colors, setColors] = useState<ColorsProps[]>(localColors || []);
+  const [fonts, setfonts] = useState<CC.FontsProps[]>(localFonts || []);
+  const [colors, setColors] = useState<CC.ColorsProps[]>(localColors || []);
   const [background, setBackground] = useState<number[]>([49.73, 1, 0.71]);
   const [foreground, setForeground] = useState<number[]>([NaN, 0, 0.133]);
   const [contrast, setContrast] = useState<number>(12.72);
-  const [level, setLevel] = useState<LevelsProps>(levels);
+  const [level, setLevel] = useState<CC.LevelsProps>(levels);
   const colorState: string = contrast < 3 ? isDark(background) ? '#ffffff' : '#222222' : hslToHex(foreground);
 
   function checkContrast(bg: string, fg: string) {
@@ -76,13 +50,15 @@ export function ContextProvider(props: ProviderProps) {
     name === 'background' ? setBackground(value) : setForeground(value);
 
     document.body.style.setProperty(`--${name}`, hslToHex(value));
+
     checkContrast(bg, fg);
+
     updatePath(hexToHsl(bg) as number[], hexToHsl(fg) as number[]);
   }
 
-  function storeFontsData({ items }: { items: GoogleFontsProps[] }) {
+  function storeFontsData({ items }: { items: CC.GoogleFontsProps[] }) {
     const families = items.slice(0, 50);
-    const fonts: FontsProps[] = [];
+    const fonts: CC.FontsProps[] = [];
 
     families.forEach(item => {
       const { family, variants } = item;
@@ -100,7 +76,7 @@ export function ContextProvider(props: ProviderProps) {
     const colors = JSON.parse(localStorage.getItem('colors') as string) || [];
     const bg = hslToHex(background);
     const fg = hslToHex(foreground);
-    const sameColors = colors.filter((color: ColorsProps) => color.background === bg && color.foreground === fg).length > 0;
+    const sameColors = colors.filter((color: CC.ColorsProps) => color.background === bg && color.foreground === fg).length > 0;
 
     if (colors.length > 0 && sameColors) {
       return;
@@ -158,27 +134,39 @@ export function ContextProvider(props: ProviderProps) {
     updateViewRef.current(bg as number[], fg as number[]);
   }, []);
 
-  const data = {
-    fonts,
-    colors,
-    background,
-    foreground,
-    contrast,
-    level,
-    colorState,
-    handleContrastCheck,
-    reverseColors,
-    saveColors,
-    setColors,
-    updateView,
-    updatePath
-  };
-
   return (
-    <Context.Provider value={data}>
+    <ColourContrastContext.Provider
+      value={{
+        fonts,
+        colors,
+        background,
+        foreground,
+        contrast,
+        level,
+        colorState,
+        handleContrastCheck,
+        reverseColors,
+        saveColors,
+        setColors,
+        updateView,
+        updatePath
+      }}
+    >
       {props.children}
-    </Context.Provider>
+    </ColourContrastContext.Provider>
   );
 }
 
-export default Context;
+const useColourContrast = () => {
+  const context = useContext(ColourContrastContext)
+
+  if (context === undefined) {
+    throw new Error('useColourContrast must be used within a ColourContrastProvider')
+  }
+
+  return context
+}
+
+export { ColourContrastContext, useColourContrast }
+
+export default ColourContrastProvider;

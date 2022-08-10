@@ -6,23 +6,25 @@ export interface WcagProps {
   color: string
 }
 
-const Wcag = styled.div<WcagProps>`
+const Wcag = styled.ul<WcagProps>`
   display: flex;
-  justify-content: space-between;
   align-items: flex-start;
-  flex: 1;
+  gap: ${spacing.margin}px ${spacing.margin / 1.5}px;
+  margin-bottom: 0px;
+  padding: 0px;
 
   ${props => props.color && css`
     color: ${props.color};
   `}
 
   ${maxWidth(992, () => css`
+    justify-content: space-between;
     margin-top: ${spacing.margin * 2.5}px;
   `)}
 
   ${minWidth(992, () => css`
+    gap: ${spacing.margin}px;
     text-align: right;
-    justify-content: flex-end;
   `)}
 `;
 

@@ -1,21 +1,18 @@
-import { memo, useContext } from 'react';
+import { memo } from 'react';
 import { Heading1 } from '../../01-Atoms/Heading/Heading.styles';
 import SkipLink from '../../01-Atoms/SkipLink/SkipLink.styles';
 import Link from '../../01-Atoms/Link/Link.styles';
 import HeaderStyles from './Header.styles';
-import Context from '../../Context';
 
 function Header() {
-  const { colorState } = useContext(Context);
-
   return (
     <HeaderStyles>
-      <SkipLink href="#ratio" color={colorState}>Skip to colour contrast ratio</SkipLink>
-      <SkipLink href="#grades" color={colorState}>Skip to colour contrast grades</SkipLink>
-      <SkipLink href="#background" color={colorState}>Skip to background colour input</SkipLink>
-      <SkipLink href="#foreground" color={colorState}>Skip to foreground colour input</SkipLink>
-      <SkipLink href="#largeCopy" color={colorState}>Skip to large text example copy</SkipLink>
-      <SkipLink href="#normalCopy" color={colorState}>Skip to normal text example copy</SkipLink>
+      <SkipLink href="#ratio">Skip to colour contrast ratio</SkipLink>
+      <SkipLink href="#grades">Skip to colour contrast grades</SkipLink>
+      <SkipLink href="#background">Skip to background colour input</SkipLink>
+      <SkipLink href="#foreground">Skip to foreground colour input</SkipLink>
+      <SkipLink href="#largeCopy">Skip to large text example copy</SkipLink>
+      <SkipLink href="#normalCopy">Skip to normal text example copy</SkipLink>
 
       <Heading1 medium noMargin>Colour Contrast Checker</Heading1>
 

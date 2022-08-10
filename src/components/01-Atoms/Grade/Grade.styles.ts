@@ -3,7 +3,6 @@ import { typography } from '../../../styles/settings.typography.styles';
 import { minWidth } from '../../../styles/settings.breakpoints.styles';
 
 const Grade = styled.span`
-  display: block;
   width: 65%;
   color: inherit;
   font-size: ${typography.heading.size.tiny};

@@ -1,9 +1,9 @@
-import { memo, useContext } from 'react';
+import { memo } from 'react';
 import round from 'lodash.round';
 import Label from '../../01-Atoms/Label/Label.styles';
 import Range from '../../01-Atoms/Range/Range.styles';
 import ControlStyles from './Controls.styles';
-import Context from '../../Context';
+import { useColourContrast } from '../../Context';
 
 export interface ControlsProps {
   id: string,
@@ -13,7 +13,7 @@ export interface ControlsProps {
 function Controls(props: ControlsProps) {
   const nanH = (h: number) => (Number.isNaN(h) || h === null ? 0 : h);
   const { id } = props;
-  const { background, foreground, colorState, handleContrastCheck } = useContext(Context);
+  const { background, foreground, colorState, handleContrastCheck } = useColourContrast();
   const value = id === 'background' ? background : foreground;
   const [h, s, l] = value as number[];
 

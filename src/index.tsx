@@ -1,15 +1,10 @@
-import { hydrate, render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import Router from './components/Router';
 import registerServiceWorker from './registerServiceWorker';
 
-const rootElement = document.querySelector('#main');
+const container = document.querySelector('#main');
+const root = createRoot(container!);
 
-if (rootElement) {
-  if (rootElement.hasChildNodes()) {
-    hydrate(<Router />, rootElement);
-  } else {
-    render(<Router />, rootElement);
-  }
-  registerServiceWorker();
-}
+root.render(<Router />);
 
+registerServiceWorker();

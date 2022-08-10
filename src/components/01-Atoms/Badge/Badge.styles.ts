@@ -4,17 +4,21 @@ import { typography } from '../../../styles/settings.typography.styles';
 import { minWidth } from '../../../styles/settings.breakpoints.styles';
 import spacing from '../../../styles/settings.spacing.styles';
 
-export interface BadgeProps {
-  color: string
-}
-
-const Badge = styled.span<BadgeProps>`
-  display: inline-block;
-  margin-bottom: ${spacing.margin}px;
+const Badge = styled.span<CC.BadgeProps>`
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: ${spacing.margin / 2}px;
   padding: ${spacing.padding / 3}px ${spacing.padding}px;
   border-radius: 4px;
   font-variation-settings: "wght" ${typography.weight.medium};
   line-height: normal;
+
+  svg {
+    width: auto;
+    height: auto;
+    flex: 0 0 24px;
+  }
 
   ${minWidth(768, () => css`
     padding-top: ${spacing.padding / 2}px;

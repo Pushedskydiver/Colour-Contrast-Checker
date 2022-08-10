@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState, memo } from 'react';
+import { useEffect, useState, memo } from 'react';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import InputStyles from './Input.styles';
 import { Clipboard } from '../Icon/Icon';
@@ -6,7 +6,7 @@ import { CopyButton } from '../Button/Button.styles';
 import Tooltip from '../Tooltip/Tooltip.styles';
 import { BlockDiv } from '../../02-Molecules/Block/Block.styles';
 import { isHex, hexToHsl, hslToHex } from '../../Utils';
-import Context from '../../Context';
+import { useColourContrast } from '../../Context';
 
 export interface InputProps {
   id: string,
@@ -15,7 +15,7 @@ export interface InputProps {
 
 function Input(props: InputProps) {
   const { id } = props;
-  const { background, foreground, colorState, handleContrastCheck } = useContext(Context);
+  const { background, foreground, colorState, handleContrastCheck } = useColourContrast();
   const value = id === 'background' ? background : foreground;
 
   const [hex, setHexState] = useState(hslToHex(value as number[]));
@@ -31,13 +31,13 @@ function Input(props: InputProps) {
     const valueHasHash = target.value.indexOf('#') !== -1;
     const isHexCode = isHex(target.value);
     const isNum = /^\d+$/.test(target.value);
-    const isShortHand = /(^#[0-9a-f]{3}|[0-9a-f]{3])$/gim.test(target.value);
+    const isShortHand = /(^#?[0-9a-f]{3,5}|[0-9a-f]{3])$/gim.test(target.value);
     const isRed = target.value.toLowerCase() === 'red';
 
     setHexState(target.value);
     setCopiedState(false);
 
-    if (target.value.length === 6 && !valueHasHash && isHexCode && isNum) {
+    if (target.value.length >= 6 && !valueHasHash && isHexCode && isNum) {
       target.value = `#${target.value}`;
     }
 
@@ -57,7 +57,7 @@ function Input(props: InputProps) {
       return;
     }
 
-    if (handleContrastCheck) {
+    if (!isShortHand) {
       handleContrastCheck(hexToHsl(target.value) as number[], name as string);
     }
   }
@@ -96,7 +96,6 @@ function Input(props: InputProps) {
           <Tooltip
             id={`${id}CopiedSate`}
             aria-hidden={copied}
-            aria-live="polite"
             role="tooltip"
             visible={copied}
             color={colorState}

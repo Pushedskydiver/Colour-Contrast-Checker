@@ -1,34 +1,63 @@
-import { memo, useContext } from 'react';
+import { memo } from 'react';
 import Badge from '../../01-Atoms/Badge/Badge.styles';
 import Grade from '../../01-Atoms/Grade/Grade.styles';
+import { Tick, Cross } from '../../01-Atoms/Icon/Icon';
 import Result from '../../02-Molecules/Result/Result.styles';
 import WcagStyles from './Wcag.styles';
-import Context from '../../Context';
+import { useColourContrast } from '../../Context';
 
 export interface WcagProps {
   id: string
 }
 
 function Wcag(props: WcagProps) {
-  const { level, colorState } = useContext(Context);
+  const { level, colorState } = useColourContrast();
+  const { AALarge, AAALarge, AA, AAA } = level;
 
   return (
-    <WcagStyles {...props} color={colorState as string}>
-      <Result>
-        <Badge color={colorState as string}>{level && level.AALarge}</Badge>
-        <Grade>AA Large</Grade>
+    <WcagStyles {...props} color={colorState} aria-label="Colour contrast grades">
+      <Result
+        aria-live="polite"
+        aria-label={`AA Large. ${AALarge === 'Pass' ? 'Pass' : 'Fail'}`}
+      >
+        <Grade aria-hidden="true">AA Large</Grade>
+        <Badge color={colorState} aria-hidden="true">
+          {AALarge}
+          {AALarge === 'Pass' ? <Tick /> : <Cross />}
+        </Badge>
       </Result>
-      <Result>
-        <Badge color={colorState as string}>{level && level.AAALarge}</Badge>
-        <Grade>AAA Large</Grade>
+
+      <Result
+        aria-live="polite"
+        aria-label={`AAA Large. ${AAALarge === 'Pass' ? 'Pass' : 'Fail'}`}
+      >
+        <Grade aria-hidden="true">AAA Large</Grade>
+        <Badge color={colorState} aria-hidden="true">
+          {AAALarge}
+          {AAALarge === 'Pass' ? <Tick /> : <Cross />}
+        </Badge>
       </Result>
-      <Result>
-        <Badge color={colorState as string}>{level && level.AA}</Badge>
-        <Grade>AA Normal</Grade>
+
+      <Result
+        aria-live="polite"
+        aria-label={`AA. ${AA === 'Pass' ? 'Pass' : 'Fail'}`}
+      >
+        <Grade aria-hidden="true">AA Normal</Grade>
+        <Badge color={colorState} aria-hidden="true">
+          {AA}
+          {AA === 'Pass' ? <Tick /> : <Cross />}
+        </Badge>
       </Result>
-      <Result>
-        <Badge color={colorState as string}>{level && level.AAA}</Badge>
-        <Grade>AAA Normal</Grade>
+
+      <Result
+        aria-live="polite"
+        aria-label={`AAA. ${AAA === 'Pass' ? 'Pass' : 'Fail'}`}
+      >
+        <Grade aria-hidden="true">AAA Normal</Grade>
+        <Badge color={colorState} aria-hidden="true">
+          {AAA}
+          {AAA === 'Pass' ? <Tick /> : <Cross />}
+        </Badge>
       </Result>
     </WcagStyles>
   );

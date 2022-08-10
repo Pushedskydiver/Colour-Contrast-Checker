@@ -6,6 +6,8 @@ import spacing from '../../../styles/settings.spacing.styles';
 const SkipLink = styled.a`
   position: absolute;
   top: 0;
+  left: 0;
+  color: var(--foreground);
   font-variation-settings: "wght" ${typography.weight.medium};
   line-height: normal;
   overflow: hidden;
@@ -20,8 +22,6 @@ const SkipLink = styled.a`
 
   ${maxWidth(768, () => css`
     width: 100%;
-    margin-right: -5vw;
-    margin-left: -5vw;
     padding-top: ${spacing.padding}px;
     padding-bottom: ${spacing.padding}px;
     background-color: var(--background);
@@ -30,10 +30,8 @@ const SkipLink = styled.a`
   `)}
 
   ${minWidth(768, () => css`
-    top: 50%;
-    right: 0;
+    top: 20px;
     width: auto;
-    transform: translateY(-50%);
   `)}
 `;
 

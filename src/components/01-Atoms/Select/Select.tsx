@@ -1,11 +1,11 @@
-import { memo, useContext } from 'react';
+import { memo } from 'react';
 import WebFont from 'webfontloader';
 import SelectStyles, { SelectWrapper } from './Select.styles';
 import { Chevron } from '../Icon/Icon';
-import Context, { FontsProps } from '../../Context';
+import { useColourContrast } from '../../Context';
 
 function Select() {
-  const { fonts } = useContext(Context);
+  const { fonts } = useColourContrast();
 
   function changeFont({ target }: { target: HTMLSelectElement }) {
     const head = document.querySelector('head') as HTMLHeadElement;
@@ -26,7 +26,7 @@ function Select() {
     });
   }
 
-  const renderFontOptions = ({ family, variant }: FontsProps, index: number) => (
+  const renderFontOptions = ({ family, variant }: CC.FontsProps, index: number) => (
     <option key={index} value={family} data-font-weight={variant}>{family}</option>
   );
 

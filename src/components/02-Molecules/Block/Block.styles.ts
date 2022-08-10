@@ -7,7 +7,8 @@ export interface BlockProps {
   color?: string,
   flex?: boolean,
   inputs?: boolean,
-  select?: boolean
+  select?: boolean,
+  spaceBetween?: boolean,
 }
 
 export const BlockSection = styled.section<BlockProps>`
@@ -25,6 +26,12 @@ export const BlockSection = styled.section<BlockProps>`
     ${minWidth(992, () => css`
       display: flex;
       align-items: flex-end;
+    `)}
+  `}
+
+  ${props => props.spaceBetween && css`
+    ${minWidth(992, () => css`
+      justify-content: space-between;
     `)}
   `}
 

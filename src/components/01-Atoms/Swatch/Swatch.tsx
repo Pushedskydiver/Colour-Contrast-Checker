@@ -1,11 +1,11 @@
-import React, { Fragment, memo, useContext } from 'react';
+import React, { Fragment, memo } from 'react';
 import SwatchStyles from './Swatch.styles';
 import { Button } from '../Button/Button.styles';
-import Context, { ColorsProps } from '../../Context';
+import { useColourContrast } from '../../Context';
 import { hexToHsl } from '../../Utils';
 
 function Swatch() {
-  const { colors, colorState, reverseColors, saveColors, updateView, updatePath } = useContext(Context);
+  const { colors, colorState, reverseColors, saveColors, updateView, updatePath } = useColourContrast();
 
   function appendColors(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     const target = event.target as HTMLButtonElement;
@@ -18,7 +18,7 @@ function Swatch() {
     }
   }
 
-  const renderSwatch = ({ background, foreground }: ColorsProps, index: number) => (
+  const renderSwatch = ({ background, foreground }: CC.ColorsProps, index: number) => (
     <SwatchStyles
       key={index}
       background={background}
