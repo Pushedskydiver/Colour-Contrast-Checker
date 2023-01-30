@@ -37,7 +37,7 @@
     "@types/react-router-dom": "^5.3.3",
     "@types/styled-components": "^5.1.26",
     "@types/webfontloader": "^1.6.35",
-    "eslint-plugin-react": "7.31.11",
+    "eslint-plugin-react": "7.32.2",
     "source-map-explorer": "2.5.3"
   },
   "eslintConfig": {
