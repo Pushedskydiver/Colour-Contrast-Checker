@@ -22,15 +22,22 @@ export enum AlignItemsProps {
 export interface FlexProps {
   justify?: JustifyContentProps
   align?: AlignItemsProps
+  noMargin?: boolean
 }
 
 const Flex = styled.section<FlexProps>`
-  margin-bottom: ${spacing.margin * 3}px;
-
   ${minWidth(992, () => css`
     display: flex;
     flex-wrap: wrap;
   `)}
+
+  ${props => !props.noMargin && css`
+    margin-bottom: ${spacing.margin * 3}px;
+  `}
+
+  ${props => props.noMargin && css`
+    margin: 0;
+  `}
 
   ${props => props.justify === JustifyContentProps.between && css`
     ${minWidth(992, () => css`

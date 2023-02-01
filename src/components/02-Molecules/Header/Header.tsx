@@ -2,6 +2,7 @@ import { memo } from 'react';
 import { Heading1 } from '../../01-Atoms/Heading/Heading.styles';
 import SkipLink from '../../01-Atoms/SkipLink/SkipLink.styles';
 import Link from '../../01-Atoms/Link/Link.styles';
+import Flex, { JustifyContentProps } from '../../03-Organisms/Flex/Flex.styles';
 import HeaderStyles from './Header.styles';
 
 function Header() {
@@ -16,13 +17,25 @@ function Header() {
 
       <Heading1 medium noMargin>Colour Contrast Checker</Heading1>
 
-      <Link
-        href="https://chrome.google.com/webstore/detail/colour-contrast-checker/nmmjeclfkgjdomacpcflgdkgpphpmnfe"
-        title="Go to the chrome webstore to download the colour contrast checker as a chrome extension"
-        chromeBadgeLink
+      <Flex
+        justify={JustifyContentProps['between']}
+        noMargin
       >
-        <img src="/images/chrome-webstore-badge.jpg" alt="Chrome webstore badge" />
-      </Link>
+        <Link
+          href="https://www.buymeacoffee.com/hhm66tdgq7M"
+          coffeeLink
+        >
+          ☕️ Buy me a coffee.
+        </Link>
+
+        <Link
+          href="https://chrome.google.com/webstore/detail/colour-contrast-checker/nmmjeclfkgjdomacpcflgdkgpphpmnfe"
+          title="Go to the chrome webstore to download the colour contrast checker as a chrome extension"
+          chromeBadgeLink
+        >
+          <img src="/images/chrome-webstore-badge.jpg" alt="Chrome webstore badge" />
+        </Link>
+      </Flex>
     </HeaderStyles>
   );
 }

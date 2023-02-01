@@ -1,9 +1,11 @@
 import styled, { css } from 'styled-components';
+import { colors } from '../../../styles/settings.colors.styles';
 import spacing from '../../../styles/settings.spacing.styles';
 
 export interface LinkProps {
   iconLink?: boolean,
-  chromeBadgeLink?: boolean
+  chromeBadgeLink?: boolean,
+  coffeeLink?: boolean,
 }
 
 const Link = styled.a<LinkProps>`
@@ -22,7 +24,18 @@ const Link = styled.a<LinkProps>`
     @media (hover: hover) {
       display: block;
       width: 200px;
+      margin-left: ${spacing.margin}px;
     }
+  `}
+
+  ${props => props.coffeeLink && css`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: ${spacing.padding}px;
+    background-color: ${colors.light};
+    color: ${colors.dark};
   `}
 `;
 
