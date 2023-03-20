@@ -27,7 +27,7 @@
     "webfontloader": "^1.6.28"
   },
   "devDependencies": {
-    "@types/chroma-js": "^2.1.4",
+    "@types/chroma-js": "^2.4.0",
     "@types/lodash.round": "^4.0.7",
     "@types/lodash.throttle": "^4.1.7",
     "@types/node": "^18.11.18",
