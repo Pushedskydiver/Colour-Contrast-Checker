@@ -18,6 +18,10 @@ export interface HeadingProps {
 export const Heading1 = styled.h1<HeadingProps>`
   font-family: var(--font);
 
+  ${props => props.color && css`
+    color: ${props.color};
+  `}
+
   ${props => !props.grade && css`
     font-variation-settings: "wght" ${typography.weight.bold};
     line-height: ${typography.lineHeight.heading};

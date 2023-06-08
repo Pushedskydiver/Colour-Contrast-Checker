@@ -4,6 +4,9 @@ import spacing from '../../../styles/settings.spacing.styles';
 
 const FooterStyles = styled.footer`
   position: relative;
+  display: flex;
+  justify-content: space-between;
+  align0items: center;
   padding-top: ${spacing.padding * 2.5}px;
   padding-bottom: ${spacing.padding * 2.5}px;
 
