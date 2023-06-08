@@ -15,7 +15,7 @@ const Divider = styled.hr<DividerProps>`
   border-right: none;
   border-left: none;
   border-bottom-width: 2px;
-  opacity: 0.25;
+  border-color: var(--foreground);
 
   ${props => props.color && css`
     border-color: ${props.color};
