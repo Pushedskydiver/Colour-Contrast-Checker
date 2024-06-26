@@ -5,7 +5,7 @@
   padding: var(--base-spacing) calc(var(--base-spacing) * 2.5);
   border-radius: var(--base-spacing);
   border: 2px solid var(--badge-outline-color);
-  background-color: #fd0;
+  background-color: #fff;
 
   &:focus-visible {
     outline: 3px solid var(--badge-outline-color);
