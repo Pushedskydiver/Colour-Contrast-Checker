@@ -1,0 +1,33 @@
+@value containers: '../../../styles/modules/container.module.css';
+@value --breakpoints: '../../../styles/modules/breakpoints.module.css';
+@value --bp-small, --bp-small_max from --breakpoints;
+
+
+.actions {
+  --container: var(--container-max-width);
+
+	composes: container from containers;
+  display: flex;
+  gap: calc(var(--base-spacing) * 3);
+
+  @media (width <= --bp-small_max) {
+    flex-direction: column;
+  }
+
+  @media (width >= --bp-small) {
+    align-items: center;
+  }
+}
+
+.cta {
+  @media (width <= --bp-small_max) {
+    inline-size: 100%;
+  }
+}
+
+.swatches {
+  display: flex;
+  gap: calc(var(--base-spacing) * 2);
+  margin: 0;
+  padding: 0;
+}

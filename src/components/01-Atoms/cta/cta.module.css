@@ -1,0 +1,51 @@
+.cta {
+  --cta-bg-color: var(--foreground-color);
+  --cta-fg-color: var(--background-color);
+
+	display: flex;
+	gap: calc(var(--base-spacing) * 2);
+	justify-content: center;
+	align-items: center;
+	inline-size: fit-content;
+	padding: calc(var(--base-spacing) * 1.5) calc(var(--base-spacing) * 3);
+	border-radius: calc(var(--base-spacing) / 2);
+	border: 2px solid var(--cta-bg-color);
+  background-color: var(--cta-bg-color);
+	color: var(--cta-fg-color);
+
+  &:is(a) {
+    text-decoration: none;
+  }
+
+  &:focus-visible {
+    outline: 3px solid var(--cta-bg-color);
+		outline-offset: 3px;
+	}
+
+	@media (hover: hover) {
+		&:hover {
+			background-color: var(--cta-fg-color);
+	    color: var(--cta-bg-color);
+		}
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		transition:
+			background-color 0.3s ease-in-out,
+			color 0.3s ease-in-out;
+	}
+}
+
+.ctaDark {
+  --cta-bg-color: #000;
+  --cta-fg-color: #fff;
+}
+
+.ctaLight {
+  --cta-bg-color: #fff;
+  --cta-fg-color: #000;
+}
+
+.content {
+  pointer-events: none;
+}

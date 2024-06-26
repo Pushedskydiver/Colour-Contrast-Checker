@@ -1,0 +1,5 @@
+.control {
+  & > :not([hidden]) ~ :not([hidden]) {
+		margin-block-start: calc(var(--base-spacing) * 2.5);
+	}
+}

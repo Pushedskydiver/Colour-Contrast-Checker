@@ -1,0 +1,101 @@
+@value type: '../../../styles/modules/typography.module.css';
+
+.base {
+	composes: typography from type;
+}
+
+.lightWeight {
+	--weight: var(--font-weight-light);
+}
+
+.thinWeight {
+	--weight: var(--font-weight-thin);
+}
+
+.regularWeight {
+	--weight: var(--font-weight-regular);
+}
+
+.mediumWeight {
+	--weight: var(--font-weight-medium);
+}
+
+.semiBoldWeight {
+	--weight: var(--font-weight-semi-bold);
+}
+
+.boldWeight {
+	--weight: var(--font-weight-bold);
+}
+
+.colossusText {
+	--min: 72;
+	--max: 144;
+
+	font-family: var(--font-family-primary);
+	line-height: normal;
+}
+
+.horizonText {
+	--min: 36;
+	--max: 72;
+
+	font-family: var(--font-family-primary);
+	line-height: 120%;
+}
+
+.landmarkText {
+	--min: 24;
+	--max: 48;
+
+	font-family: var(--font-family-primary);
+	line-height: 130%;
+}
+
+.beaconText {
+	--min: 20;
+	--max: 36;
+
+	font-family: var(--font-family-primary);
+	line-height: 140%;
+}
+
+.pinnacleText {
+	--min: 18;
+	--max: 32;
+
+	font-family: var(--font-family-primary);
+	line-height: 150%;
+}
+
+.scriptText {
+	--min: 16;
+	--max: 24;
+
+	font-family: var(--font-family-primary);
+	line-height: 130%;
+}
+
+.whisperText {
+	--min: 14;
+	--max: 20;
+
+	font-family: var(--font-family-primary);
+	line-height: 150%;
+}
+
+.echoText {
+	--min: 12;
+	--max: 16;
+
+	font-family: var(--font-family-primary);
+	line-height: 140%;
+}
+
+.pulseText {
+	--min: 16;
+	--max: 18;
+
+	font-family: var(--font-family-primary);
+	line-height: 160%;
+}

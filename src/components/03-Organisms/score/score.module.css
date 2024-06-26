@@ -1,0 +1,26 @@
+@value containers: '../../../styles/modules/container.module.css';
+@value --breakpoints: '../../../styles/modules/breakpoints.module.css';
+@value --bp-medium from --breakpoints;
+
+.section {
+  margin-block-end: calc(var(--base-spacing) * 5);
+}
+
+.container {
+  --container: var(--container-max-width);
+
+	composes: container from containers;
+
+  @media (width >= --bp-medium) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: calc(var(--base-spacing) * 3);
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+}
+
+.content {
+  display: flex;
+  align-items: flex-end;
+}

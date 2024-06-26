@@ -1,0 +1,27 @@
+.cta {
+  --badge-outline-color: var(--foreground-color);
+
+  display: flex;
+  padding-inline: var(--base-spacing) calc(var(--base-spacing) * 2.5);
+  border-radius: var(--base-spacing);
+  border: 2px solid var(--badge-outline-color);
+  background-color: #fff;
+
+  &:focus-visible {
+    outline: 3px solid var(--badge-outline-color);
+    outline-offset: 3px;
+  }
+
+  & > * {
+    inline-size: 100%;
+    block-size: 100%;
+  }
+}
+
+.ctaDark {
+  --badge-outline-color: #000;
+}
+
+.ctaLight {
+  --badge-outline-color: #fff;
+}

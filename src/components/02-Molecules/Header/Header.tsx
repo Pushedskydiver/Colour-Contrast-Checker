@@ -1,43 +1,36 @@
-import { memo } from 'react';
-import { Heading1 } from '../../01-Atoms/Heading/Heading.styles';
-import SkipLink from '../../01-Atoms/SkipLink/SkipLink.styles';
-import Link from '../../01-Atoms/Link/Link.styles';
-import Flex, { JustifyContentProps } from '../../03-Organisms/Flex/Flex.styles';
-import HeaderStyles from './Header.styles';
+import { Text } from '~/components/01-Atoms/text/text';
+import { BuyMeACoffeeCTA } from '~/components/01-Atoms/bmc-cta/bmc-cta';
+import { ChromeWebStoreCta } from '~/components/01-Atoms/cws-cta/cws-cta';
+import { SkipLink } from '~/components/01-Atoms/skip-link/skip-link';
 
-function Header() {
+import styles from './header.module.css';
+
+export const Header: React.FC = () => {
   return (
-    <HeaderStyles>
-      <SkipLink href="#ratio">Skip to colour contrast ratio</SkipLink>
-      <SkipLink href="#grades">Skip to colour contrast grades</SkipLink>
-      <SkipLink href="#background">Skip to background colour input</SkipLink>
-      <SkipLink href="#foreground">Skip to foreground colour input</SkipLink>
-      <SkipLink href="#largeCopy">Skip to large text example copy</SkipLink>
-      <SkipLink href="#normalCopy">Skip to normal text example copy</SkipLink>
+    <header className={styles.header}>
+      <div className={styles.container}>
+        <SkipLink href="#ratio" bodyText="Skip to colour contrast ratio" />
+        <SkipLink href="#grades" bodyText="Skip to colour contrast grades" />
+        <SkipLink href="#background" bodyText="Skip to background colour input" />
+        <SkipLink href="#foreground" bodyText="Skip to foreground colour input" />
+        <SkipLink href="#largeCopy" bodyText="Skip to large text example copy" />
+        <SkipLink href="#normalCopy" bodyText="Skip to normal text example copy" />
 
-      <Heading1 medium noMargin>Colour Contrast Checker</Heading1>
-
-      <Flex
-        justify={JustifyContentProps['between']}
-        noMargin
-      >
-        <Link
-          href="https://www.buymeacoffee.com/hhm66tdgq7M"
-          coffeeLink
+        <Text
+          tag="h1"
+          size="landmark"
+          weight="semiBold"
+          className={styles.title}
         >
-          ☕️ Buy me a coffee.
-        </Link>
+          Colour contrast checker
+        </Text>
 
-        <Link
-          href="https://chrome.google.com/webstore/detail/colour-contrast-checker/nmmjeclfkgjdomacpcflgdkgpphpmnfe"
-          title="Go to the chrome webstore to download the colour contrast checker as a chrome extension"
-          chromeBadgeLink
-        >
-          <img src="/images/chrome-webstore-badge.jpg" alt="Chrome webstore badge" />
-        </Link>
-      </Flex>
-    </HeaderStyles>
+        <div className={styles.meta}>
+          <BuyMeACoffeeCTA />
+
+          <ChromeWebStoreCta />
+        </div>
+      </div>
+    </header>
   );
 }
-
-export default memo(Header);

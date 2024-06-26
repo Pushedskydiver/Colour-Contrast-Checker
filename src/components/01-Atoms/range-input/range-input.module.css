@@ -1,0 +1,47 @@
+.field {
+  display: grid;
+  gap: calc(var(--base-spacing) * 1.5);
+}
+
+.label {
+  --label-color: var(--foreground-color);
+
+  color: var(--label-color);
+}
+
+.labelDark {
+  --label-color: #000;
+}
+
+.labelLight {
+  --label-color: #fff;
+}
+
+.input {
+  --input-thumb-color: var(--foreground-color);
+  --input-bg-color: var(--foreground-color);
+
+  display: block;
+  inline-size: 100%;
+  block-size: 0.6rem;
+  border-radius: 2rem;
+  background-color: var(--input-bg-color);
+
+  &::-webkit-slider-thumb {
+    inline-size: 3rem;
+    block-size: 3rem;
+    border-radius: 50%;
+    background-color: var(--input-thumb-color);
+    appearance: none;
+  }
+}
+
+.inputDark {
+  --input-thumb-color: #000;
+  --input-bg-color: rgb(0 0 0 / 30%);
+}
+
+.inputLight {
+  --input-thumb-color: #fff;
+  --input-bg-color: rgb(255 255 255 / 30%);
+}

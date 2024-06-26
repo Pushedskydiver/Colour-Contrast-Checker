@@ -1,0 +1,34 @@
+@value --breakpoints: '../../../styles/modules/breakpoints.module.css';
+@value --bp-tiny from --breakpoints;
+
+.swatch {
+  --swatch-outline-color: var(--foreground-color);
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  inline-size: 4rem;
+  block-size: 4rem;
+  border-radius: calc(var(--base-spacing) / 2);
+  vertical-align: middle;
+  cursor: pointer;
+  appearance: none;
+
+  &:focus-visible {
+    outline: 3px solid var(--swatch-outline-color);
+		outline-offset: 3px;
+	}
+
+  @media (width >= --bp-tiny) {
+    inline-size: 5rem;
+    block-size: 5rem;
+  }
+}
+
+.swatchDark {
+  --swatch-outline-color: #000;
+}
+
+.swatchLight {
+  --swatch-outline-color: #fff;
+}

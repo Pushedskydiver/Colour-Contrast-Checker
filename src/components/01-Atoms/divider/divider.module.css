@@ -1,0 +1,20 @@
+@value containers: '../../../styles/modules/container.module.css';
+
+.divider {
+  --container: var(--container-max-width);
+  --divider-border-color: var(--foreground-color);
+
+	composes: container from containers;
+  display: block;
+  margin-block: calc(var(--base-spacing) * 6);
+  background-color: transparent;
+  border: 2px solid var(--divider-border-color);
+}
+
+.dividerDark {
+  --divider-border-color: #000;
+}
+
+.dividerLight {
+  --divider-border-color: #fff;
+}

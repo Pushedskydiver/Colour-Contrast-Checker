@@ -1,0 +1,21 @@
+import clsx from 'clsx';
+import { useColourContrast } from '~/components/Context';
+import { isDark } from '~/components/Utils';
+
+import styles from './divider.module.css';
+
+export const Divider: React.FC = () => {
+  const { background, contrast } = useColourContrast();
+  const isPoorContrast = contrast < 3;
+  const isBackgroundDark = isDark(background);
+
+  return (
+    <hr
+      className={clsx(
+        styles.divider,
+        isPoorContrast && !isBackgroundDark ? styles.dividerDark : undefined,
+        isPoorContrast && isBackgroundDark ? styles.dividerLight : undefined,
+      )}
+    />
+  )
+}

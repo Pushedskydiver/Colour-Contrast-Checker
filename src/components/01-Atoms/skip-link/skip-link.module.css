@@ -1,0 +1,43 @@
+@value --breakpoints: '../../../styles/modules/breakpoints.module.css';
+@value --bp-medium, --bp-medium_max from --breakpoints;
+
+.link {
+  --link-outline-color: var(--foreground-color);
+
+  position: absolute;
+  inset-inline-start: 0;
+  color: var(--link-outline-color);
+  font-variation-settings: "wght" var(--font-weight-medium);
+  line-height: normal;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+
+  &:focus-visible {
+    outline: 2px solid var(--link-outline-color);
+    outline-offset: 3px;
+    clip: auto;
+    overflow: visible;
+    z-index: 100;
+  }
+
+  @media (width <= --bp-medium_max) {
+    inset-block-start: calc((var(--base-spacing) * 2) * -1);
+    inline-size: 100%;
+    padding-block: calc(var(--base-spacing) * 1.5);
+    background-color: var(--background);
+    text-align: center;
+  }
+
+  @media (width >= --bp-medium) {
+    inset-block-start: calc((var(--base-spacing) * 3) * -1);
+    inline-size: auto;
+  }
+}
+
+.linkDark {
+  --link-outline-color: #000;
+}
+
+.linkLight {
+  --link-outline-color: #fff;
+}

@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import App from './App';
 
-const Router = () => (
+const Router = (): JSX.Element => (
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />} />

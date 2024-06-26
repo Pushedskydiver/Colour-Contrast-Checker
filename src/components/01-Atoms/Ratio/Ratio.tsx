@@ -1,18 +1,27 @@
-import { memo } from 'react';
-import RatioStyles from './Ratio.styles';
-import { useColourContrast } from '../../Context';
+import clsx from 'clsx';
+import { useColourContrast } from '~/components/Context';
+import { isDark } from '~/components/Utils';
+import { Text } from '../text/text';
 
-function Ratio() {
-  const { contrast, colorState } = useColourContrast();
+import styles from './ratio.module.css';
+
+export const Ratio: React.FC = () => {
+  const { background, contrast } = useColourContrast();
+  const isPoorContrast = contrast < 3;
+  const isBackgroundDark = isDark(background);
 
   return (
-    <RatioStyles
-      color={colorState}
+    <Text
       id="ratio"
+      size="horizon"
+      weight="semiBold"
+      className={clsx(
+        styles.ratio,
+        isPoorContrast && !isBackgroundDark ? styles.ratioDark : undefined,
+        isPoorContrast && isBackgroundDark ? styles.ratioLight : undefined,
+      )}
     >
-      {contrast && contrast.toFixed(2)}
-    </RatioStyles>
+      {contrast.toFixed(2)}
+    </Text>
   );
 }
-
-export default memo(Ratio);

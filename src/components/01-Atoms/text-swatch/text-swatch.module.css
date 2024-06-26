@@ -1,0 +1,9 @@
+.swatch {
+    margin: 0;
+    display: inline-block;
+    color: var(--foreground-color);
+    padding: calc(var(--base-spacing) * 1.5);
+    border: 3px solid var(--foreground-color);
+    border-radius: var(--base-spacing);
+    line-height: normal;
+}

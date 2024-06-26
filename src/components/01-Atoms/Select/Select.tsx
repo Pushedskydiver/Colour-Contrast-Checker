@@ -1,44 +1,75 @@
-import { memo } from 'react';
-import WebFont from 'webfontloader';
-import SelectStyles, { SelectWrapper } from './Select.styles';
+import clsx from 'clsx';
 import { Chevron } from '../Icon/Icon';
-import { useColourContrast } from '../../Context';
+import { Text } from '../text/text';
 
-function Select() {
-  const { fonts } = useColourContrast();
+import styles from './select.module.css';
 
-  function changeFont({ target }: { target: HTMLSelectElement }) {
-    const head = document.querySelector('head') as HTMLHeadElement;
-    const fontLinkTag = head.querySelector('link[rel="stylesheet"]');
-    const option = target.options[target.selectedIndex];
-    const font = option.value;
-    const fontWeight = option.getAttribute('data-font-weight');
+export type TSelectOption = {
+  text: string;
+  value: string;
+}
 
-    WebFont.load({
-      google: { families: [`${font}:${fontWeight}`] },
-      fontloading: () => {
-        document.documentElement.className = '';
-        if (fontLinkTag !== null) head.removeChild(fontLinkTag);
-      },
-      fontactive: () => {
-        document.body.style.setProperty('--copy', `${font}, sans-serif`);
-      }
-    });
+export type TSelect = {
+  id: string;
+  labelText: string;
+  options: TSelectOption[];
+  defaultValue?: string;
+  name?: string;
+  className?: string;
+  onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+}
+
+export const Select: React.FC<TSelect> = ({
+  id,
+  labelText,
+  name,
+  defaultValue,
+  options,
+  className,
+  onChange,
+}) => {
+  const handleOnChange = (e: React.ChangeEvent<HTMLSelectElement>): void => {
+    if (onChange) {
+      onChange(e);
+    }
   }
 
-  const renderFontOptions = ({ family, variant }: CC.FontsProps, index: number) => (
-    <option key={index} value={family} data-font-weight={variant}>{family}</option>
+  const renderFontOption = (
+    option: TSelectOption,
+    index: number
+  ): JSX.Element => (
+    <option key={`${option.value}-${index}`} value={option.value}>
+      {option.text}
+    </option>
   );
 
   return (
-    <SelectWrapper>
-      <SelectStyles defaultValue="Select font" id="font" onChange={changeFont}>
-        <option disabled>Select font</option>
-        {fonts && fonts.map((font, index) => renderFontOptions(font, index))}
-      </SelectStyles>
-      <Chevron />
-    </SelectWrapper>
+    <div className={clsx(styles.field, className)}>
+      <label htmlFor={id} className={styles.label}>
+        <Text
+          size="script"
+          weight="semiBold"
+          role="presentation"
+        >
+          {labelText}
+        </Text>
+      </label>
+
+      <div className={styles.selectWrapper}>
+        <select
+          id={id}
+          name={name ?? id}
+          defaultValue={defaultValue}
+          onChange={handleOnChange}
+          className={styles.select}
+        >
+          {defaultValue ? <option disabled>{defaultValue}</option> : null}
+
+          {options.map(renderFontOption)}
+        </select>
+
+        <Chevron className={styles.selectIcon} />
+      </div>
+    </div>
   );
 }
-
-export default memo(Select);

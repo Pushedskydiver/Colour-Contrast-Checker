@@ -1,38 +1,51 @@
-import { memo } from 'react';
-import Link from '../../01-Atoms/Link/Link.styles';
-import { GitHub, Twitter } from '../../01-Atoms/Icon/Icon';
-import { Span } from '../../01-Atoms/Heading/Heading.styles';
-import { useColourContrast } from '../../Context';
-import FooterStyles from './Footer.styles';
+import clsx from 'clsx';
+import { useColourContrast } from '~/components/Context';
+import { isDark } from '~/components/Utils';
+import { GitHub, Twitter } from '~/components/01-Atoms/Icon/Icon';
+import { Text } from '~/components/01-Atoms/text/text';
 
-function Footer() {
-  const { colorState } = useColourContrast();
+import styles from './footer.module.css';
+
+export const Footer: React.FC = () => {
+  const { background, contrast } = useColourContrast();
+  const isPoorContrast = contrast < 3;
+  const isBackgroundDark = isDark(background);
 
   return (
-    <FooterStyles>
-      <div>
-        <Link
-          href="https://github.com/Pushedskydiver/Colour-Contrast-Checker"
-          title="Go to GitHub project"
-          iconLink
-        >
-          <GitHub />
-        </Link>
+    <footer className={styles.footer}>
+      <div className={styles.container}>
+        <ul className={styles.list} aria-label="Social media links">
+          <li>
+            <a
+              href="https://github.com/Pushedskydiver/Colour-Contrast-Checker"
+              aria-label="GitHub project"
+            >
+              <GitHub />
+            </a>
+          </li>
 
-        <Link
-          href="https://twitter.com/alexmclapperton"
-          title="Go to Alex's Twitter profile"
-          iconLink
+          <li>
+            <a
+              href="https://twitter.com/alexmclapperton"
+              title="Alex's Twitter profile"
+            >
+              <Twitter />
+            </a>
+          </li>
+        </ul>
+
+        <Text
+          tag="p"
+          weight="medium"
+          className={clsx(
+            styles.footnote,
+            isPoorContrast && !isBackgroundDark ? styles.footnoteDark : undefined,
+            isPoorContrast && isBackgroundDark ? styles.footnoteLight : undefined,
+          )}
         >
-          <Twitter />
-        </Link>
+          UI created by <a href="https://www.willtarpey.com/" rel="external">Will Tarpey</a>. Thank you Will ❤️
+        </Text>
       </div>
-
-      <Span color={colorState}>
-        UI created by <Link href="https://www.willtarpey.com/" rel="external">Will Tarpey</Link>. Thank you Will ❤️
-      </Span>
-    </FooterStyles>
+    </footer>
   );
 }
-
-export default memo(Footer);
