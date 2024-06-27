@@ -20,21 +20,18 @@
   gap: calc(var(--base-spacing) * 1.5);
   justify-content: space-between;
   align-items: center;
-}
 
-.title {
   @media (width >= --bp-medium) {
-    flex: 1;
+    gap: calc(var(--base-spacing) * 3);
   }
 }
 
 .meta {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), min(100%, 22.5rem)));
-  gap: calc(var(--base-spacing) * 1.5);
+  --gap: calc(var(--base-spacing) * 1.5);
+  --min: min(100%, 15rem);
+  --max: calc(50% - (var(--gap) / 2));
 
-  @media (width >= --bp-medium) {
-    justify-content: end;
-    flex: 1;
-  }
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--min), var(--max)));
+  gap: var(--gap);
 }

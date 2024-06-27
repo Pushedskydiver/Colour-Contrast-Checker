@@ -23,11 +23,12 @@ const ColourContrastContext = createContext<ColourContrastContextTypes | undefin
 const ColourContrastProvider = (
   props: { children: React.ReactNode }
 ): JSX.Element => {
-  const localColors = JSON.parse(localStorage.getItem('colors') as string);
+  const storedColors = localStorage.getItem('colors');
+  const localColors = storedColors ? JSON.parse(storedColors) : [];
   const levels: TLevels = { AALarge: 'Pass', AA: 'Pass', AAALarge: 'Pass', AAA: 'Pass' };
   const updateViewRef = useRef(updateView);
 
-  const [colors, setColors] = useState<TColors[]>(localColors || []);
+  const [colors, setColors] = useState<TColors[]>(localColors);
   const [background, setBackground] = useState<number[]>([49.73, 1, 0.71]);
   const [foreground, setForeground] = useState<number[]>([NaN, 0, 0.133]);
   const [contrast, setContrast] = useState<number>(12.72);
@@ -37,7 +38,10 @@ const ColourContrastProvider = (
   function checkContrast(bg: string, fg: string): void {
     const backgroundRgb = hexToRgb(bg);
     const foregroundRgb = hexToRgb(fg);
-    const newContrast = getContrast(backgroundRgb as number[], foregroundRgb as number[]);
+
+    if (!backgroundRgb || !foregroundRgb) return;
+
+    const newContrast = getContrast(backgroundRgb, foregroundRgb);
     const newLevel = getLevel(newContrast);
 
     setContrast(newContrast);
@@ -47,25 +51,27 @@ const ColourContrastProvider = (
   function handleContrastCheck(value: number[], name: string): void {
     const bg = name === 'background' ? hslToHex(value) : hslToHex(background);
     const fg = name === 'foreground' ? hslToHex(value) : hslToHex(foreground);
+    const bgHsl = hexToHsl(bg);
+    const fgHsl = hexToHsl(fg);
+
+    if (!bgHsl || !fgHsl) return;
 
     name === 'background' ? setBackground(value) : setForeground(value);
 
     document.body.style.setProperty(`--${name}-color`, hslToHex(value));
 
     checkContrast(bg, fg);
-
-    updatePath(hexToHsl(bg) as number[], hexToHsl(fg) as number[]);
+    updatePath(bgHsl, fgHsl);
   }
 
   function saveColors(): void {
-    const colors = JSON.parse(localStorage.getItem('colors') as string) || [];
+    const storedColors = localStorage.getItem('colors');
+    const colors: TColors[] = storedColors ? JSON.parse(storedColors) : [];
     const bg = hslToHex(background);
     const fg = hslToHex(foreground);
-    const sameColors = colors.filter((color: TColors) => color.background === bg && color.foreground === fg).length > 0;
+    const sameColors = colors.some((color) => color.background === bg && color.foreground === fg);
 
-    if (colors.length > 0 && sameColors) {
-      return;
-    }
+    if (colors.length > 0 && sameColors) return;
 
     if (colors.length > 5) {
       colors.pop();
@@ -98,11 +104,11 @@ const ColourContrastProvider = (
     const bg = hexToHsl(path[1]);
     const fg = hexToHsl(path[2]);
 
-    if (!isHsl(bg as number[]) || !isHsl(fg as number[])) {
-      return;
-    }
+    if (!bg || !fg) return;
 
-    updateViewRef.current(bg as number[], fg as number[]);
+    if (!isHsl(bg) || !isHsl(fg)) return;
+
+    updateViewRef.current(bg, fg);
   }, []);
 
   return (

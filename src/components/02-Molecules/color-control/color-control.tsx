@@ -35,16 +35,16 @@ export const ColourControl: React.FC<TColourControl> = ({ id }) => {
         labelText={`Hue ${Math.round(nanH(h))}°`}
         max="360"
         property="0"
-        value={nanH(h)}
+        value={Math.round(nanH(h))}
         onChange={handleChange}
       />
 
       <RangeInput
         id={`${id}Saturation`}
-        labelText={`Saturation ${round(s, 2)}`}
+        labelText={`Saturation ${round(s, 2.5)}`}
         max="1"
         step={1 / 256}
-        value={s}
+        value={round(s, 2.5)}
         onChange={handleChange}
         property="1"
       />
@@ -55,7 +55,7 @@ export const ColourControl: React.FC<TColourControl> = ({ id }) => {
         max="1"
         property="2"
         step={1 / 256}
-        value={l}
+        value={round(l, 2)}
         onChange={handleChange}
       />
     </div>

@@ -9,7 +9,7 @@
 
 	composes: container from containers;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 40rem), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 35rem), 1fr));
   gap: calc(var(--base-spacing) * 4.5);
 }
 

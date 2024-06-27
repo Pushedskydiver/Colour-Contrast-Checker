@@ -10,12 +10,14 @@ export const Divider: React.FC = () => {
   const isBackgroundDark = isDark(background);
 
   return (
-    <hr
-      className={clsx(
-        styles.divider,
-        isPoorContrast && !isBackgroundDark ? styles.dividerDark : undefined,
-        isPoorContrast && isBackgroundDark ? styles.dividerLight : undefined,
-      )}
-    />
+    <div className={styles.container}>
+      <hr
+        className={clsx(
+          styles.divider,
+          isPoorContrast && !isBackgroundDark ? styles.dividerDark : undefined,
+          isPoorContrast && isBackgroundDark ? styles.dividerLight : undefined,
+        )}
+      />
+    </div>
   )
 }

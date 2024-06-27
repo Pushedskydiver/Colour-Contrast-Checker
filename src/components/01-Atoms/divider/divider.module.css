@@ -1,10 +1,14 @@
 @value containers: '../../../styles/modules/container.module.css';
 
-.divider {
+.container {
   --container: var(--container-max-width);
+
+  composes: container from containers;
+}
+
+.divider {
   --divider-border-color: var(--foreground-color);
 
-	composes: container from containers;
   display: block;
   margin-block: calc(var(--base-spacing) * 6);
   background-color: transparent;

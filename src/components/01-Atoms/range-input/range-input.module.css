@@ -20,12 +20,18 @@
 .input {
   --input-thumb-color: var(--foreground-color);
   --input-bg-color: var(--foreground-color);
+  --input-outline-color: var(--foreground-color);
 
   display: block;
   inline-size: 100%;
   block-size: 0.6rem;
   border-radius: 2rem;
   background-color: var(--input-bg-color);
+
+  &:focus-visible {
+    outline: 3px solid var(--input-outline-color);
+    outline-offset: 3px;
+  }
 
   &::-webkit-slider-thumb {
     inline-size: 3rem;
@@ -39,9 +45,11 @@
 .inputDark {
   --input-thumb-color: #000;
   --input-bg-color: rgb(0 0 0 / 30%);
+  --input-outline-color: #000;
 }
 
 .inputLight {
   --input-thumb-color: #fff;
   --input-bg-color: rgb(255 255 255 / 30%);
+  --input-outline-color: #fff;
 }

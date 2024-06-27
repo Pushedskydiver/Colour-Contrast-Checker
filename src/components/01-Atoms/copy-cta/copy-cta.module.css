@@ -21,13 +21,14 @@
 
 .cta {
   --cta-outline-color: var(--foreground-color);
-  --cta-icon-color: var(--foreground-color);
+  --cta-text-color: var(--foreground-color);
 
   position: relative;
   inline-size: 4rem;
   block-size: 4rem;
   border: none;
   border-radius: calc(var(--base-spacing) / 2);
+  color: var(--cta-text-color);
   outline: none;
 
   &:focus-visible {
@@ -38,10 +39,12 @@
 
 .ctaDark {
   --cta-outline-color: #000;
+  --cta-text-color: #000;
 }
 
 .ctaLight {
   --cta-outline-color: #fff;
+  --cta-text-color: #fff;
 }
 
 .tooltip {

@@ -32,9 +32,9 @@ export const CopyCta: React.FC<TCopyCta> = ({
   }
 
   return (
-    <CopyToClipboard text={value} onCopy={setCopyState}>
-      <span className={styles.ctaWrapper}>
-        <Text
+    <span className={styles.ctaWrapper}>
+      <Text
+          id={id}
           size="pulse"
           weight="medium"
           className={clsx(
@@ -47,18 +47,19 @@ export const CopyCta: React.FC<TCopyCta> = ({
           {copied ? 'Copied' : `Copy ${value} to clipboard`}
         </Text>
 
-        <button
-          type="button"
-          aria-labelledby={id}
-          className={clsx(
-            styles.cta,
-            isPoorContrast && !isBackgroundDark ? styles.ctaDark : undefined,
-            isPoorContrast && isBackgroundDark ? styles.ctaLight : undefined,
-          )}
-        >
-          <Clipboard />
-        </button>
+        <CopyToClipboard text={value} onCopy={setCopyState}>
+          <button
+            type="button"
+            aria-labelledby={id}
+            className={clsx(
+              styles.cta,
+              isPoorContrast && !isBackgroundDark ? styles.ctaDark : undefined,
+              isPoorContrast && isBackgroundDark ? styles.ctaLight : undefined,
+            )}
+          >
+            <Clipboard />
+          </button>
+        </CopyToClipboard>
       </span>
-    </CopyToClipboard>
   )
 }
