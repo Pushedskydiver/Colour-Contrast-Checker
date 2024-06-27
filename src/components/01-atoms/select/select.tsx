@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { Chevron } from '../icon/Icons';
+import { Chevron } from '../icon/icon';
 import { Text } from '../text/text';
 
 import styles from './select.module.css';
