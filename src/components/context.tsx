@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect, useRef, useState } from 'react';
-import { isDark, isHsl, hexToHsl, hslToHex, hexToRgb, getContrast, getLevel, updatePath } from './utils.js';
+import { isDark, isHsl, hexToHsl, hslToHex, hexToRgb, getContrast, getLevel, updatePath } from './utils';
 
-import type { TColors, TLevels } from '../global-types.js';
+import type { TColors, TLevels } from '../global-types';
 
 export interface ColourContrastContextTypes {
   colors: TColors[],
