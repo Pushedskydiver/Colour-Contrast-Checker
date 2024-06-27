@@ -1,6 +1,6 @@
 import round from 'lodash.round';
 import { useColourContrast } from '~/components/context';
-import { RangeInput } from '~/components/01-atomss/range-input/range-input';
+import { RangeInput } from '~/components/01-atoms/range-input/range-input';
 
 import styles from './color-control.module.css';
 

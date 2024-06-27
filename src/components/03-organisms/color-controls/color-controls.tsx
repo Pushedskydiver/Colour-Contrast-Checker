@@ -1,7 +1,7 @@
 import { ColourControl } from '~/components/02-molecules/color-control/color-control';
 import { useColourContrast } from '~/components/context';
 import { hexToHsl, hslToHex, isHex } from '~/components/utils';
-import { TextInput } from '~/components/01-atomss/text-input/text-input';
+import { TextInput } from '~/components/01-atoms/text-input/text-input';
 
 import styles from './color-controls.module.css';
 import { useEffect, useState } from 'react';

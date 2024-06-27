@@ -1,5 +1,5 @@
 import { useColourContrast } from '~/components/context';
-import { Badge } from '~/components/01-atomss/badge/badge';
+import { Badge } from '~/components/01-atoms/badge/badge';
 
 import styles from './wcag.module.css';
 

@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { Text } from '~/components/01-atomss/text/text';
+import { Text } from '~/components/01-atoms/text/text';
 
 import styles from './example.module.css';
 

@@ -1,4 +1,4 @@
-import { Text } from '~/components/01-atomss/text/text';
+import { Text } from '~/components/01-atoms/text/text';
 import { Example } from '~/components/02-molecules/example/example';
 
 import styles from './copy-examples.module.css';
