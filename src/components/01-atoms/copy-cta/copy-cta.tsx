@@ -3,7 +3,7 @@ import clsx from "clsx";
 import CopyToClipboard from "react-copy-to-clipboard";
 import { useColourContrast } from "~/components/context";
 import { isDark } from "~/components/utils";
-import { Clipboard } from "../icon/icon";
+import { Clipboard } from "../icon/Icons";
 import { Text } from "../text/text";
 
 import styles from './copy-cta.module.css';
