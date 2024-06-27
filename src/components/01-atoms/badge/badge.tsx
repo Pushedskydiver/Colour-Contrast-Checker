@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { useColourContrast } from '~/components/context';
 import { isDark } from '~/components/utils';
-import { Cross, Tick } from '../icon/icon';
+import { Cross, Tick } from '../Icons/icon';
 import { Text } from '../text/text';
 
 import styles from './badge.module.css';

@@ -1,7 +1,7 @@
 import { Suspense, lazy } from 'react';
 import ColourContrastProvider from './context';
 
-import { Divider } from './01-atomss/divider/divider';
+import { Divider } from './01-atoms/divider/divider';
 import { Actions } from './02-molecules/actions/actions';
 import { Footer } from './02-molecules/footer/footer';
 import { Header } from './02-molecules/header/header';
