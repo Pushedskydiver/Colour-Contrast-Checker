@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import WebFont from 'webfontloader';
-import { fetchData } from '~/components/Utils';
-import { Select } from '~/components/01-Atoms/select/select';
+import { fetchData } from '~/components/utils';
+import { Select } from '~/components/01-atoms/select/select';
 
 import styles from './typeface.module.css';
 
 import type { TGoogleWebfontList, TGoogleWebfontFamily } from '~/global-types';
-import type { TSelectOption } from '~/components/01-Atoms/select/select';
+import type { TSelectOption } from '~/components/01-atoms/select/select';
 
 const GOOGLE_FONTS_APIKEY = process.env.REACT_APP_GOOGLE_FONT_API_KEY;
 const GOOGLE_FONTS_ENDPOINT = `https://www.googleapis.com/webfonts/v1/webfonts?key=${GOOGLE_FONTS_APIKEY}&sort=popularity`;

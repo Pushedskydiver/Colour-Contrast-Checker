@@ -1,5 +1,5 @@
-import { Text } from '~/components/01-Atoms/text/text';
-import { Example } from '~/components/02-Molecules/example/example';
+import { Text } from '~/components/01-atoms/text/text';
+import { Example } from '~/components/02-molecules/example/example';
 
 import styles from './copy-examples.module.css';
 

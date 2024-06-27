@@ -1,6 +1,6 @@
 import clsx from 'clsx';
-import { useColourContrast } from '~/components/Context';
-import { isDark } from '~/components/Utils';
+import { useColourContrast } from '~/components/context';
+import { isDark } from '~/components/utils';
 
 import styles from './skip-link.module.css';
 

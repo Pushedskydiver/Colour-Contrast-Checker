@@ -1,7 +1,7 @@
-import { useColourContrast } from '~/components/Context';
-import { hslToHex } from '~/components/Utils';
-import { Button, CtaContent } from "~/components/01-Atoms/cta/cta";
-import { ColorSwatch } from "~/components/01-Atoms/color-swatch/color-swatch";
+import { useColourContrast } from '~/components/context';
+import { hslToHex } from '~/components/utils';
+import { Button, CtaContent } from "~/components/01-atoms/cta/cta";
+import { ColorSwatch } from "~/components/01-atoms/color-swatch/color-swatch";
 
 import styles from './actions.module.css';
 

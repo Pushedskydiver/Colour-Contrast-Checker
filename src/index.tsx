@@ -1,5 +1,5 @@
 import { createRoot } from 'react-dom/client';
-import Router from './components/Router';
+import Router from './components/router';
 import registerServiceWorker from './registerServiceWorker';
 
 const container = document.querySelector('#main');

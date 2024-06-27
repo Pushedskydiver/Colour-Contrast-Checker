@@ -1,9 +1,9 @@
 import { useState } from "react";
 import clsx from "clsx";
 import CopyToClipboard from "react-copy-to-clipboard";
-import { useColourContrast } from "~/components/Context";
-import { isDark } from "~/components/Utils";
-import { Clipboard } from "../Icon/Icon";
+import { useColourContrast } from "~/components/context";
+import { isDark } from "~/components/utils";
+import { Clipboard } from "../icon/icon";
 import { Text } from "../text/text";
 
 import styles from './copy-cta.module.css';

@@ -1,7 +1,7 @@
-import { Text } from '~/components/01-Atoms/text/text';
-import { BuyMeACoffeeCTA } from '~/components/01-Atoms/bmc-cta/bmc-cta';
-import { ChromeWebStoreCta } from '~/components/01-Atoms/cws-cta/cws-cta';
-import { SkipLink } from '~/components/01-Atoms/skip-link/skip-link';
+import { Text } from '~/components/01-atoms/text/text';
+import { BuyMeACoffeeCTA } from '~/components/01-atoms/bmc-cta/bmc-cta';
+import { ChromeWebStoreCta } from '~/components/01-atoms/cws-cta/cws-cta';
+import { SkipLink } from '~/components/01-atoms/skip-link/skip-link';
 
 import styles from './header.module.css';
 

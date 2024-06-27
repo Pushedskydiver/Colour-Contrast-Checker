@@ -1,5 +1,5 @@
-import { useColourContrast } from '~/components/Context';
-import { hexToHsl, isDark } from '~/components/Utils';
+import { useColourContrast } from '~/components/context';
+import { hexToHsl, isDark } from '~/components/utils';
 import { Text } from "../text/text";
 
 import styles from './color-swatch.module.css';

@@ -1,5 +1,5 @@
-import { GitHub, Twitter } from '~/components/01-Atoms/Icon/Icon';
-import { Text } from '~/components/01-Atoms/text/text';
+import { GitHub, Twitter } from '~/components/01-atoms/icon/icon';
+import { Text } from '~/components/01-atoms/text/text';
 
 import styles from './footer.module.css';
 

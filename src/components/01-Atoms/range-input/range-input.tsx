@@ -1,5 +1,5 @@
-import { useColourContrast } from '~/components/Context';
-import { isDark } from '~/components/Utils';
+import { useColourContrast } from '~/components/context';
+import { isDark } from '~/components/utils';
 import { Text } from '../text/text';
 
 import styles from './range-input.module.css';
