@@ -34,7 +34,7 @@ export const Typeface: React.FC = () => {
   const handleOnChange = (e: React.ChangeEvent<HTMLSelectElement>): void => {
     const target = e.currentTarget;
     const head = document.querySelector('head') as HTMLHeadElement;
-    const fontLinkTag = head.querySelector('link[rel="stylesheet"]');
+    const fontLinkTag = head.querySelector('link[href*="fonts.googleapis.com"');
     const option = target.options[target.selectedIndex];
     const font = option.value;
 
