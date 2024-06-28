@@ -55,7 +55,7 @@
   ],
   "scripts": {
     "analyze": "source-map-explorer build/static/js/main.*",
-    "start": "craco start --verbose",
+    "start": "craco start",
     "build": "craco build",
     "test": "craco test --env=jsdom",
     "serve": "npm run build && serve -s build",
