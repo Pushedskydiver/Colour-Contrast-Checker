@@ -1,6 +1,18 @@
+.field {
+  --field-color: var(--foreground-color);
+}
+
+.fieldDark {
+  --field-color: #000;
+}
+
+.fieldLight {
+  --field-color: #fff;
+}
+
 .label {
   display: inline-block;
-  color: inherit;
+  color: var(--field-color);
 }
 
 .textarea {
@@ -17,11 +29,11 @@
   resize: none;
 
   &::placeholder {
-    color: inherit;
+    color: var(--field-color);
   }
 
   &:focus-visible {
-    outline: 3px solid var(--foreground-color);
+    outline: 3px solid var(--field-color);
 		outline-offset: 3px;
 	}
 }

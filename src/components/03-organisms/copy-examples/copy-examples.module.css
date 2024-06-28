@@ -7,7 +7,18 @@
 }
 
 .title {
+  --title-color: var(--foreground-color);
+
   margin-block-end: calc(var(--base-spacing) * 3);
+  color: var(--title-color);
+}
+
+.titleDark {
+  --title-color: #000;
+}
+
+.titleLight {
+  --title-color: #fff;
 }
 
 .examples {

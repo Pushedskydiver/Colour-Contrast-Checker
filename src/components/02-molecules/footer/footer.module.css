@@ -3,8 +3,11 @@
 @value --bp-small, --bp-small_max, --bp-medium from --breakpoints;
 
 .footer {
+  --footer-color: var(--foreground-color);
+
   position: relative;
   padding-block: calc(var(--base-spacing) * 4);
+  color: var(--footer-color);
 
   & > span {
     margin-block-end: 0;
@@ -19,6 +22,14 @@
   @media (width >= --bp-medium) {
      padding-block: calc(var(--base-spacing) * 8);
   }
+}
+
+.footerDark {
+  --footer-color: #000;
+}
+
+.footerLight {
+  --footer-color: #fff;
 }
 
 .container {

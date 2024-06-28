@@ -26,6 +26,20 @@
   }
 }
 
+.title {
+  --title-color: var(--foreground-color);
+
+  color: var(--title-color);
+}
+
+.titleDark {
+  --title-color: #000;
+}
+
+.titleLight {
+  --title-color: #fff;
+}
+
 .meta {
   --gap: calc(var(--base-spacing) * 1.5);
   --min: min(100%, 15rem);
