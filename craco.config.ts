@@ -1,5 +1,6 @@
-import { CracoConfig } from '@craco/types';
 import path from 'path';
+
+import type { CracoConfig } from '@craco/types';
 
 const config: CracoConfig = {
   webpack: {
