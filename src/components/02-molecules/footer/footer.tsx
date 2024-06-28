@@ -13,7 +13,8 @@ export const Footer: React.FC = () => (
         <li>
           <a
             href="https://github.com/Pushedskydiver/Colour-Contrast-Checker"
-            aria-label="GitHub project"
+            aria-label="Colour contrast checker GitHub project"
+            rel="external"
           >
             <GitHub />
           </a>
@@ -22,7 +23,8 @@ export const Footer: React.FC = () => (
         <li>
           <a
             href="https://twitter.com/alexmclapperton"
-            title="Alex's Twitter profile"
+            aria-label="Alex's Twitter profile"
+            rel="external"
           >
             <Twitter />
           </a>

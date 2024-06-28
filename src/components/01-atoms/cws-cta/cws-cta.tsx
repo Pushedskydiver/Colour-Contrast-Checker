@@ -13,6 +13,7 @@ export const ChromeWebStoreCta: React.FC = () => {
     <a
       href="https://chrome.google.com/webstore/detail/colour-contrast-checker/nmmjeclfkgjdomacpcflgdkgpphpmnfe"
       aria-label="Available in the Chrome Web Store"
+      rel="external"
       className={clsx(
         styles.cta,
         isPoorContrast && !isBackgroundDark ? styles.ctaDark : undefined,

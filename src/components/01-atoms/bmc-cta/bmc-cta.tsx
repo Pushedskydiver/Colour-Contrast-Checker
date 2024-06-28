@@ -13,6 +13,7 @@ export const BuyMeACoffeeCTA: React.FC = () => {
     <a
       href="https://buymeacoffee.com/alexclapperton"
       aria-label="Buy me a coffee"
+      rel="external"
       className={clsx(
         styles.cta,
         isPoorContrast && !isBackgroundDark ? styles.ctaDark : undefined,
