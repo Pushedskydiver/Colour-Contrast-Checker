@@ -40,6 +40,9 @@
     "@types/webfontloader": "^1.6.38",
     "@typescript-eslint/parser": "^5.62.0",
     "eslint-plugin-react": "7.34.2",
+    "postcss": "^8.4.38",
+    "postcss-preset-env": "^9.5.14",
+    "postcss-sort-media-queries": "^5.2.0",
     "source-map-explorer": "2.5.3",
     "stylelint": "^16.6.1",
     "stylelint-order": "^6.0.4",
@@ -52,7 +55,7 @@
   ],
   "scripts": {
     "analyze": "source-map-explorer build/static/js/main.*",
-    "start": "craco start",
+    "start": "craco start --verbose",
     "build": "craco build",
     "test": "craco test --env=jsdom",
     "serve": "npm run build && serve -s build",
@@ -70,5 +73,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "overrides": {
+    "@csstools/media-query-list-parser": "2.1.3"
+  }
 }
