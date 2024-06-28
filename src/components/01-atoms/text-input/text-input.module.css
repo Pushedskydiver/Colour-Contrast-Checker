@@ -1,0 +1,52 @@
+.field {
+  display: grid;
+  gap: calc(var(--base-spacing) * 1.5);
+}
+
+.label {
+  --label-color: var(--foreground-color);
+
+  color: var(--label-color);
+}
+
+.labelDark {
+  --label-color: #000;
+}
+
+.labelLight {
+  --label-color: #fff;
+}
+
+.inputWrapper {
+  position: relative;
+}
+
+.input {
+  --input-color: var(--foreground-color);
+  --input-outline-color: var(--foreground-color);
+
+  inline-size: 100%;
+  padding: var(--base-spacing) calc(var(--base-spacing) * 1.5);
+  border-radius: var(--base-spacing);
+  border: 3px solid var(--input-outline-color);
+  color: var(--input-color);
+  font-family: var(--font-family-primary);
+  font-size: inherit;
+  font-variation-settings: inherit;
+  line-height: inherit;
+
+  &:focus-visible {
+    outline: 3px solid var(--input-outline-color);
+    outline-offset: 3px;
+  }
+}
+
+.inputDark {
+  --input-color: #000;
+  --input-outline-color: #000;
+}
+
+.inputLight {
+  --input-color: #fff;
+  --input-outline-color: #fff;
+}

@@ -1,0 +1,22 @@
+@value --breakpoints: '../../../styles/modules/breakpoints.module.css';
+@value --bp-medium from --breakpoints;
+
+.ratio {
+  --badge-bg-color: var(--foreground-color);
+
+  display: inline-block;
+  margin-inline: calc(var(--base-spacing) * 1.5);
+  color: var(--badge-bg-color);
+
+  @media (width >= --bp-medium) {
+    margin-inline: calc(var(--base-spacing) * 3);
+  }
+}
+
+.ratioDark {
+  --badge-bg-color: #000;
+}
+
+.ratioLight {
+  --badge-bg-color: #fff;
+}

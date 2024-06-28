@@ -1,0 +1,53 @@
+@value containers: '../../../styles/modules/container.module.css';
+@value --breakpoints: '../../../styles/modules/breakpoints.module.css';
+@value --bp-small, --bp-small_max, --bp-medium from --breakpoints;
+
+.footer {
+  --footer-color: var(--foreground-color);
+
+  position: relative;
+  padding-block: calc(var(--base-spacing) * 4);
+  color: var(--footer-color);
+
+  & > span {
+    margin-block-end: 0;
+  }
+
+  @media (width <= --bp-small_max) {
+    & > div {
+      margin-block-end: calc(var(--base-spacing) * 1.5);
+    }
+  }
+
+  @media (width >= --bp-medium) {
+     padding-block: calc(var(--base-spacing) * 8);
+  }
+}
+
+.footerDark {
+  --footer-color: #000;
+}
+
+.footerLight {
+  --footer-color: #fff;
+}
+
+.container {
+  --container: var(--container-max-width);
+
+	composes: container from containers;
+
+   @media (width >= --bp-small) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.list {
+  display: flex;
+  gap: calc(var(--base-spacing) * 2);
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}

@@ -1,0 +1,28 @@
+@value containers: '../../../styles/modules/container.module.css';
+
+.container {
+  --container: var(--container-max-width);
+
+	composes: container from containers;
+}
+
+.title {
+  --title-color: var(--foreground-color);
+
+  margin-block-end: calc(var(--base-spacing) * 3);
+  color: var(--title-color);
+}
+
+.titleDark {
+  --title-color: #000;
+}
+
+.titleLight {
+  --title-color: #fff;
+}
+
+.examples {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 35rem), 1fr));
+  gap: calc(var(--base-spacing) * 6);
+}

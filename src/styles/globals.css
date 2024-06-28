@@ -1,0 +1,96 @@
+:root {
+  /* Colors */
+  --background-color: #ffe66d;
+  --foreground-color: #222;
+
+  /* Typography */
+  --font-family-primary: 'Avenir Next', sans-serif;
+  --font-weight-light: 100;
+  --font-weight-thin: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semi-bold: 600;
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --base-spacing: 8px;
+
+  /* Container */
+  --container-max-width: 140rem;
+  --container-inline-padding: calc(var(--base-spacing) * 3);
+
+  /* Misc */
+  --copy: inherit;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  color: inherit;
+  font-weight: normal;
+}
+
+html {
+  font-size: 10px;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--background-color);
+  color: var(--foreground-color);
+  font-family: var(--font-family-primary);
+  font-size: 1.6rem;
+  font-variation-settings: "wght" var(--font-weight-regular);
+  line-height: 160%;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+
+  @media (prefers-reduced-motion: no-preference) {
+    transition: background-color 0.3s ease-in-out;
+  }
+}
+
+body ::-moz-selection {
+  background: var(--foreground-color);
+  color: var(--background-color);
+}
+
+body ::selection {
+  background: var(--foreground-color);
+  color: var(--background-color);
+}
+
+h1,
+h2,
+p {
+  margin-block: 0;
+}
+
+img {
+  display: block;
+  max-inline-size: 100%;
+  inline-size: 100%;
+}
+
+button {
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  font-family: inherit;
+  appearance: none;
+}
+
+input,
+select {
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  font-family: inherit;
+  appearance: none;
+}

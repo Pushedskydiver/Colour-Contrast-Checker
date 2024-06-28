@@ -1,0 +1,19 @@
+.typography {
+	/* These calculations are based on the Pedro's formula used by Utopia - https://css-tricks.com/linearly-scale-font-size-with-css-clamp-based-on-the-viewport/#aa-step-3 */
+	--f-min-rem: calc(var(--min) * 0.1rem);
+	--f-max-rem: calc(var(--max) * 0.1rem);
+	--f-min: (var(--min) * 0.1);
+	--f-max: (var(--max) * 0.1);
+	--slope: calc((var(--f-max) - var(--f-min)) / (128 - 42.8));
+	--y-axis-intersection: calc(-42.8 * var(--slope) + var(--f-min));
+	--preferred-value: calc(
+		(var(--y-axis-intersection) * 1rem) + (var(--slope) * 100vw)
+	);
+
+	font-size: clamp(
+		var(--f-min-rem),
+		var(--preferred-value),
+		var(--f-max-rem)
+	);
+	font-variation-settings: "wght" var(--weight);
+}
