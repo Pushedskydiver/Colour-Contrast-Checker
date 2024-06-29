@@ -1,6 +1,5 @@
 import clsx from 'clsx';
 import { useColourContrast } from '~/components/context';
-import { isDark } from '~/components/utils';
 import { Cross, Tick } from '../icon/icon';
 import { Text } from '../text/text';
 
@@ -13,10 +12,8 @@ export type TBadge = {
 }
 
 export const Badge: React.FC<TBadge> = ({ grade, type, children }) => {
-  const { background, contrast } = useColourContrast();
+  const { isBackgroundDark, isPoorContrast } = useColourContrast();
   const isPass = grade === 'Pass';
-  const isPoorContrast = contrast < 3;
-  const isBackgroundDark = isDark(background);
 
   return (
     <>

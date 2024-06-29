@@ -1,9 +1,8 @@
+import clsx from 'clsx';
 import { useColourContrast } from '~/components/context';
-import { isDark } from '~/components/utils';
 import { Text } from '../text/text';
 
 import styles from './range-input.module.css';
-import clsx from 'clsx';
 
 export type TRangeInput = {
   id: string;
@@ -20,9 +19,7 @@ export const RangeInput: React.FC<TRangeInput> = ({
   value,
   onChange,
 }) => {
-  const { background, contrast } = useColourContrast();
-  const isPoorContrast = contrast < 3;
-  const isBackgroundDark = isDark(background);
+  const { isBackgroundDark, isPoorContrast } = useColourContrast();
 
   return (
     <div className={styles.field}>

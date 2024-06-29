@@ -1,5 +1,5 @@
 import { useColourContrast } from '~/components/context';
-import { hexToHsl, isDark } from '~/components/utils';
+import { hexToHsl } from '~/components/utils';
 import { Text } from "../text/text";
 
 import styles from './color-swatch.module.css';
@@ -14,9 +14,7 @@ export const ColorSwatch: React.FC<TColorSwatch> = ({
   background,
   foreground,
 }) => {
-  const { background: bgHsl, contrast, updateView, updatePath } = useColourContrast();
-  const isPoorContrast = contrast < 3;
-  const isBackgroundDark = isDark(bgHsl);
+  const { isBackgroundDark, isPoorContrast, updateView, updatePath } = useColourContrast();
 
   const applyColors = (): void => {
     const bg = hexToHsl(background);

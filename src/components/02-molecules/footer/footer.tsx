@@ -1,15 +1,12 @@
 import clsx from 'clsx';
 import { useColourContrast } from '~/components/context';
-import { isDark } from '~/components/utils';
 import { GitHub, Twitter } from '~/components/01-atoms/icon/icon';
 import { Text } from '~/components/01-atoms/text/text';
 
 import styles from './footer.module.css';
 
 export const Footer: React.FC = () => {
-  const { background, contrast } = useColourContrast();
-  const isPoorContrast = contrast < 3;
-  const isBackgroundDark = isDark(background);
+  const { isBackgroundDark, isPoorContrast } = useColourContrast();
 
   return (
     <footer

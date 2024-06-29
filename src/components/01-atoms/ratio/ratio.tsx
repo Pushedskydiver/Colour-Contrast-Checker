@@ -1,14 +1,11 @@
 import clsx from 'clsx';
 import { useColourContrast } from '~/components/context';
-import { isDark } from '~/components/utils';
 import { Text } from '../text/text';
 
 import styles from './ratio.module.css';
 
 export const Ratio: React.FC = () => {
-  const { background, contrast } = useColourContrast();
-  const isPoorContrast = contrast < 3;
-  const isBackgroundDark = isDark(background);
+  const { contrast, isBackgroundDark, isPoorContrast } = useColourContrast();
 
   return (
     <Text

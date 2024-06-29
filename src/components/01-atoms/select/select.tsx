@@ -1,6 +1,5 @@
 import clsx from 'clsx';
 import { useColourContrast } from '~/components/context';
-import { isDark } from '~/components/utils';
 import { Chevron } from '../icon/icon';
 import { Text } from '../text/text';
 
@@ -30,9 +29,7 @@ export const Select: React.FC<TSelect> = ({
   className,
   onChange,
 }) => {
-  const { background, contrast } = useColourContrast();
-  const isPoorContrast = contrast < 3;
-  const isBackgroundDark = isDark(background);
+  const { isBackgroundDark, isPoorContrast } = useColourContrast();
 
   const handleOnChange = (e: React.ChangeEvent<HTMLSelectElement>): void => {
     if (onChange) {

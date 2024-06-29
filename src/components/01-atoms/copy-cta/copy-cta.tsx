@@ -2,7 +2,6 @@ import { useState } from "react";
 import clsx from "clsx";
 import CopyToClipboard from "react-copy-to-clipboard";
 import { useColourContrast } from "~/components/context";
-import { isDark } from "~/components/utils";
 import { Clipboard } from "../icon/icon";
 import { Text } from "../text/text";
 
@@ -18,9 +17,7 @@ export const CopyCta: React.FC<TCopyCta> = ({
   value,
 }) => {
   const [copied, setCopiedState] = useState(false);
-  const { background, contrast } = useColourContrast();
-  const isPoorContrast = contrast < 3;
-  const isBackgroundDark = isDark(background);
+  const { isBackgroundDark, isPoorContrast } = useColourContrast();
 
   const setCopyState = (): void => {
     setCopiedState(true);

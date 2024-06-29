@@ -1,15 +1,12 @@
 import clsx from 'clsx';
 import { useColourContrast } from '~/components/context';
-import { isDark } from '~/components/utils';
 import { Text } from '~/components/01-atoms/text/text';
 import { Example } from '~/components/02-molecules/example/example';
 
 import styles from './copy-examples.module.css';
 
 export const CopyExamples: React.FC = () => {
-  const { background, contrast } = useColourContrast();
-  const isPoorContrast = contrast < 3;
-  const isBackgroundDark = isDark(background);
+  const { isBackgroundDark, isPoorContrast } = useColourContrast();
 
   return (
     <section aria-labelledby="copy-examples-heading">

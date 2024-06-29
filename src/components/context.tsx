@@ -1,5 +1,5 @@
-import React, { createContext, useContext, useEffect, useRef, useState } from 'react';
-import { isDark, isHsl, hexToHsl, hslToHex, hexToRgb, getContrast, getLevel, updatePath } from './utils';
+import { createContext, useContext, useEffect, useRef, useState } from 'react';
+import { isHsl, hexToHsl, hslToHex, hexToRgb, getContrast, getLevel, updatePath, isDark } from './utils';
 
 import type { TColors, TLevels } from '../global-types';
 
@@ -9,7 +9,8 @@ export interface ColourContrastContextTypes {
   foreground: number[],
   contrast: number,
   level: TLevels,
-  colorState: string,
+  isBackgroundDark: boolean,
+  isPoorContrast: boolean,
   handleContrastCheck: (value: number[], name: string) => void,
   reverseColors: () => void,
   saveColors: () => void,
@@ -33,7 +34,8 @@ const ColourContrastProvider = (
   const [foreground, setForeground] = useState<number[]>([NaN, 0, 0.133]);
   const [contrast, setContrast] = useState<number>(12.72);
   const [level, setLevel] = useState<TLevels>(levels);
-  const colorState: string = contrast < 3 ? isDark(background) ? '#ffffff' : '#222222' : hslToHex(foreground);
+  const isBackgroundDark = isDark(background);
+  const isPoorContrast = contrast < 3;
 
   function checkContrast(bg: string, fg: string): void {
     const backgroundRgb = hexToRgb(bg);
@@ -119,7 +121,8 @@ const ColourContrastProvider = (
         foreground,
         contrast,
         level,
-        colorState,
+        isBackgroundDark,
+        isPoorContrast,
         handleContrastCheck,
         reverseColors,
         saveColors,

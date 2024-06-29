@@ -1,6 +1,5 @@
 import clsx from 'clsx';
 import { useColourContrast } from '~/components/context';
-import { isDark } from '~/components/utils';
 import { Text } from '~/components/01-atoms/text/text';
 import { BuyMeACoffeeCTA } from '~/components/01-atoms/bmc-cta/bmc-cta';
 import { ChromeWebStoreCta } from '~/components/01-atoms/cws-cta/cws-cta';
@@ -9,9 +8,7 @@ import { SkipLink } from '~/components/01-atoms/skip-link/skip-link';
 import styles from './header.module.css';
 
 export const Header: React.FC = () => {
-  const { background, contrast } = useColourContrast();
-  const isPoorContrast = contrast < 3;
-  const isBackgroundDark = isDark(background);
+  const { isBackgroundDark, isPoorContrast } = useColourContrast();
 
   return (
     <header className={styles.header}>

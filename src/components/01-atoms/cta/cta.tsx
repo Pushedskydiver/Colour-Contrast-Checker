@@ -1,7 +1,6 @@
 import clsx from "clsx";
 
 import { useColourContrast } from '~/components/context';
-import { isDark } from '~/components/utils';
 import { Text } from "../text/text";
 
 import styles from './cta.module.css';
@@ -21,9 +20,7 @@ export const Button: React.FC<TButton> = ({
   onClick,
   ...buttonAttributes
 }) => {
-  const { background, contrast } = useColourContrast();
-  const isPoorContrast = contrast < 3;
-  const isBackgroundDark = isDark(background);
+  const { isBackgroundDark, isPoorContrast } = useColourContrast();
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>): void => {
     if (onClick) {
@@ -55,9 +52,7 @@ export const LinkButton: React.FC<TLinkButton> = ({
   onClick,
   ...linkAttributes
 }) => {
-  const { background, contrast } = useColourContrast();
-  const isPoorContrast = contrast < 3;
-  const isBackgroundDark = isDark(background);
+  const { isBackgroundDark, isPoorContrast } = useColourContrast();
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>): void => {
     if (onClick) {

@@ -1,13 +1,10 @@
 import clsx from 'clsx';
 import { useColourContrast } from '~/components/context';
-import { isDark } from '~/components/utils';
 
 import styles from './bmc-cta.module.css';
 
 export const BuyMeACoffeeCTA: React.FC = () => {
-  const { background, contrast } = useColourContrast();
-  const isPoorContrast = contrast < 3;
-  const isBackgroundDark = isDark(background);
+  const { isBackgroundDark, isPoorContrast } = useColourContrast();
 
   return (
     <a

@@ -11,7 +11,6 @@
   block-size: 4rem;
   border-radius: calc(var(--base-spacing) / 2);
   vertical-align: middle;
-  cursor: pointer;
   appearance: none;
 
   &:focus-visible {
