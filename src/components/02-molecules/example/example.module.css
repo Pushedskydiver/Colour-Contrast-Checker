@@ -24,6 +24,7 @@
   border: none;
   border-radius: calc(var(--base-spacing) / 2);
   background-color: transparent;
+  color: var(--field-color);
   font-family: var(--copy);
   line-height: 180%;
   resize: none;
