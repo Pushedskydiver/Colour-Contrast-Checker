@@ -17,7 +17,17 @@ export const ChromeWebStoreCta: React.FC = () => {
         isPoorContrast && isBackgroundDark ? styles.ctaLight : undefined,
       )}
     >
-      <img src="/images/logos/chrome-webstore-badge.png" alt="Chrome webstore badge" loading="eager" width="200" height="60" />
+      <img
+        sizes="(max-width: 496px) 100vw, 496px"
+        srcSet="
+          /images/logos/chrome-webstore-badge/chrome-webstore-badge-150.png 150w,
+          /images/logos/chrome-webstore-badge/chrome-webstore-badge-496.png 496w"
+        src="/images/logos/chrome-webstore-badge/chrome-webstore-badge-496.png"
+        alt="Chrome webstore badge"
+        loading="eager"
+        width="200"
+        height="60"
+      />
     </a>
   )
 }
