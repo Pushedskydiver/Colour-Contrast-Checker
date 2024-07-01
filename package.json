@@ -39,7 +39,7 @@
     "@types/react-router-dom": "^5.3.3",
     "@types/webfontloader": "^1.6.38",
     "@typescript-eslint/parser": "^5.62.0",
-    "eslint-plugin-react": "7.34.2",
+    "eslint-plugin-react": "7.34.3",
     "postcss": "^8.4.38",
     "postcss-preset-env": "^9.5.14",
     "postcss-sort-media-queries": "^5.2.0",
