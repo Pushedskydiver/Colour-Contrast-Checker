@@ -59,7 +59,7 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test --env=jsdom",
-    "serve": "npm run build && serve -s build",
+    "serve": "npm run build && npx serve -s build",
     "lint:css": "stylelint \"./**/*.{css,scss}\" --fix",
     "eject": "react-scripts eject"
   },

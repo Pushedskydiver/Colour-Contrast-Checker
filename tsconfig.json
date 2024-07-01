@@ -9,14 +9,14 @@
     "noUnusedLocals": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "target": "esnext",
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "target": "ES2019",
     "jsx": "react-jsx",
     "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
+      "DOM",
+      "DOM.Iterable",
+      "ES2019"
     ],
     "allowSyntheticDefaultImports": true,
     "declarationMap": true,
