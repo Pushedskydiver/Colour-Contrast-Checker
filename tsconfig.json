@@ -11,12 +11,12 @@
     "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "node",
-    "target": "ES2019",
+    "target": "esnext",
     "jsx": "react-jsx",
     "lib": [
-      "DOM",
-      "DOM.Iterable",
-      "ES2019"
+      "dom",
+      "dom.iterable",
+      "esnext"
     ],
     "allowSyntheticDefaultImports": true,
     "declarationMap": true,

@@ -21,19 +21,21 @@ const App = (): JSX.Element => (
   <ColourContrastProvider>
     <Header />
 
-    <Score />
+    <main id="main">
+      <Score />
 
-    <ColorControls />
+      <ColorControls />
 
-    <Actions />
+      <Actions />
 
-    <Divider />
+      <Divider />
 
-    <Suspense fallback={<span>Loading Fonts...</span>}>
-      <Typeface />
-    </Suspense>
+      <Suspense fallback={<span>Loading Fonts...</span>}>
+        <Typeface />
+      </Suspense>
 
-    <CopyExamples />
+      <CopyExamples />
+    </main>
 
     <Footer />
   </ColourContrastProvider>

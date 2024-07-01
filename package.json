@@ -25,6 +25,7 @@
     "react-router-dom": "6.23.1",
     "react-scripts": "^5.0.1",
     "typescript": "^4.9.4",
+    "web-vitals": "^4.2.1",
     "webfontloader": "^1.6.28"
   },
   "devDependencies": {
