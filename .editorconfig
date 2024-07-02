@@ -1,26 +1,32 @@
-# top-most EditorConfig file
-root = true
-
 # Unix-style newlines with a newline ending every file
 [*]
 end_of_line = lf
 insert_final_newline = true
-trim_trailing_whitespace = true
+indent_style = tab
+indent_size = 4
+quote_type = single
 
-# Javascript
-[*.js]
+# Matches multiple files with brace expansion notation
+# Set default charset
+[*.{js}]
 charset = utf-8
-indent_size = 2
-indent_style = space
 
-# TyepScript
-[*.ts]
-charset = utf-8
-indent_size = 2
-indent_style = space
+# Indentation override for all (t|j|mj)s(x)
+[{**/*.js,**/*.mjs,**/*.ts,**/*.tsx}]
+indent_style = tab
+indent_size = 4
 
-# TyepScript
-[*.tsx]
-charset = utf-8
-indent_size = 2
+# Indentation override for all HTML
+[**/*.html]
+indent_style = tab
+indent_size = 4
+
+# Indentation override for all SCSS
+[**/*.css]
+indent_style = tab
+indent_size = 4
+
+# Matches the exact files either package.json or .yml
+[{package.json,*.yml}]
 indent_style = space
+indent_size = 2

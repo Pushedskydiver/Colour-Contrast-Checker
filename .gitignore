@@ -1,20 +1,28 @@
 # dependencies
-node_modules
-
-# testing
-__snapshots__
+/node_modules
 
 # production
 build
 
-# misc
-[Tt]humbs.db
-.DS_Store
+# local env files
 .env.*
-.dccache
+!.env.example
+
+# public storybook folder
+public/storybook
+
+# local Netlify folder
+.netlify
+
+# debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+.pnpm-debug.log*
 
-# Local Netlify folder
-.netlify
+# misc
+[Tt]humbs.db
+.DS_Store
+.dccache
+.cache
+*storybook.log
