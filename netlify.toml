@@ -4,7 +4,6 @@ publish = "build/client"
 
 [dev]
 command = "npm run dev"
-targetPort = 3000
 framework = "vite"
 
 # Set immutable caching for static files, because they have fingerprinted filenames
