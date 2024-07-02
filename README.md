@@ -6,17 +6,14 @@
 
 ``` bash
 # install dependencies
-yarn
+npm i
 
 # serve with hot reload at localhost:3000
-yarn start
+npm run dev
 
 # build for production with minification
-yarn build
+npm run build
 
 # test the production build locally
-yarn serve
-
-# run tests with jest
-yarn test
+npm run start
 ```

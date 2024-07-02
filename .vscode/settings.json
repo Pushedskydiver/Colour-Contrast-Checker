@@ -1,5 +1,0 @@
-{
-  "eslint.options": {
-    "configFile": "./_config/eslint.json"
-  }
-}
