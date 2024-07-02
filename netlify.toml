@@ -8,9 +8,9 @@ targetPort = 3000
 framework = "vite"
 
 [[redirects]]
-  from = "/foo"
-  to = "/bar"
-  status = 302
+  from = "/:background/:foreground"
+  to = "/index.html?background=:background&foreground=:foreground"
+  status = 200
   force = true
 
 # Set immutable caching for static files, because they have fingerprinted filenames
