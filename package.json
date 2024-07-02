@@ -16,6 +16,7 @@
     "typecheck": "tsc"
   },
   "dependencies": {
+    "@netlify/remix-adapter": "^2.4.0",
     "@remix-run/express": "^2.10.0",
     "@remix-run/node": "^2.10.0",
     "@remix-run/react": "^2.10.0",
