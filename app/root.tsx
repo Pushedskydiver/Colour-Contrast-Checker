@@ -6,6 +6,7 @@ import {
 	ScrollRestoration,
 	json,
 	useLoaderData,
+	useRouteError,
 } from "@remix-run/react";
 import chroma from "chroma-js";
 
@@ -157,7 +158,23 @@ export const loader = async ({
 	});
 }
 
-export function Layout({ children }: { children: React.ReactNode }) {
+// export const ErrorBoundary: React.FC = () => {
+// 	return (
+// 		<html>
+// 			<head>
+// 				<title>Oh no!</title>
+// 				<Meta />
+// 				<Links />
+// 			</head>
+// 			<body>
+// 				lksdjsaldasjdljdlasdj
+// 				<Scripts />
+// 			</body>
+// 		</html>
+// 	);
+// };
+
+export default function App() {
 	const data = useLoaderData<typeof loader>();
 
 	const style: CSSCustomProperties = {
@@ -186,7 +203,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 					contrast={data.contrast}
 					levels={data.levels}
 				>
-					{children}
+					<Outlet />
 				</ColourContrastProvider>
 
 				<ScrollRestoration />
@@ -194,8 +211,4 @@ export function Layout({ children }: { children: React.ReactNode }) {
 			</body>
 		</html>
 	);
-}
-
-export default function App() {
-	return <Outlet />;
 }
