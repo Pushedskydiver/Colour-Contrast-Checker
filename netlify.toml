@@ -14,9 +14,3 @@ for = "/build/*"
 [headers.values]
 
 "Cache-Control" = "public, max-age=31560000, immutable"
-
-[[redirects]]
-from = "/:background/:foreground"
-to = "/index.html?background=:background&foreground=:foreground"
-status = 200
-force = true
