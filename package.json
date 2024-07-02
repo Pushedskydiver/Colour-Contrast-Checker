@@ -43,7 +43,7 @@
     "@types/react-dom": "^18.2.7",
     "@types/webfontloader": "^1.6.38",
     "@typescript-eslint/eslint-plugin": "^6.7.4",
-    "@typescript-eslint/parser": "^6.7.4",
+    "@typescript-eslint/parser": "^7.15.0",
     "autoprefixer": "^10.4.19",
     "chroma-js": "^2.4.2",
     "clsx": "^2.1.1",
