@@ -4,6 +4,7 @@ publish = "build/client"
 
 [dev]
 command = "npm run dev"
+targetPort = 3000
 framework = "vite"
 
 # Set immutable caching for static files, because they have fingerprinted filenames
@@ -14,3 +15,9 @@ for = "/build/*"
 [headers.values]
 
 "Cache-Control" = "public, max-age=31560000, immutable"
+
+[[redirects]]
+from = "/:background/:foreground"
+to = "/index.html?background=:background&foreground=:foreground"
+status = 200
+force = true
