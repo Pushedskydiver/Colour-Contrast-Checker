@@ -9,9 +9,7 @@ framework = "vite"
 
 [[redirects]]
   from = "/:background/:foreground"
-  to = "/index.html?background=:background&foreground=:foreground"
-  status = 200
-  force = true
+  to = "/?background=:background&foreground=:foreground"
 
 # Set immutable caching for static files, because they have fingerprinted filenames
 
