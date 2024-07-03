@@ -108,22 +108,26 @@ export const links: LinksFunction = () => [
 	{ rel: 'stylesheet', href: styles },
 ]
 
-export const meta: MetaFunction = () => [
-	{
-		title: 'Colour Contrast Checker',
-	},
-	{
-		name: 'description',
-		content: 'Check the contrast between different colour combinations against WCAG standards.',
-	},
-	{
-		name: 'theme-color',
-		content: '#ffe66d',
-	},
-	...openGraph,
-	...twitterCard,
-	...msTileIcons,
-];
+export const meta: MetaFunction<typeof loader> = ({ data }) => {
+	const bgHex = data?.background ? colorToHex(data.background) : '#ffe66d';
+
+	return [
+		{
+			title: 'Colour Contrast Checker',
+		},
+		{
+			name: 'description',
+			content: 'Check the contrast between different colour combinations against WCAG standards.',
+		},
+		{
+			name: 'theme-color',
+			content: bgHex,
+		},
+		...openGraph,
+		...twitterCard,
+		...msTileIcons,
+	]
+};
 
 export const loader = async ({
 	request,
