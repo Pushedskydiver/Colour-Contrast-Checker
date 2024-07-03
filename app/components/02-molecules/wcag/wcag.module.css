@@ -2,35 +2,35 @@
 @value --bp-medium_max, --bp-large from --breakpoints;
 
 .list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: calc(var(--base-spacing) * 2);
-  align-items: start;
-  margin-block: 0;
-  padding: 0;
+	display: flex;
+	flex-wrap: wrap;
+	gap: calc(var(--base-spacing) * 2);
+	align-items: start;
+	margin-block: 0;
+	padding: 0;
 
-  @media (width <= --bp-medium_max) {
-    margin-block-start: calc(var(--base-spacing) * 3);
-    flex: 1;
-  }
+	@media (width <= --bp-medium_max) {
+		margin-block-start: calc(var(--base-spacing) * 3);
+		flex: 1;
+	}
 
-  @media (width >= --bp-large) {
-    text-align: end;
-  }
+	@media (width >= --bp-large) {
+		text-align: end;
+	}
 }
 
 .item {
-  display: inline-flex;
-  flex-direction: column;
-  gap: var(--base-spacing);
+	display: inline-flex;
+	flex-direction: column;
+	gap: var(--base-spacing);
 
-  @media (width >= --bp-large) {
-    align-items: center;
-    margin-inline-start: calc(var(--base-spacing) * 3);
-    text-align: center;
+	@media (width >= --bp-large) {
+		align-items: center;
+		margin-inline-start: calc(var(--base-spacing) * 3);
+		text-align: center;
 
-    &:first-child {
-      margin-inline-start: 0;
-    }
-  }
+		&:first-child {
+			margin-inline-start: 0;
+		}
+	}
 }

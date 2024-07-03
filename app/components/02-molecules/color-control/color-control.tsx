@@ -1,4 +1,3 @@
-import chroma from 'chroma-js';
 import round from 'lodash.round';
 import { useColourContrast } from '~/context';
 import { RangeInput } from '~/components/01-atoms/range-input/range-input';

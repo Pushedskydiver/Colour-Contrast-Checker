@@ -3,24 +3,24 @@
 @value --bp-medium from --breakpoints;
 
 .section {
-  margin-block-end: calc(var(--base-spacing) * 5);
+	margin-block-end: calc(var(--base-spacing) * 5);
 }
 
 .container {
-  --container: var(--container-max-width);
+	--container: var(--container-max-width);
 
 	composes: container from containers;
 
-  @media (width >= --bp-medium) {
-    display: flex;
-    flex-wrap: wrap;
-    gap: calc(var(--base-spacing) * 3);
-    justify-content: space-between;
-    align-items: flex-end;
-  }
+	@media (width >= --bp-medium) {
+		display: flex;
+		flex-wrap: wrap;
+		gap: calc(var(--base-spacing) * 3);
+		justify-content: space-between;
+		align-items: flex-end;
+	}
 }
 
 .content {
-  display: flex;
-  align-items: flex-end;
+	display: flex;
+	align-items: flex-end;
 }

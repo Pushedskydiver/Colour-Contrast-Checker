@@ -3,7 +3,7 @@ import { useSearchParams } from "@remix-run/react";
 import throttle from 'lodash.throttle';
 
 import { getCookie, setCookie } from './services/cookies';
-import { hslToHex, getContrast, getLevel, isDark, isHex } from './utils';
+import { getContrast, getLevel, colorToHex, isDark, isHex } from './utils/color-utils';
 
 import type { TColors, TLevels } from './global-types';
 
@@ -69,14 +69,17 @@ const ColourContrastProvider: React.FC<TColourContrastProvider> = ({
 		const isBackground = name === 'background';
 		const isForeground = name === 'foreground';
 
-		const bg = isBackground ? hslToHex(value) : hslToHex(background);
-		const fg = isForeground ? hslToHex(value) : hslToHex(foreground);
-		const params = `background=${bg.replace(/^#/, '')}&foreground=${fg.replace(/^#/, '')}`;
+		const bg = isBackground ? colorToHex(value) : colorToHex(background);
+		const fg = isForeground ? colorToHex(value) : colorToHex(foreground);
+
+		const bgParam = bg.replace(/^#/, '');
+		const fgParam = fg.replace(/^#/, '');
+		const params = `background=${bgParam}&foreground=${fgParam}`;
 		
 		if (isBackground) setBackground(value);
 		if (isForeground) setForeground(value);
 
-		document.body.style.setProperty(`--${name}-color`, hslToHex(value));
+		document.body.style.setProperty(`--${name}-color`, colorToHex(value));
 
 		checkContrast(bg, fg);
 		updatePath(params);
@@ -85,8 +88,8 @@ const ColourContrastProvider: React.FC<TColourContrastProvider> = ({
 	function saveColors(): void {
 		const storedColors = getCookie('colors');
 		const colors: TColors[] = storedColors ? JSON.parse(storedColors) : [];
-		const bg = hslToHex(background);
-		const fg = hslToHex(foreground);
+		const bg = colorToHex(background);
+		const fg = colorToHex(foreground);
 		const sameColors = colors.some((color) => color.background === bg && color.foreground === fg);
 
 		if (colors.length > 0 && sameColors) return;
@@ -99,8 +102,8 @@ const ColourContrastProvider: React.FC<TColourContrastProvider> = ({
 	}
 
 	function updateView(bg: number[], fg: number[]): void {
-		const bgHex = hslToHex(bg);
-		const fgHex = hslToHex(fg);
+		const bgHex = colorToHex(bg);
+		const fgHex = colorToHex(fg);
 		const bgParam = bgHex.replace(/^#/, '');
 		const fgParam = fgHex.replace(/^#/, '');
 

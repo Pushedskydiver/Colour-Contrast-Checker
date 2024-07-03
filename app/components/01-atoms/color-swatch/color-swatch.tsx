@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { useColourContrast } from '~/context';
-import { hexToHsl } from '~/utils';
+import { colorToHsl } from '~/utils/color-utils';
 import { Text } from "../text/text";
 
 import styles from './color-swatch.module.css';
@@ -17,10 +17,8 @@ export const ColorSwatch: React.FC<TColorSwatch> = ({
 	const { isBackgroundDark, isPoorContrast, updateView } = useColourContrast();
 
 	const applyColors = (): void => {
-		const bg = hexToHsl(background);
-		const fg = hexToHsl(foreground);
-
-		if (!bg || !fg) return;
+		const bg = colorToHsl(background);
+		const fg = colorToHsl(foreground);
 
 		updateView(bg, fg);
 	}

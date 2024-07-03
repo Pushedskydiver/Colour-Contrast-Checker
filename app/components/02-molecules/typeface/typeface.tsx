@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { fetchData } from '~/utils';
+import { fetchData } from '~/utils/misc-utils';
+
 import { Select } from '~/components/01-atoms/select/select';
 
 import styles from './typeface.module.css';

@@ -3,49 +3,49 @@
 @value --bp-medium from --breakpoints;
 
 .header {
-  padding-block: calc(var(--base-spacing) * 3);
+	padding-block: calc(var(--base-spacing) * 3);
 
-  @media (width >= --bp-medium) {
-    padding-block: calc(var(--base-spacing) * 6);
-  }
+	@media (width >= --bp-medium) {
+		padding-block: calc(var(--base-spacing) * 6);
+	}
 }
 
 .container {
-  --container: var(--container-max-width);
+	--container: var(--container-max-width);
 
 	composes: container from containers;
-  position: relative;
-  display: flex;
-  flex-wrap: wrap;
-  gap: calc(var(--base-spacing) * 1.5);
-  justify-content: space-between;
-  align-items: center;
+	position: relative;
+	display: flex;
+	flex-wrap: wrap;
+	gap: calc(var(--base-spacing) * 1.5);
+	justify-content: space-between;
+	align-items: center;
 
-  @media (width >= --bp-medium) {
-    gap: calc(var(--base-spacing) * 3);
-  }
+	@media (width >= --bp-medium) {
+		gap: calc(var(--base-spacing) * 3);
+	}
 }
 
 .title {
-  --title-color: var(--foreground-color);
+	--title-color: var(--foreground-color);
 
-  color: var(--title-color);
+	color: var(--title-color);
 }
 
 .titleDark {
-  --title-color: #000;
+	--title-color: #000;
 }
 
 .titleLight {
-  --title-color: #fff;
+	--title-color: #fff;
 }
 
 .meta {
-  --gap: calc(var(--base-spacing) * 1.5);
-  --min: min(100%, 15rem);
-  --max: calc(50% - (var(--gap) / 2));
+	--gap: calc(var(--base-spacing) * 1.5);
+	--min: min(100%, 15rem);
+	--max: calc(50% - (var(--gap) / 2));
 
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(var(--min), var(--max)));
-  gap: var(--gap);
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(var(--min), var(--max)));
+	gap: var(--gap);
 }

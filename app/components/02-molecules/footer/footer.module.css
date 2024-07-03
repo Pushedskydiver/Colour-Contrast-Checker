@@ -3,45 +3,45 @@
 @value --bp-small, --bp-small_max, --bp-medium from --breakpoints;
 
 .footer {
-  --footer-color: var(--foreground-color);
+	--footer-color: var(--foreground-color);
 
-  position: relative;
-  padding-block: calc(var(--base-spacing) * 4);
-  color: var(--footer-color);
+	position: relative;
+	padding-block: calc(var(--base-spacing) * 4);
+	color: var(--footer-color);
 
-  & > span {
-    margin-block-end: 0;
-  }
+	& > span {
+		margin-block-end: 0;
+	}
 
-  @media (width <= --bp-small_max) {
-    & > div {
-      margin-block-end: calc(var(--base-spacing) * 1.5);
-    }
-  }
+	@media (width <= --bp-small_max) {
+		& > div {
+			margin-block-end: calc(var(--base-spacing) * 1.5);
+		}
+	}
 
-  @media (width >= --bp-medium) {
-     padding-block: calc(var(--base-spacing) * 8);
-  }
+	@media (width >= --bp-medium) {
+		padding-block: calc(var(--base-spacing) * 8);
+	}
 }
 
 .footerDark {
-  --footer-color: #000;
+	--footer-color: #000;
 }
 
 .footerLight {
-  --footer-color: #fff;
+	--footer-color: #fff;
 }
 
 .container {
-  --container: var(--container-max-width);
+	--container: var(--container-max-width);
 
 	composes: container from containers;
 
-   @media (width >= --bp-small) {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+	@media (width >= --bp-small) {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
 }
 
 .list {
@@ -64,6 +64,6 @@
 .textLink {
 	&:focus-visible {
 		outline: 2px solid var(--footer-color);
-    	outline-offset: 3px;
+		outline-offset: 3px;
 	}
 }

@@ -6,9 +6,7 @@ import {
 	ScrollRestoration,
 	json,
 	useLoaderData,
-	useRouteError,
 } from "@remix-run/react";
-import chroma from "chroma-js";
 
 import ColourContrastProvider from "./context";
 import { favicons } from "./meta/favicons";
@@ -17,7 +15,7 @@ import { openGraph } from "./meta/open-graph";
 import { splashScreens } from "./meta/splash-screens";
 import { twitterCard } from "./meta/twitter-card";
 import { decodeCookie } from "./services/cookies";
-import { getContrast, getLevel, hslToHex, isHex, isHsl } from "./utils";
+import { getContrast, getLevel, colorToHex, isHsl, getColorValue } from "./utils/color-utils";
 
 import styles from './styles/globals.css?url';
 import typography from './styles/typography.css?url';
@@ -44,16 +42,6 @@ type CSSCustomProperties = {
 	['--foreground-color']: string;
 } & React.CSSProperties;
 
-const getColorValue = (
-	path: string | null,
-	fallback: string
-) => {
-	const isPathAndHex = path && isHex(path);
-	const value = chroma(isPathAndHex ? path : fallback).hsl();
-
-	return value;
-}
-
 const setContrast = (
 	bg: [number, number, number],
 	fg: [number, number, number],
@@ -62,14 +50,12 @@ const setContrast = (
 	const isBgHsl = isHsl(bg);
 	const isFgHsl = isHsl(fg);
 
-	if (isBgHsl && isFgHsl) {
-		const bgHex = hslToHex(bg);
-		const fgHex = hslToHex(fg);
-		
-		return getContrast(bgHex, fgHex);
-	}
+	if (!isBgHsl || !isFgHsl) return fallback;
 
-	return fallback;
+	const bgHex = colorToHex(bg);
+	const fgHex = colorToHex(fg);
+
+	return getContrast(bgHex, fgHex);
 }
 
 export const links: LinksFunction = () => [
@@ -178,8 +164,8 @@ export default function App() {
 	const data = useLoaderData<typeof loader>();
 
 	const style: CSSCustomProperties = {
-		'--background-color': hslToHex(data.background),
-		'--foreground-color': hslToHex(data.foreground),
+		'--background-color': colorToHex(data.background),
+		'--foreground-color': colorToHex(data.foreground),
 	}
 
 	return (

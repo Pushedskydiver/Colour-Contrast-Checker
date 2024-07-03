@@ -1,15 +1,15 @@
 @value containers: '../../../styles/modules/container.module.css';
 
 .section {
-  margin-block-end: calc(var(--base-spacing) * 4.5);
+	margin-block-end: calc(var(--base-spacing) * 4.5);
 }
 
 .container {
-  --container: var(--container-max-width);
+	--container: var(--container-max-width);
 
 	composes: container from containers;
 }
 
 .select {
-  max-inline-size: max-content;
+	max-inline-size: max-content;
 }

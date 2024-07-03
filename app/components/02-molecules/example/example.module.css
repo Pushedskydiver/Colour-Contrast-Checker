@@ -1,48 +1,48 @@
 .field {
-  --field-color: var(--foreground-color);
+	--field-color: var(--foreground-color);
 }
 
 .fieldDark {
-  --field-color: #000;
+	--field-color: #000;
 }
 
 .fieldLight {
-  --field-color: #fff;
+	--field-color: #fff;
 }
 
 .label {
-  display: inline-block;
-  color: var(--field-color);
+	display: inline-block;
+color: var(--field-color);
 }
 
 .textarea {
-  display: block;
-  inline-size: 100%;
-  block-size: auto;
-  margin-block-start: calc(var(--base-spacing) * 2);
-  padding: 0;
-  border: none;
-  border-radius: calc(var(--base-spacing) / 2);
-  background-color: transparent;
-  color: var(--field-color);
-  font-family: var(--copy);
-  line-height: 180%;
-  resize: none;
+	display: block;
+	inline-size: 100%;
+	block-size: auto;
+	margin-block-start: calc(var(--base-spacing) * 2);
+	padding: 0;
+	border: none;
+	border-radius: calc(var(--base-spacing) / 2);
+	background-color: transparent;
+	color: var(--field-color);
+	font-family: var(--copy);
+	line-height: 180%;
+	resize: none;
 
-  &::placeholder {
-    color: var(--field-color);
-  }
+	&::placeholder {
+		color: var(--field-color);
+	}
 
-  &:focus-visible {
-    outline: 3px solid var(--field-color);
+	&:focus-visible {
+		outline: 3px solid var(--field-color);
 		outline-offset: 3px;
 	}
 }
 
 .normalTextarea {
-  font-size: 1.6rem;
+	font-size: 1.6rem;
 }
 
 .largeTextarea {
-  font-size: 2.4rem;
+	font-size: 2.4rem;
 }

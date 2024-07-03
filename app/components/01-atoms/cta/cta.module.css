@@ -1,6 +1,6 @@
 .cta {
-  --cta-bg-color: var(--foreground-color);
-  --cta-fg-color: var(--background-color);
+	--cta-bg-color: var(--foreground-color);
+	--cta-fg-color: var(--background-color);
 
 	display: flex;
 	gap: calc(var(--base-spacing) * 2);
@@ -10,22 +10,22 @@
 	padding: calc(var(--base-spacing) * 1.5) calc(var(--base-spacing) * 3);
 	border-radius: calc(var(--base-spacing) / 2);
 	border: 2px solid var(--cta-bg-color);
-  background-color: var(--cta-bg-color);
+	background-color: var(--cta-bg-color);
 	color: var(--cta-fg-color);
 
-  &:is(a) {
-    text-decoration: none;
-  }
+	&:is(a) {
+		text-decoration: none;
+	}
 
-  &:focus-visible {
-    outline: 3px solid var(--cta-bg-color);
+	&:focus-visible {
+		outline: 3px solid var(--cta-bg-color);
 		outline-offset: 3px;
 	}
 
 	@media (hover: hover) {
 		&:hover {
 			background-color: var(--cta-fg-color);
-	    color: var(--cta-bg-color);
+			color: var(--cta-bg-color);
 		}
 	}
 
@@ -37,15 +37,15 @@
 }
 
 .ctaDark {
-  --cta-bg-color: #000;
-  --cta-fg-color: #fff;
+	--cta-bg-color: #000;
+	--cta-fg-color: #fff;
 }
 
 .ctaLight {
-  --cta-bg-color: #fff;
-  --cta-fg-color: #000;
+	--cta-bg-color: #fff;
+	--cta-fg-color: #000;
 }
 
 .content {
-  pointer-events: none;
+	pointer-events: none;
 }

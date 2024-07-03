@@ -2,52 +2,52 @@
 @value --bp-medium from --breakpoints;
 
 .badge {
-  --badge-bg-color: var(--foreground-color);
-  --badge-fg-color: var(--background-color);
+	--badge-bg-color: var(--foreground-color);
+	--badge-fg-color: var(--background-color);
 
-  display: inline-flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  gap: var(--base-spacing);
-  padding: var(--base-spacing) calc(var(--base-spacing) * 1.5);
-  border-radius: calc(var(--base-spacing) / 2);
-  background-color: var(--badge-bg-color);
-  color: var(--badge-fg-color);
+	display: inline-flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	gap: var(--base-spacing);
+	padding: var(--base-spacing) calc(var(--base-spacing) * 1.5);
+	border-radius: calc(var(--base-spacing) / 2);
+	background-color: var(--badge-bg-color);
+	color: var(--badge-fg-color);
 
-  & > svg {
-    flex-basis: 2.4rem;
-  }
+	& > svg {
+		flex-basis: 2.4rem;
+	}
 
-  @media (width >= --bp-medium) {
-    padding-block: var(--base-spacing);
-  }
+	@media (width >= --bp-medium) {
+		padding-block: var(--base-spacing);
+	}
 }
 
 .badgeDark {
-  --badge-bg-color: #000;
-  --badge-fg-color: #fff;
+	--badge-bg-color: #000;
+	--badge-fg-color: #fff;
 }
 
 .badgeLight {
-  --badge-bg-color: #fff;
-  --badge-fg-color: #000;
+	--badge-bg-color: #fff;
+	--badge-fg-color: #000;
 }
 
 .badgeContent {
-  flex: 1;
+	flex: 1;
 }
 
 .badgeText {
-  --badge-text-color: var(--foreground-color);
+	--badge-text-color: var(--foreground-color);
 
-  color: var(--badge-text-color)
+	color: var(--badge-text-color);
 }
 
 .badgeTextDark {
-  --badge-text-color: #000;
+	--badge-text-color: #000;
 }
 
 .badgeTextLight {
-  --badge-text-color: #fff;
+	--badge-text-color: #fff;
 }

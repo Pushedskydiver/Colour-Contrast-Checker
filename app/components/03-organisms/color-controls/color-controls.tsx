@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useColourContrast } from '~/context';
-import { hexToHsl, hslToHex, isHex } from '~/utils';
+import { colorToHex, colorToHsl, isHex } from '~/utils/color-utils';
 import { TextInput } from '~/components/01-atoms/text-input/text-input';
 import { ColourControl } from '~/components/02-molecules/color-control/color-control';
 
@@ -8,14 +8,14 @@ import styles from './color-controls.module.css';
 
 export const ColorControls: React.FC = () => {
 	const { background, foreground, handleContrastCheck } = useColourContrast();
-	const [bgValue, setBgValue] = useState(hslToHex(background));
-	const [fgValue, setFgValue] = useState(hslToHex(foreground));
+	const [bgValue, setBgValue] = useState(colorToHex(background));
+	const [fgValue, setFgValue] = useState(colorToHex(foreground));
 
 	const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
 		let value = e.target.value;
 
 		const name = e.target.id;
-		const hslValue = hexToHsl(value);
+		const hslValue = colorToHsl(value);
 		const valueHasHash = value.indexOf('#') !== -1;
 		const isHexCode = isHex(value);
 		const isNum = /^\d+$/.test(value);
@@ -62,8 +62,8 @@ export const ColorControls: React.FC = () => {
 	}
 
 	useEffect(() => {
-		setBgValue(hslToHex(background));
-		setFgValue(hslToHex(foreground));
+		setBgValue(colorToHex(background));
+		setFgValue(colorToHex(foreground));
 	}, [background, foreground]);
 
 	return (
