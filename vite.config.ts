@@ -1,4 +1,5 @@
 import { netlifyPlugin } from "@netlify/remix-adapter/plugin";
+import { remixPWA } from '@remix-pwa/dev'
 import { vitePlugin as remix } from "@remix-run/dev";
 import { remixDevTools } from "remix-development-tools";
 import { defineConfig } from "vite";
@@ -14,6 +15,7 @@ export default defineConfig({
 				v3_throwAbortReason: true,
 			},
 		}),
+		remixPWA(),
 		netlifyPlugin(),
 		tsconfigPaths(),
 	],

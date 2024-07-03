@@ -7,6 +7,7 @@ import {
 	json,
 	useLoaderData,
 } from "@remix-run/react";
+import { useSWEffect } from '@remix-pwa/sw'
 
 import ColourContrastProvider from "./context";
 import { favicons } from "./meta/favicons";
@@ -85,6 +86,10 @@ export const links: LinksFunction = () => [
 		crossOrigin: 'anonymous',
 	},
 	{
+		rel: 'manifest',
+		href: '/site.webmanifest'
+	},
+	{
 		rel: 'chrome-webstore-item',
 		href: 'https://chrome.google.com/webstore/detail/nmmjeclfkgjdomacpcflgdkgpphpmnfe',
 	},
@@ -144,23 +149,9 @@ export const loader = async ({
 	});
 }
 
-// export const ErrorBoundary: React.FC = () => {
-// 	return (
-// 		<html>
-// 			<head>
-// 				<title>Oh no!</title>
-// 				<Meta />
-// 				<Links />
-// 			</head>
-// 			<body>
-// 				lksdjsaldasjdljdlasdj
-// 				<Scripts />
-// 			</body>
-// 		</html>
-// 	);
-// };
-
 export default function App() {
+	useSWEffect();
+	
 	const data = useLoaderData<typeof loader>();
 
 	const style: CSSCustomProperties = {
