@@ -116,6 +116,10 @@ export const meta: MetaFunction = () => [
 		name: 'description',
 		content: 'Check the contrast between different colour combinations against WCAG standards.',
 	},
+	{
+		name: 'theme-color',
+		content: '#ffe66d',
+	},
 	...openGraph,
 	...twitterCard,
 	...msTileIcons,
