@@ -20,6 +20,15 @@ export const isHsl = (hsl: number[]): boolean => {
 	}
 };
 
+export const isRgb = (rgb: number[]): boolean => {
+	try {
+		const color = chroma.rgb(rgb[0], rgb[1], rgb[2]);
+		return !!color;
+	} catch (e) {
+		return false;
+	}
+};
+
 export const isDark = (hsl: number[]): boolean => {
 	return chroma.hsl(hsl[0], hsl[1], hsl[2]).get('lab.l') < 60
 };
@@ -28,8 +37,16 @@ export const colorToHsl = (hex: string): [number, number, number] => {
 	return chroma(hex).hsl();
 };
 
-export const colorToHex = (hsl: number[]): string => {
+export const hslToHex = (hsl: number[]): string => {
 	return chroma.hsl(hsl[0], hsl[1], hsl[2]).hex();
+};
+
+export const hslToRgb = (hsl: number[]): [number, number, number] => {
+	return chroma.hsl(hsl[0], hsl[1], hsl[2]).rgb();
+};
+
+export const rgbToHsl = (rgb: number[]): [number, number, number] => {
+	return chroma.rgb(rgb[0], rgb[1], rgb[2]).hsl();
 };
 
 export const getContrast = (bg: string, fg: string): number => {

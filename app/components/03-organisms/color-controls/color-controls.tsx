@@ -1,21 +1,22 @@
 import { useEffect, useState } from 'react';
 import { useColourContrast } from '~/context';
-import { colorToHex, colorToHsl, isHex } from '~/utils/color-utils';
+import { hslToHex, colorToHsl, isHex } from '~/utils/color-utils';
 import { TextInput } from '~/components/01-atoms/text-input/text-input';
 import { ColourControl } from '~/components/02-molecules/color-control/color-control';
+import { Tabbed } from '~/components/02-molecules/tabbed/tabbed';
 
 import styles from './color-controls.module.css';
 
 export const ColorControls: React.FC = () => {
 	const { background, foreground, handleContrastCheck } = useColourContrast();
-	const [bgValue, setBgValue] = useState(colorToHex(background));
-	const [fgValue, setFgValue] = useState(colorToHex(foreground));
+	const [bgValue, setBgValue] = useState(hslToHex(background));
+	const [fgValue, setFgValue] = useState(hslToHex(foreground));
 
 	const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
 		let value = e.target.value;
 
 		const name = e.target.id;
-		const hslValue = colorToHsl(value);
+		const hslValue = isHex(value) ? colorToHsl(value) : null;
 		const valueHasHash = value.indexOf('#') !== -1;
 		const isHexCode = isHex(value);
 		const isNum = /^\d+$/.test(value);
@@ -62,8 +63,8 @@ export const ColorControls: React.FC = () => {
 	}
 
 	useEffect(() => {
-		setBgValue(colorToHex(background));
-		setFgValue(colorToHex(foreground));
+		setBgValue(hslToHex(background));
+		setFgValue(hslToHex(foreground));
 	}, [background, foreground]);
 
 	return (
@@ -78,7 +79,24 @@ export const ColorControls: React.FC = () => {
 						onChange={handleBgChange}
 					/>
 
-					<ColourControl id="background" />
+					<Tabbed
+						id="background-tabs"
+						ariaLabel="Background colour controls"
+						items={[
+							{
+								id: 'rgb-background',
+								name: 'RGB',
+								children: (
+									<ColourControl id="background" type="rgb" />
+								),
+							},
+							{
+								id: 'hsl-background',
+								name: 'HSL',
+								children: <ColourControl id="background" />,
+							},
+						]}
+					/>
 				</div>
 
 				<div className={styles.control}>
@@ -90,7 +108,24 @@ export const ColorControls: React.FC = () => {
 						onChange={handleFgChange}
 					/>
 
-					<ColourControl id="foreground" />
+					<Tabbed
+						id="foreground-tabs"
+						ariaLabel="Foreground colour controls"
+						items={[
+							{
+								id: 'rgb-foreground',
+								name: 'RGB',
+								children: (
+									<ColourControl id="foreground" type="rgb" />
+								),
+							},
+							{
+								id: 'hsl-foreground',
+								name: 'HSL',
+								children: <ColourControl id="foreground" />,
+							},
+						]}
+					/>
 				</div>
 			</div>
 		</section>

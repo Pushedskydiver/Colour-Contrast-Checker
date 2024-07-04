@@ -1,6 +1,6 @@
 module.exports = {
 	extends: ['stylelint-config-standard'],
-	plugins: ['stylelint-order'],
+	plugins: ['stylelint-order', 'stylelint-use-logical'],
 	rules: {
 		'selector-class-pattern': null,
 		'no-descending-specificity': null,
@@ -13,6 +13,7 @@ module.exports = {
 		'declaration-block-no-shorthand-property-overrides': true,
 		'block-no-empty': true,
 		'no-duplicate-selectors': true,
+		'csstools/use-logical': true,
 		'at-rule-no-unknown': [
 			true,
 			{
@@ -32,5 +33,5 @@ module.exports = {
 			},
 		],
 	},
-	ignoreFiles: ['app/styles/*.css', 'public/build/**/*.css'],
+	ignoreFiles: ['app/styles/*.css', 'build/**/*.css'],
 };
