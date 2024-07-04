@@ -166,7 +166,7 @@ export default function App() {
 		'--background-color': colorToHex(data.background),
 		'--foreground-color': colorToHex(data.foreground),
 	}
-
+	
 	return (
 		<html lang="en-GB">
 			<head>

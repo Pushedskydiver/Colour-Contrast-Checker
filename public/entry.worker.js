@@ -4827,7 +4827,7 @@ const ASSET_CACHE_NAME = `asset-cache`;
 const DATA_CACHE_NAME = `data-cache`;
 const documentCache = new EnhancedCache(DOCUMENT_CACHE_NAME, {
   version,
-  strategy: "CacheFirst",
+  strategy: "NetworkFirst",
   strategyOptions: {
     maxEntries: 64
   }
