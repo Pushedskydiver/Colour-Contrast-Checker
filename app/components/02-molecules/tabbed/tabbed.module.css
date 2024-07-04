@@ -1,0 +1,76 @@
+.tabs {
+	--tabs-foreground-color: var(--foreground-color);
+}
+
+.tabsDark {
+	--tabs-foreground-color: #000;
+}
+
+.tabsLight {
+	--tabs-foreground-color: #fff;
+}
+
+
+.list {
+	list-style-type: none;
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0;
+	padding: 0;
+}
+
+.list:has(.item:first-child > .tab[aria-selected="false"]) ~ .panel {
+	border-start-start-radius: calc(var(--base-spacing) / 2);
+}
+
+.item {
+	display: grid;
+	min-inline-size: max-content;
+}
+
+.tab {
+	position: relative;
+	display: block;
+	padding-block: calc(var(--base-spacing) * 1.5);
+	padding-inline: calc(var(--base-spacing) * 3);
+	border-block-start: 3px solid transparent;
+	border-inline: 3px solid transparent;
+	border-start-end-radius: calc(var(--base-spacing) / 2);
+	border-start-start-radius: calc(var(--base-spacing) / 2);
+	color: var(--tabs-foreground-color);
+	text-decoration: none;
+
+	&:focus-visible {
+		outline: 3px solid var(--tabs-foreground-color);
+		outline-offset: calc((var(--base-spacing) * 1.5) * -1);
+	}
+}
+
+.tab[aria-selected="true"] {
+	border-inline-color: var(--tabs-foreground-color);
+	border-block-start-color: var(--tabs-foreground-color);
+
+	&::before {
+		content: '';
+		position: absolute;
+		inset-block-start: 100%;
+		inset-inline-start: 0;
+		inline-size: 100%;
+		block-size: 3px;
+		background-color: var(--background-color);
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		&::before {
+			transition: background-color 0.3s ease-in-out;
+		}
+	}
+}
+
+.panel {
+	padding: calc(var(--base-spacing) * 3) calc(var(--base-spacing) * 1.5);
+	border: 3px solid var(--tabs-foreground-color);
+	border-start-end-radius: calc(var(--base-spacing) / 2);
+	border-end-start-radius: calc(var(--base-spacing) / 2);
+	border-end-end-radius: calc(var(--base-spacing) / 2);
+}

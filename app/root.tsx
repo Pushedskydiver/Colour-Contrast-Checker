@@ -16,7 +16,7 @@ import { openGraph } from "./meta/open-graph";
 import { splashScreens } from "./meta/splash-screens";
 import { twitterCard } from "./meta/twitter-card";
 import { decodeCookie } from "./services/cookies";
-import { getContrast, getLevel, colorToHex, isHsl, getColorValue } from "./utils/color-utils";
+import { getContrast, getLevel, hslToHex, isHsl, getColorValue } from "./utils/color-utils";
 
 import styles from './styles/globals.css?url';
 import typography from './styles/typography.css?url';
@@ -53,8 +53,8 @@ const setContrast = (
 
 	if (!isBgHsl || !isFgHsl) return fallback;
 
-	const bgHex = colorToHex(bg);
-	const fgHex = colorToHex(fg);
+	const bgHex = hslToHex(bg);
+	const fgHex = hslToHex(fg);
 
 	return getContrast(bgHex, fgHex);
 }
@@ -109,7 +109,7 @@ export const links: LinksFunction = () => [
 ]
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
-	const bgHex = data?.background ? colorToHex(data.background) : '#ffe66d';
+	const bgHex = data?.background ? hslToHex(data.background) : '#ffe66d';
 
 	return [
 		{
@@ -163,8 +163,8 @@ export default function App() {
 	const data = useLoaderData<typeof loader>();
 
 	const style: CSSCustomProperties = {
-		'--background-color': colorToHex(data.background),
-		'--foreground-color': colorToHex(data.foreground),
+		'--background-color': hslToHex(data.background),
+		'--foreground-color': hslToHex(data.foreground),
 	}
 	
 	return (
