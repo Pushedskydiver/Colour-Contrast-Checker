@@ -28,7 +28,7 @@ export const Footer: React.FC = () => {
               rel="external"
 			  className={styles.socialLink}
             >
-              <GitHub />
+              <GitHub size={32} />
             </a>
           </li>
 
@@ -39,7 +39,7 @@ export const Footer: React.FC = () => {
               rel="external"
 			  className={styles.socialLink}
             >
-              <Twitter />
+              <Twitter size={32} />
             </a>
           </li>
         </ul>

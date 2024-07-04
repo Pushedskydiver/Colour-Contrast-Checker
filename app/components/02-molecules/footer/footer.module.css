@@ -53,11 +53,18 @@
 }
 
 .socialLink {
+	display: block;
 	border-radius: calc(var(--base-spacing) / 2);
 
 	&:focus-visible {
 		outline: 3px solid var(--footer-color);
 		outline-offset: 3px;
+	}
+}
+
+.footnote {
+	@media (width <= --bp-small_max) {
+		margin-block-start: calc(var(--base-spacing) * 1.5);
 	}
 }
 

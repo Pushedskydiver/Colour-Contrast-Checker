@@ -54,7 +54,7 @@ export const CopyCta: React.FC<TCopyCta> = ({
 						isPoorContrast && isBackgroundDark ? styles.ctaLight : undefined,
 					)}
 				>
-					<Clipboard />
+					<Clipboard size={28} />
 				</button>
 			</CopyToClipboard>
 		</span>
