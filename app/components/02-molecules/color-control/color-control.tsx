@@ -24,8 +24,8 @@ export const ColourControl: React.FC<TColourControl> = ({ id, type }) => {
 	const valueB = isRgb ? value[1] : round(value[1], 2.5);
 	const valueC = isRgb ? value[2] : round(value[2], 2);
 	const labelTextA = isRgb ? `Red ${valueA}` : `Hue ${valueA}°`;
-	const labelTextB = isRgb ? `Blue ${valueB}` : `Saturation ${valueB}`;
-	const labelTextC = isRgb ? `Green ${valueC}` : `Lightness ${valueC}`;
+	const labelTextB = isRgb ? `Green ${valueB}` : `Saturation ${valueB}`;
+	const labelTextC = isRgb ? `Blue ${valueC}` : `Lightness ${valueC}`;
 	
 	const handleChange = ({ target }: { target: HTMLInputElement }): void => {
 		const abc = [...value];
