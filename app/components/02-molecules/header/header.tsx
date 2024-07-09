@@ -13,12 +13,30 @@ export const Header: React.FC = () => {
 	return (
 		<header className={styles.header}>
 			<div className={styles.container}>
-				<SkipLink href="#ratio" bodyText="Skip to colour contrast ratio" />
-				<SkipLink href="#grades" bodyText="Skip to colour contrast grades" />
-				<SkipLink href="#background" bodyText="Skip to background colour input" />
-				<SkipLink href="#foreground" bodyText="Skip to foreground colour input" />
-				<SkipLink href="#largeCopy" bodyText="Skip to large text example copy" />
-				<SkipLink href="#normalCopy" bodyText="Skip to normal text example copy" />
+				<SkipLink
+					href="#ratio"
+					bodyText="Skip to colour contrast ratio"
+				/>
+				<SkipLink
+					href="#grades"
+					bodyText="Skip to colour contrast grades"
+				/>
+				<SkipLink
+					href="#background"
+					bodyText="Skip to background colour input"
+				/>
+				<SkipLink
+					href="#foreground"
+					bodyText="Skip to foreground colour input"
+				/>
+				<SkipLink
+					href="#largeCopy"
+					bodyText="Skip to large text example copy"
+				/>
+				<SkipLink
+					href="#normalCopy"
+					bodyText="Skip to normal text example copy"
+				/>
 
 				<Text
 					tag="h1"
@@ -26,8 +44,12 @@ export const Header: React.FC = () => {
 					weight="semiBold"
 					className={clsx(
 						styles.title,
-						isPoorContrast && !isBackgroundDark ? styles.titleDark : undefined,
-						isPoorContrast && isBackgroundDark ? styles.titleLight : undefined,
+						isPoorContrast && !isBackgroundDark
+							? styles.titleDark
+							: undefined,
+						isPoorContrast && isBackgroundDark
+							? styles.titleLight
+							: undefined,
 					)}
 				>
 					Colour contrast checker
@@ -41,4 +63,4 @@ export const Header: React.FC = () => {
 			</div>
 		</header>
 	);
-}
+};

@@ -1,21 +1,18 @@
-import { useState } from "react";
-import clsx from "clsx";
-import CopyToClipboard from "react-copy-to-clipboard";
-import { useColourContrast } from "~/context";
-import { Clipboard } from "../icon/icon";
-import { Text } from "../text/text";
+import { useState } from 'react';
+import clsx from 'clsx';
+import CopyToClipboard from 'react-copy-to-clipboard';
+import { useColourContrast } from '~/context';
+import { Clipboard } from '../icon/icon';
+import { Text } from '../text/text';
 
 import styles from './copy-cta.module.css';
 
 export type TCopyCta = {
 	id: string;
 	value: string;
-}
+};
 
-export const CopyCta: React.FC<TCopyCta> = ({
-	id,
-	value,
-}) => {
+export const CopyCta: React.FC<TCopyCta> = ({ id, value }) => {
 	const [copied, setCopiedState] = useState(false);
 	const { isBackgroundDark, isPoorContrast } = useColourContrast();
 
@@ -26,7 +23,7 @@ export const CopyCta: React.FC<TCopyCta> = ({
 			setCopiedState(false);
 			clearTimeout(delaySetState);
 		}, 2000);
-	}
+	};
 
 	return (
 		<span className={styles.ctaWrapper}>
@@ -36,8 +33,12 @@ export const CopyCta: React.FC<TCopyCta> = ({
 				weight="medium"
 				className={clsx(
 					styles.tooltip,
-					isPoorContrast && !isBackgroundDark ? styles.tooltipDark : undefined,
-					isPoorContrast && isBackgroundDark ? styles.tooltipLight : undefined,
+					isPoorContrast && !isBackgroundDark
+						? styles.tooltipDark
+						: undefined,
+					isPoorContrast && isBackgroundDark
+						? styles.tooltipLight
+						: undefined,
 					copied ? styles.tooltipFadeInOut : undefined,
 				)}
 			>
@@ -50,13 +51,17 @@ export const CopyCta: React.FC<TCopyCta> = ({
 					aria-labelledby={id}
 					className={clsx(
 						styles.cta,
-						isPoorContrast && !isBackgroundDark ? styles.ctaDark : undefined,
-						isPoorContrast && isBackgroundDark ? styles.ctaLight : undefined,
+						isPoorContrast && !isBackgroundDark
+							? styles.ctaDark
+							: undefined,
+						isPoorContrast && isBackgroundDark
+							? styles.ctaLight
+							: undefined,
 					)}
 				>
 					<Clipboard size={28} />
 				</button>
 			</CopyToClipboard>
 		</span>
-	)
-}
+	);
+};

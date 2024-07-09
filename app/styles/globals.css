@@ -43,7 +43,7 @@ body {
 	color: var(--foreground-color);
 	font-family: var(--font-family-primary);
 	font-size: 1.6rem;
-	font-variation-settings: "wght" var(--font-weight-regular);
+	font-variation-settings: 'wght' var(--font-weight-regular);
 	line-height: 160%;
 	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;

@@ -6,17 +6,23 @@ import {
 	ScrollRestoration,
 	json,
 	useLoaderData,
-} from "@remix-run/react";
-import { useSWEffect } from '@remix-pwa/sw'
+} from '@remix-run/react';
+import { useSWEffect } from '@remix-pwa/sw';
 
-import ColourContrastProvider from "./context";
-import { favicons } from "./meta/favicons";
-import { msTileIcons } from "./meta/ms-tile-icons";
-import { openGraph } from "./meta/open-graph";
-import { splashScreens } from "./meta/splash-screens";
-import { twitterCard } from "./meta/twitter-card";
-import { decodeCookie } from "./services/cookies";
-import { getContrast, getLevel, hslToHex, isHsl, getColorValue } from "./utils/color-utils";
+import ColourContrastProvider from './context';
+import { favicons } from './meta/favicons';
+import { msTileIcons } from './meta/ms-tile-icons';
+import { openGraph } from './meta/open-graph';
+import { splashScreens } from './meta/splash-screens';
+import { twitterCard } from './meta/twitter-card';
+import { decodeCookie } from './services/cookies';
+import {
+	getContrast,
+	getLevel,
+	hslToHex,
+	isHsl,
+	getColorValue,
+} from './utils/color-utils';
 
 import styles from './styles/globals.css?url';
 import typography from './styles/typography.css?url';
@@ -26,8 +32,8 @@ import type {
 	LoaderFunctionArgs,
 	MetaFunction,
 	TypedResponse,
-} from "@remix-run/node";
-import type { TColors, TLevels } from "./global-types";
+} from '@remix-run/node';
+import type { TColors, TLevels } from './global-types';
 
 type TRoot = {
 	background: [number, number, number];
@@ -36,7 +42,7 @@ type TRoot = {
 	contrast: number;
 	levels: TLevels;
 	GOOGLE_FONTS_APIKEY: string | undefined;
-}
+};
 
 type CSSCustomProperties = {
 	['--background-color']: string;
@@ -57,7 +63,7 @@ const setContrast = (
 	const fgHex = hslToHex(fg);
 
 	return getContrast(bgHex, fgHex);
-}
+};
 
 export const links: LinksFunction = () => [
 	{
@@ -87,7 +93,7 @@ export const links: LinksFunction = () => [
 	},
 	{
 		rel: 'manifest',
-		href: '/site.webmanifest'
+		href: '/site.webmanifest',
 	},
 	{
 		rel: 'chrome-webstore-item',
@@ -106,7 +112,7 @@ export const links: LinksFunction = () => [
 	...splashScreens,
 	{ rel: 'stylesheet', href: typography },
 	{ rel: 'stylesheet', href: styles },
-]
+];
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
 	const bgHex = data?.background ? hslToHex(data.background) : '#ffe66d';
@@ -117,7 +123,8 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
 		},
 		{
 			name: 'description',
-			content: 'Check the contrast between different colour combinations against WCAG standards.',
+			content:
+				'Check the contrast between different colour combinations against WCAG standards.',
 		},
 		{
 			name: 'theme-color',
@@ -126,7 +133,7 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
 		...openGraph,
 		...twitterCard,
 		...msTileIcons,
-	]
+	];
 };
 
 export const loader = async ({
@@ -155,18 +162,18 @@ export const loader = async ({
 		levels,
 		GOOGLE_FONTS_APIKEY,
 	});
-}
+};
 
 export default function App() {
 	useSWEffect();
-	
+
 	const data = useLoaderData<typeof loader>();
 
 	const style: CSSCustomProperties = {
 		'--background-color': hslToHex(data.background),
 		'--foreground-color': hslToHex(data.foreground),
-	}
-	
+	};
+
 	return (
 		<html lang="en-GB">
 			<head>

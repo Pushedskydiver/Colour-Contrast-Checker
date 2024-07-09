@@ -10,7 +10,7 @@ const nanH = (h: number): number => (Number.isNaN(h) || h === null ? 0 : h);
 export type TColourControl = {
 	id: string;
 	type?: 'hsl' | 'rgb';
-}
+};
 
 export const ColourControl: React.FC<TColourControl> = ({ id, type }) => {
 	const { background, foreground, handleContrastCheck } = useColourContrast();
@@ -19,18 +19,18 @@ export const ColourControl: React.FC<TColourControl> = ({ id, type }) => {
 	const bg = isRgb ? hslToRgb(background) : background;
 	const fg = isRgb ? hslToRgb(foreground) : foreground;
 
-	const value = id === 'background' ? bg :  fg;
+	const value = id === 'background' ? bg : fg;
 	const valueA = isRgb ? value[0] : round(nanH(value[0]));
 	const valueB = isRgb ? value[1] : round(value[1], 2.5);
 	const valueC = isRgb ? value[2] : round(value[2], 2);
 	const labelTextA = isRgb ? `Red ${valueA}` : `Hue ${valueA}°`;
 	const labelTextB = isRgb ? `Green ${valueB}` : `Saturation ${valueB}`;
 	const labelTextC = isRgb ? `Blue ${valueC}` : `Lightness ${valueC}`;
-	
+
 	const handleChange = ({ target }: { target: HTMLInputElement }): void => {
 		const abc = [...value];
 		const property = target.getAttribute('property');
-		
+
 		if (!property) return;
 
 		abc[parseFloat(property)] = parseFloat(target.value);
@@ -38,7 +38,7 @@ export const ColourControl: React.FC<TColourControl> = ({ id, type }) => {
 		const colorValue = isRgb ? rgbToHsl(abc) : abc;
 
 		handleContrastCheck(colorValue, id);
-	}
+	};
 
 	return (
 		<div className={styles.control}>
@@ -72,5 +72,5 @@ export const ColourControl: React.FC<TColourControl> = ({ id, type }) => {
 				onChange={handleChange}
 			/>
 		</div>
-	)
-}
+	);
+};

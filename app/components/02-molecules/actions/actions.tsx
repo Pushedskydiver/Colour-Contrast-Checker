@@ -1,6 +1,6 @@
 import { useColourContrast } from '~/context';
-import { Button, CtaContent } from "~/components/01-atoms/cta/cta";
-import { ColorSwatch } from "~/components/01-atoms/color-swatch/color-swatch";
+import { Button, CtaContent } from '~/components/01-atoms/cta/cta';
+import { ColorSwatch } from '~/components/01-atoms/color-swatch/color-swatch';
 
 import styles from './actions.module.css';
 
@@ -15,11 +15,15 @@ export const Actions: React.FC = () => {
 			background={swatch.background}
 			foreground={swatch.foreground}
 		/>
-	)
+	);
 
 	return (
 		<div className={styles.actions}>
-			<Button type="button" onClick={reverseColors} className={styles.cta}>
+			<Button
+				type="button"
+				onClick={reverseColors}
+				className={styles.cta}
+			>
 				<CtaContent.Text>Reverse colours</CtaContent.Text>
 			</Button>
 
@@ -33,5 +37,5 @@ export const Actions: React.FC = () => {
 				</ul>
 			) : null}
 		</div>
-	)
-}
+	);
+};

@@ -7,7 +7,10 @@ import styles from './range-input.module.css';
 export type TRangeInput = {
 	id: string;
 	labelText: string;
-} & Pick<React.ComponentProps<'input'>, 'max' | 'name' | 'property' | 'step' | 'value' | 'onChange'>;
+} & Pick<
+	React.ComponentProps<'input'>,
+	'max' | 'name' | 'property' | 'step' | 'value' | 'onChange'
+>;
 
 export const RangeInput: React.FC<TRangeInput> = ({
 	id,
@@ -27,15 +30,15 @@ export const RangeInput: React.FC<TRangeInput> = ({
 				htmlFor={id}
 				className={clsx(
 					styles.label,
-					isPoorContrast && !isBackgroundDark ? styles.labelDark : undefined,
-					isPoorContrast && isBackgroundDark ? styles.labelLight : undefined,
+					isPoorContrast && !isBackgroundDark
+						? styles.labelDark
+						: undefined,
+					isPoorContrast && isBackgroundDark
+						? styles.labelLight
+						: undefined,
 				)}
 			>
-				<Text
-					size="pulse"
-					weight="medium"
-					role="presentation"
-				>
+				<Text size="pulse" weight="medium" role="presentation">
 					{labelText}
 				</Text>
 			</label>
@@ -51,10 +54,14 @@ export const RangeInput: React.FC<TRangeInput> = ({
 				onChange={onChange}
 				className={clsx(
 					styles.input,
-					isPoorContrast && !isBackgroundDark ? styles.inputDark : undefined,
-					isPoorContrast && isBackgroundDark ? styles.inputLight : undefined,
+					isPoorContrast && !isBackgroundDark
+						? styles.inputDark
+						: undefined,
+					isPoorContrast && isBackgroundDark
+						? styles.inputLight
+						: undefined,
 				)}
 			/>
 		</div>
-	)
-}
+	);
+};

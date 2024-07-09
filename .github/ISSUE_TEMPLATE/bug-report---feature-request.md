@@ -1,12 +1,11 @@
 ---
 name: Bug report / feature request
 about: Create a report to help us improve
-
 ---
 
 <!-- Please don't delete this template -->
 
-**Do you want to request a *feature* or report a *bug*?**
+**Do you want to request a _feature_ or report a _bug_?**
 
 **What is the current behaviour?**
 
@@ -19,8 +18,9 @@ about: Create a report to help us improve
 **If this is a feature request, what is motivation or use case for changing the behaviour?**
 
 **Please mention other relevant information.**
-- Node version
-- npm version
-- Operating system
-- CLI version
-- Browser
+
+-   Node version
+-   npm version
+-   Operating system
+-   CLI version
+-   Browser

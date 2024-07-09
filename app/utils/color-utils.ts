@@ -30,7 +30,7 @@ export const isRgb = (rgb: number[]): boolean => {
 };
 
 export const isDark = (hsl: number[]): boolean => {
-	return chroma.hsl(hsl[0], hsl[1], hsl[2]).get('lab.l') < 60
+	return chroma.hsl(hsl[0], hsl[1], hsl[2]).get('lab.l') < 60;
 };
 
 export const colorToHsl = (hex: string): [number, number, number] => {
@@ -50,12 +50,12 @@ export const rgbToHsl = (rgb: number[]): [number, number, number] => {
 };
 
 export const getContrast = (bg: string, fg: string): number => {
-	return chroma.contrast(bg, fg)
+	return chroma.contrast(bg, fg);
 };
 
 export const getColorValue = (
 	path: string | null,
-	fallback: string
+	fallback: string,
 ): [number, number, number] => {
 	const isPathAndHex = path && isHex(path);
 	const value = colorToHsl(isPathAndHex ? path : fallback);

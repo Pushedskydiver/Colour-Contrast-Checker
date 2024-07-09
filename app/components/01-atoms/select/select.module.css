@@ -29,7 +29,7 @@
 	border: 2px solid var(--field-color);
 	color: var(--field-color);
 	font-size: 1.8rem;
-	font-variation-settings: "wght" var(--font-weight-medium);
+	font-variation-settings: 'wght' var(--font-weight-medium);
 	line-height: inherit;
 
 	&:focus-visible {

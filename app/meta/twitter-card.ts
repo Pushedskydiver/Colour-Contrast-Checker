@@ -1,4 +1,4 @@
-import type { MetaDescriptor } from "@remix-run/node";
+import type { MetaDescriptor } from '@remix-run/node';
 
 export const twitterCard: MetaDescriptor[] = [
 	{
@@ -23,10 +23,11 @@ export const twitterCard: MetaDescriptor[] = [
 	},
 	{
 		name: 'twitter:description',
-		content: 'Check the contrast between different colour combinations against WCAG standards.',
+		content:
+			'Check the contrast between different colour combinations against WCAG standards.',
 	},
 	{
 		name: 'twitter:image',
 		content: '/favicons/favicon-256x256.png',
 	},
-]
+];
