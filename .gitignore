@@ -25,6 +25,7 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # misc
+entry.worker.js
 [Tt]humbs.db
 .DS_Store
 .dccache
