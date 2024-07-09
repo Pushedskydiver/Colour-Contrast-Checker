@@ -5,6 +5,7 @@
 build
 
 # local env files
+.env
 .env.*
 !.env.example
 
