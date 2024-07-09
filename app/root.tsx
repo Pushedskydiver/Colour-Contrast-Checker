@@ -6,6 +6,7 @@ import {
 	ScrollRestoration,
 	json,
 	useLoaderData,
+	ShouldRevalidateFunction,
 } from '@remix-run/react';
 import { useSWEffect } from '@remix-pwa/sw';
 
@@ -162,6 +163,10 @@ export const loader = async ({
 		levels,
 		GOOGLE_FONTS_APIKEY,
 	});
+};
+
+export const shouldRevalidate: ShouldRevalidateFunction = () => {
+	return false;
 };
 
 export default function App() {
