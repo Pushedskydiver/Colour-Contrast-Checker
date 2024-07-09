@@ -3,6 +3,7 @@
 
 # production
 build
+public/entry.worker.js
 
 # local env files
 .env
@@ -25,7 +26,6 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # misc
-entry.worker.js
 [Tt]humbs.db
 .DS_Store
 .dccache
