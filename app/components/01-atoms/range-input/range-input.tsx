@@ -48,10 +48,10 @@ export const RangeInput: React.FC<TRangeInput> = ({
 				type="range"
 				max={max}
 				name={name ?? id}
-				property={property}
 				step={step}
 				value={value}
 				onChange={onChange}
+				data-property={property}
 				className={clsx(
 					styles.input,
 					isPoorContrast && !isBackgroundDark

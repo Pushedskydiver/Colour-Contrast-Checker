@@ -49,7 +49,7 @@ const ColourContrastProvider: React.FC<TColourContrastProvider> = ({
 	levels: storedLevels,
 	children,
 }): JSX.Element | null => {
-	const [_, setSearchParams] = useSearchParams();
+	const [, setSearchParams] = useSearchParams();
 
 	const [colors, setColors] = useState(storedColors);
 	const [background, setBackground] = useState(storedBg);
@@ -87,8 +87,6 @@ const ColourContrastProvider: React.FC<TColourContrastProvider> = ({
 		if (isBackground) setBackground(value);
 		if (isForeground) setForeground(value);
 
-		document.body.style.setProperty(`--${name}-color`, hslToHex(value));
-
 		checkContrast(bg, fg);
 		updatePath(params);
 	}
@@ -118,9 +116,6 @@ const ColourContrastProvider: React.FC<TColourContrastProvider> = ({
 		const fgParam = fgHex.replace(/^#/, '');
 
 		const params = `background=${bgParam}&foreground=${fgParam}`;
-
-		document.body.style.setProperty('--background-color', bgHex);
-		document.body.style.setProperty('--foreground-color', fgHex);
 
 		checkContrast(bgHex, fgHex);
 		setBackground(bg);

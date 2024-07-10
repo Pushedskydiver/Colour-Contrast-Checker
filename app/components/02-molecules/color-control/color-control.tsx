@@ -29,7 +29,7 @@ export const ColourControl: React.FC<TColourControl> = ({ id, type }) => {
 
 	const handleChange = ({ target }: { target: HTMLInputElement }): void => {
 		const abc = [...value];
-		const property = target.getAttribute('property');
+		const property = target.getAttribute('data-property');
 
 		if (!property) return;
 

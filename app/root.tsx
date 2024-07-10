@@ -7,6 +7,7 @@ import {
 	json,
 	useLoaderData,
 	ShouldRevalidateFunction,
+	useSearchParams,
 } from '@remix-run/react';
 import { useSWEffect } from '@remix-pwa/sw';
 
@@ -54,7 +55,7 @@ const setContrast = (
 	bg: [number, number, number],
 	fg: [number, number, number],
 	fallback: number,
-) => {
+): number => {
 	const isBgHsl = isHsl(bg);
 	const isFgHsl = isHsl(fg);
 
@@ -169,15 +170,31 @@ export const shouldRevalidate: ShouldRevalidateFunction = () => {
 	return false;
 };
 
-export default function App() {
+const AppComponent = (): JSX.Element => {
+	const [searchParams] = useSearchParams();
+
+	const background = searchParams.get('background');
+	const foreground = searchParams.get('foreground');
+
+	const style: CSSCustomProperties = {
+		'--background-color': background ? `#${background}` : '#ffe66d',
+		'--foreground-color': foreground ? `#${foreground}` : '#222222',
+	};
+
+	return (
+		<body style={style}>
+			<Outlet />
+
+			<ScrollRestoration />
+			<Scripts />
+		</body>
+	);
+};
+
+export default function App(): JSX.Element {
 	useSWEffect();
 
 	const data = useLoaderData<typeof loader>();
-
-	const style: CSSCustomProperties = {
-		'--background-color': hslToHex(data.background),
-		'--foreground-color': hslToHex(data.foreground),
-	};
 
 	return (
 		<html lang="en-GB">
@@ -192,20 +209,15 @@ export default function App() {
 				<Links />
 			</head>
 
-			<body style={style}>
-				<ColourContrastProvider
-					background={data.background}
-					foreground={data.foreground}
-					colors={data.colors}
-					contrast={data.contrast}
-					levels={data.levels}
-				>
-					<Outlet />
-				</ColourContrastProvider>
-
-				<ScrollRestoration />
-				<Scripts />
-			</body>
+			<ColourContrastProvider
+				background={data.background}
+				foreground={data.foreground}
+				colors={data.colors}
+				contrast={data.contrast}
+				levels={data.levels}
+			>
+				<AppComponent />
+			</ColourContrastProvider>
 		</html>
 	);
 }
