@@ -78,3 +78,19 @@ export const getLevel = (contrast: number): TLevels => {
 
 	return { AALarge: 'Fail', AA: 'Fail', AAALarge: 'Fail', AAA: 'Fail' };
 };
+
+export const setContrast = (
+	bg: [number, number, number],
+	fg: [number, number, number],
+	fallback: number,
+): number => {
+	const isBgHsl = isHsl(bg);
+	const isFgHsl = isHsl(fg);
+
+	if (!isBgHsl || !isFgHsl) return fallback;
+
+	const bgHex = hslToHex(bg);
+	const fgHex = hslToHex(fg);
+
+	return getContrast(bgHex, fgHex);
+};
