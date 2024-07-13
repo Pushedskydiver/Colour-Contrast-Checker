@@ -33,7 +33,14 @@
 		outline-offset: 3px;
 	}
 
-	&::-webkit-slider-thumb,
+	&::-webkit-slider-thumb {
+		inline-size: 3rem;
+		block-size: 3rem;
+		border-radius: 50%;
+		background-color: var(--input-thumb-color);
+		appearance: none;
+	}
+
 	&::-moz-range-thumb {
 		inline-size: 3rem;
 		block-size: 3rem;
