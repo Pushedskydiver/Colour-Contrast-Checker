@@ -43,13 +43,13 @@ body {
 	color: var(--foreground-color);
 	font-family: var(--font-family-primary);
 	font-size: 1.6rem;
-	font-variation-settings: "wght" var(--font-weight-regular);
+	font-variation-settings: 'wght' var(--font-weight-regular);
 	line-height: 160%;
 	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
 
 	@media (prefers-reduced-motion: no-preference) {
-		transition: background-color 0.3s ease-in-out;
+		transition: background-color 0.25s ease-in-out;
 	}
 }
 

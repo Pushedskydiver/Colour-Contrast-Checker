@@ -26,4 +26,4 @@ export const Panel: React.FC<TPanel> = ({
 	>
 		{children}
 	</section>
-)
+);

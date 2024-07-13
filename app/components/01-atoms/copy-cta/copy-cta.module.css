@@ -1,9 +1,11 @@
 @keyframes fade-in-out {
-	0%,100% {
+	0%,
+	100% {
 		opacity: 0;
 	}
 
-	5%,95% {
+	5%,
+	95% {
 		opacity: 1;
 	}
 }
@@ -16,7 +18,7 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	transform : translateY(-50%);
+	transform: translateY(-50%);
 }
 
 .cta {

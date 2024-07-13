@@ -30,7 +30,7 @@ export const isRgb = (rgb: number[]): boolean => {
 };
 
 export const isDark = (hsl: number[]): boolean => {
-	return chroma.hsl(hsl[0], hsl[1], hsl[2]).get('lab.l') < 60
+	return chroma.hsl(hsl[0], hsl[1], hsl[2]).get('lab.l') < 60;
 };
 
 export const colorToHsl = (hex: string): [number, number, number] => {
@@ -49,13 +49,17 @@ export const rgbToHsl = (rgb: number[]): [number, number, number] => {
 	return chroma.rgb(rgb[0], rgb[1], rgb[2]).hsl();
 };
 
+export const rgbToHex = (rgb: number[]): string => {
+	return chroma.rgb(rgb[0], rgb[1], rgb[2]).hex();
+};
+
 export const getContrast = (bg: string, fg: string): number => {
-	return chroma.contrast(bg, fg)
+	return chroma.contrast(bg, fg);
 };
 
 export const getColorValue = (
 	path: string | null,
-	fallback: string
+	fallback: string,
 ): [number, number, number] => {
 	const isPathAndHex = path && isHex(path);
 	const value = colorToHsl(isPathAndHex ? path : fallback);
@@ -73,4 +77,20 @@ export const getLevel = (contrast: number): TLevels => {
 	}
 
 	return { AALarge: 'Fail', AA: 'Fail', AAALarge: 'Fail', AAA: 'Fail' };
+};
+
+export const setContrast = (
+	bg: [number, number, number],
+	fg: [number, number, number],
+	fallback: number,
+): number => {
+	const isBgHsl = isHsl(bg);
+	const isFgHsl = isHsl(fg);
+
+	if (!isBgHsl || !isFgHsl) return fallback;
+
+	const bgHex = hslToHex(bg);
+	const fgHex = hslToHex(fg);
+
+	return getContrast(bgHex, fgHex);
 };

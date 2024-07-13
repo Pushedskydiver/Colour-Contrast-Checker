@@ -13,8 +13,12 @@ export const BuyMeACoffeeCTA: React.FC = () => {
 			rel="external"
 			className={clsx(
 				styles.cta,
-				isPoorContrast && !isBackgroundDark ? styles.ctaDark : undefined,
-				isPoorContrast && isBackgroundDark ? styles.ctaLight : undefined,
+				isPoorContrast && !isBackgroundDark
+					? styles.ctaDark
+					: undefined,
+				isPoorContrast && isBackgroundDark
+					? styles.ctaLight
+					: undefined,
 			)}
 		>
 			<svg
@@ -25,8 +29,12 @@ export const BuyMeACoffeeCTA: React.FC = () => {
 				focusable="false"
 				pointerEvents="none"
 			>
-				<image href="/images/logos/buy-me-a-coffee.svg" height="100%" width="100%" />
+				<image
+					href="/images/logos/buy-me-a-coffee.svg"
+					height="100%"
+					width="100%"
+				/>
 			</svg>
 		</a>
-	)
-}
+	);
+};

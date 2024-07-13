@@ -16,7 +16,7 @@ export type TTabbed = {
 	id: string;
 	items: TTabbedItem[];
 	ariaLabel?: string;
-	orientation?: 'horizontal' | 'vertical',
+	orientation?: 'horizontal' | 'vertical';
 };
 
 export const Tabbed: React.FC<TTabbed> = ({
@@ -38,8 +38,12 @@ export const Tabbed: React.FC<TTabbed> = ({
 		<div
 			className={clsx(
 				styles.tabs,
-				isPoorContrast && !isBackgroundDark ? styles.tabsDark : undefined,
-				isPoorContrast && isBackgroundDark ? styles.tabsLight : undefined,
+				isPoorContrast && !isBackgroundDark
+					? styles.tabsDark
+					: undefined,
+				isPoorContrast && isBackgroundDark
+					? styles.tabsLight
+					: undefined,
 			)}
 		>
 			<ul
@@ -74,5 +78,5 @@ export const Tabbed: React.FC<TTabbed> = ({
 				/>
 			))}
 		</div>
-	)
-}
+	);
+};
