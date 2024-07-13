@@ -74,8 +74,9 @@ export const Tabbed: React.FC<TTabbed> = ({
 					index={index}
 					activeTab={activeTab}
 					panelRef={tabPanelRefs}
-					children={item.children}
-				/>
+				>
+					{item.children}
+				</Panel>
 			))}
 		</div>
 	);

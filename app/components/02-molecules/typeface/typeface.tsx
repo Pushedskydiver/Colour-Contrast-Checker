@@ -61,6 +61,7 @@ export const Typeface: React.FC<TTypeface> = ({ GOOGLE_FONTS_APIKEY }) => {
 
 	useEffect(() => {
 		getGoogleFonts();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return (
