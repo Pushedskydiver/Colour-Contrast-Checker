@@ -49,6 +49,10 @@ export const rgbToHsl = (rgb: number[]): [number, number, number] => {
 	return chroma.rgb(rgb[0], rgb[1], rgb[2]).hsl();
 };
 
+export const rgbToHex = (rgb: number[]): string => {
+	return chroma.rgb(rgb[0], rgb[1], rgb[2]).hex();
+};
+
 export const getContrast = (bg: string, fg: string): number => {
 	return chroma.contrast(bg, fg);
 };

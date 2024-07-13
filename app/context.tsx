@@ -1,6 +1,5 @@
 import { createContext, useContext, useState } from 'react';
 import { useSearchParams } from '@remix-run/react';
-import throttle from 'lodash.throttle';
 
 import { getCookie, setCookie } from './services/cookies';
 import {
@@ -25,6 +24,7 @@ export type TColourContrastContext = {
 	reverseColors: () => void;
 	saveColors: () => void;
 	setColors: React.Dispatch<React.SetStateAction<TColors[]>>;
+	updatePath: (params: string) => void;
 	updateView: (bg: number[], fg: number[]) => void;
 };
 
@@ -80,15 +80,10 @@ const ColourContrastProvider: React.FC<TColourContrastProvider> = ({
 		const bg = isBackground ? hslToHex(value) : hslToHex(background);
 		const fg = isForeground ? hslToHex(value) : hslToHex(foreground);
 
-		const bgParam = bg.replace(/^#/, '');
-		const fgParam = fg.replace(/^#/, '');
-		const params = `background=${bgParam}&foreground=${fgParam}`;
-
 		if (isBackground) setBackground(value);
 		if (isForeground) setForeground(value);
 
 		checkContrast(bg, fg);
-		updatePath(params);
 	}
 
 	function saveColors(): void {
@@ -124,11 +119,9 @@ const ColourContrastProvider: React.FC<TColourContrastProvider> = ({
 		updatePath(params);
 	}
 
-	const updatePath = throttle((params: string): void => {
-		Promise.resolve().then(() => {
-			setSearchParams(params, { preventScrollReset: true });
-		});
-	}, 250);
+	const updatePath = (params: string): void => {
+		setSearchParams(params, { preventScrollReset: true });
+	};
 
 	function reverseColors(): void {
 		updateView(foreground, background);
@@ -148,6 +141,7 @@ const ColourContrastProvider: React.FC<TColourContrastProvider> = ({
 				reverseColors,
 				saveColors,
 				setColors,
+				updatePath,
 				updateView,
 			}}
 		>

@@ -11,7 +11,7 @@ import {
 } from '@remix-run/react';
 import { useSWEffect } from '@remix-pwa/sw';
 
-import ColourContrastProvider from './context';
+import ColourContrastProvider, { useColourContrast } from './context';
 import { favicons } from './meta/favicons';
 import { msTileIcons } from './meta/ms-tile-icons';
 import { openGraph } from './meta/open-graph';
@@ -172,13 +172,19 @@ export const shouldRevalidate: ShouldRevalidateFunction = () => {
 
 const AppComponent = (): JSX.Element => {
 	const [searchParams] = useSearchParams();
+	const { background, foreground } = useColourContrast();
 
-	const background = searchParams.get('background');
-	const foreground = searchParams.get('foreground');
+	const bgParam = searchParams.get('background');
+	const fgParam = searchParams.get('foreground');
+	const bgParamHex = bgParam ? `#${bgParam}` : null;
+	const fgParamHex = fgParam ? `#${fgParam}` : null;
+
+	const bg = background ? hslToHex(background) : bgParamHex;
+	const fg = foreground ? hslToHex(foreground) : fgParamHex;
 
 	const style: CSSCustomProperties = {
-		'--background-color': background ? `#${background}` : '#ffe66d',
-		'--foreground-color': foreground ? `#${foreground}` : '#222222',
+		'--background-color': bg ? bg : '#ffe66d',
+		'--foreground-color': fg ? fg : '#222222',
 	};
 
 	return (

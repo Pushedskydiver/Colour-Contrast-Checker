@@ -1,3 +1,4 @@
+import React, { forwardRef } from 'react';
 import clsx from 'clsx';
 import { useColourContrast } from '~/context';
 import { Text } from '../text/text';
@@ -9,59 +10,55 @@ export type TRangeInput = {
 	labelText: string;
 } & Pick<
 	React.ComponentProps<'input'>,
-	'max' | 'name' | 'property' | 'step' | 'value' | 'onChange'
+	'max' | 'name' | 'property' | 'step' | 'value' | 'onInput'
 >;
 
-export const RangeInput: React.FC<TRangeInput> = ({
-	id,
-	labelText,
-	max,
-	name,
-	property,
-	step,
-	value,
-	onChange,
-}) => {
-	const { isBackgroundDark, isPoorContrast } = useColourContrast();
+export const RangeInput = forwardRef<HTMLInputElement, TRangeInput>(
+	({ id, labelText, max, name, property, step, value, onInput }, ref) => {
+		const { isBackgroundDark, isPoorContrast } = useColourContrast();
 
-	return (
-		<div className={styles.field}>
-			<label
-				htmlFor={id}
-				className={clsx(
-					styles.label,
-					isPoorContrast && !isBackgroundDark
-						? styles.labelDark
-						: undefined,
-					isPoorContrast && isBackgroundDark
-						? styles.labelLight
-						: undefined,
-				)}
-			>
-				<Text size="pulse" weight="medium" role="presentation">
-					{labelText}
-				</Text>
-			</label>
+		return (
+			<div className={styles.field}>
+				<label
+					htmlFor={id}
+					className={clsx(
+						styles.label,
+						isPoorContrast && !isBackgroundDark
+							? styles.labelDark
+							: undefined,
+						isPoorContrast && isBackgroundDark
+							? styles.labelLight
+							: undefined,
+					)}
+				>
+					<Text size="pulse" weight="medium" role="presentation">
+						{labelText}
+					</Text>
+				</label>
 
-			<input
-				id={id}
-				type="range"
-				max={max}
-				name={name ?? id}
-				step={step}
-				value={value}
-				onChange={onChange}
-				data-property={property}
-				className={clsx(
-					styles.input,
-					isPoorContrast && !isBackgroundDark
-						? styles.inputDark
-						: undefined,
-					isPoorContrast && isBackgroundDark
-						? styles.inputLight
-						: undefined,
-				)}
-			/>
-		</div>
-	);
-};
+				<input
+					ref={ref}
+					id={id}
+					type="range"
+					max={max}
+					name={name ?? id}
+					step={step}
+					value={value}
+					onInput={onInput}
+					data-property={property}
+					className={clsx(
+						styles.input,
+						isPoorContrast && !isBackgroundDark
+							? styles.inputDark
+							: undefined,
+						isPoorContrast && isBackgroundDark
+							? styles.inputLight
+							: undefined,
+					)}
+				/>
+			</div>
+		);
+	},
+);
+
+RangeInput.displayName = 'RangeInput';
