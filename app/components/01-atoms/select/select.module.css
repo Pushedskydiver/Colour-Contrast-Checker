@@ -1,19 +1,22 @@
 .field {
-	--field-color: var(--foreground-color);
+	--field-fg-color: var(--foreground-color);
+	--field-bg-color: var(--background-color);
 }
 
 .fieldDark {
-	--field-color: #000;
+	--field-fg-color: #000;
+	--field-bg-color: #fff;
 }
 
 .fieldLight {
-	--field-color: #fff;
+	--field-fg-color: #fff;
+	--field-bg-color: #000;
 }
 
 .label {
 	display: inline-block;
 	margin-block-end: calc(var(--base-spacing) * 1.5);
-	color: var(--field-color);
+	color: var(--field-fg-color);
 }
 
 .selectWrapper {
@@ -26,15 +29,22 @@
 	padding-block: calc(var(--base-spacing) * 2);
 	padding-inline: calc(var(--base-spacing) * 2) calc(var(--base-spacing) * 6);
 	border-radius: calc(var(--base-spacing) / 2);
-	border: 2px solid var(--field-color);
-	color: var(--field-color);
+	border: 2px solid var(--field-fg-color);
+	background-color: var(--field-bg-color);
+	color: var(--field-fg-color);
 	font-size: 1.8rem;
-	font-variation-settings: "wght" var(--font-weight-medium);
+	font-variation-settings: 'wght' var(--font-weight-medium);
 	line-height: inherit;
 
 	&:focus-visible {
-		outline: 3px solid var(--field-color);
+		outline: 3px solid var(--field-fg-color);
 		outline-offset: 3px;
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		transition:
+			background-color 0.25s ease-in-out,
+			color 0.25s ease-in-out;
 	}
 }
 
@@ -42,6 +52,6 @@
 	position: absolute;
 	inset-block-start: 50%;
 	inset-inline-end: calc(var(--base-spacing) * 2);
-	color: var(--field-color);
+	color: var(--field-fg-color);
 	transform: translateY(-50%);
 }

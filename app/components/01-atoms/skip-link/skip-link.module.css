@@ -7,7 +7,7 @@
 	position: absolute;
 	inset-inline-start: 0;
 	color: var(--link-outline-color);
-	font-variation-settings: "wght" var(--font-weight-medium);
+	font-variation-settings: 'wght' var(--font-weight-medium);
 	line-height: normal;
 	overflow: hidden;
 	clip: rect(0 0 0 0);

@@ -6,17 +6,24 @@ import {
 	ScrollRestoration,
 	json,
 	useLoaderData,
-} from "@remix-run/react";
-import { useSWEffect } from '@remix-pwa/sw'
+	ShouldRevalidateFunction,
+	useSearchParams,
+} from '@remix-run/react';
+import { useSWEffect } from '@remix-pwa/sw';
 
-import ColourContrastProvider from "./context";
-import { favicons } from "./meta/favicons";
-import { msTileIcons } from "./meta/ms-tile-icons";
-import { openGraph } from "./meta/open-graph";
-import { splashScreens } from "./meta/splash-screens";
-import { twitterCard } from "./meta/twitter-card";
-import { decodeCookie } from "./services/cookies";
-import { getContrast, getLevel, hslToHex, isHsl, getColorValue } from "./utils/color-utils";
+import ColourContrastProvider, { useColourContrast } from './context';
+import { favicons } from './meta/favicons';
+import { msTileIcons } from './meta/ms-tile-icons';
+import { openGraph } from './meta/open-graph';
+import { splashScreens } from './meta/splash-screens';
+import { twitterCard } from './meta/twitter-card';
+import { decodeCookie } from './services/cookies';
+import {
+	getLevel,
+	hslToHex,
+	getColorValue,
+	setContrast,
+} from './utils/color-utils';
 
 import styles from './styles/globals.css?url';
 import typography from './styles/typography.css?url';
@@ -26,8 +33,8 @@ import type {
 	LoaderFunctionArgs,
 	MetaFunction,
 	TypedResponse,
-} from "@remix-run/node";
-import type { TColors, TLevels } from "./global-types";
+} from '@remix-run/node';
+import type { TColors, TLevels } from './global-types';
 
 type TRoot = {
 	background: [number, number, number];
@@ -35,29 +42,13 @@ type TRoot = {
 	colors: TColors[];
 	contrast: number;
 	levels: TLevels;
-	GOOGLE_FONTS_APIKEY: string | undefined;
-}
+	GOOGLE_FONTS_APIKEY?: string;
+};
 
 type CSSCustomProperties = {
 	['--background-color']: string;
 	['--foreground-color']: string;
 } & React.CSSProperties;
-
-const setContrast = (
-	bg: [number, number, number],
-	fg: [number, number, number],
-	fallback: number,
-) => {
-	const isBgHsl = isHsl(bg);
-	const isFgHsl = isHsl(fg);
-
-	if (!isBgHsl || !isFgHsl) return fallback;
-
-	const bgHex = hslToHex(bg);
-	const fgHex = hslToHex(fg);
-
-	return getContrast(bgHex, fgHex);
-}
 
 export const links: LinksFunction = () => [
 	{
@@ -87,7 +78,7 @@ export const links: LinksFunction = () => [
 	},
 	{
 		rel: 'manifest',
-		href: '/site.webmanifest'
+		href: '/site.webmanifest',
 	},
 	{
 		rel: 'chrome-webstore-item',
@@ -106,7 +97,7 @@ export const links: LinksFunction = () => [
 	...splashScreens,
 	{ rel: 'stylesheet', href: typography },
 	{ rel: 'stylesheet', href: styles },
-]
+];
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
 	const bgHex = data?.background ? hslToHex(data.background) : '#ffe66d';
@@ -117,7 +108,8 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
 		},
 		{
 			name: 'description',
-			content: 'Check the contrast between different colour combinations against WCAG standards.',
+			content:
+				'Check the contrast between different colour combinations against WCAG standards.',
 		},
 		{
 			name: 'theme-color',
@@ -126,7 +118,7 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
 		...openGraph,
 		...twitterCard,
 		...msTileIcons,
-	]
+	];
 };
 
 export const loader = async ({
@@ -155,18 +147,50 @@ export const loader = async ({
 		levels,
 		GOOGLE_FONTS_APIKEY,
 	});
-}
+};
 
-export default function App() {
-	useSWEffect();
-	
-	const data = useLoaderData<typeof loader>();
+export const shouldRevalidate: ShouldRevalidateFunction = () => {
+	return false;
+};
+
+const AppComponent = (): JSX.Element => {
+	const [searchParams] = useSearchParams();
+	const { background, foreground } = useColourContrast();
+
+	const bgParam = searchParams.get('background');
+	const fgParam = searchParams.get('foreground');
+	const bgParamHex = bgParam ? `#${bgParam}` : null;
+	const fgParamHex = fgParam ? `#${fgParam}` : null;
+
+	const bgHex = hslToHex(background);
+	const fgHex = hslToHex(foreground);
+
+	const isBgParamSameAsBg = bgParamHex === bgHex;
+	const isFgParamSameAsFg = fgParamHex === fgHex;
+
+	const bg = isBgParamSameAsBg ? bgParamHex : bgHex;
+	const fg = isFgParamSameAsFg ? fgParamHex : fgHex;
 
 	const style: CSSCustomProperties = {
-		'--background-color': hslToHex(data.background),
-		'--foreground-color': hslToHex(data.foreground),
-	}
-	
+		'--background-color': bg ? bg : '#ffe66d',
+		'--foreground-color': fg ? fg : '#222222',
+	};
+
+	return (
+		<body style={style}>
+			<Outlet />
+
+			<ScrollRestoration />
+			<Scripts />
+		</body>
+	);
+};
+
+export default function App(): JSX.Element {
+	useSWEffect();
+
+	const data = useLoaderData<typeof loader>();
+
 	return (
 		<html lang="en-GB">
 			<head>
@@ -180,20 +204,15 @@ export default function App() {
 				<Links />
 			</head>
 
-			<body style={style}>
-				<ColourContrastProvider
-					background={data.background}
-					foreground={data.foreground}
-					colors={data.colors}
-					contrast={data.contrast}
-					levels={data.levels}
-				>
-					<Outlet />
-				</ColourContrastProvider>
-
-				<ScrollRestoration />
-				<Scripts />
-			</body>
+			<ColourContrastProvider
+				background={data.background}
+				foreground={data.foreground}
+				colors={data.colors}
+				contrast={data.contrast}
+				levels={data.levels}
+			>
+				<AppComponent />
+			</ColourContrastProvider>
 		</html>
 	);
 }

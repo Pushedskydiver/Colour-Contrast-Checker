@@ -46,21 +46,21 @@ export const ColorControls: React.FC = () => {
 		if (!isShortHand && hslValue) {
 			handleContrastCheck(hslValue, name);
 		}
-	}
+	};
 
 	const handleBgChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
 		const value = e.target.value;
 
 		setBgValue(value);
 		handleOnChange(e);
-	}
+	};
 
 	const handleFgChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
 		const value = e.target.value;
 
 		setFgValue(value);
 		handleOnChange(e);
-	}
+	};
 
 	useEffect(() => {
 		setBgValue(hslToHex(background));
@@ -129,5 +129,5 @@ export const ColorControls: React.FC = () => {
 				</div>
 			</div>
 		</section>
-	)
-}
+	);
+};

@@ -15,5 +15,5 @@
 		var(--preferred-value),
 		var(--f-max-rem)
 	);
-	font-variation-settings: "wght" var(--weight);
+	font-variation-settings: 'wght' var(--weight);
 }

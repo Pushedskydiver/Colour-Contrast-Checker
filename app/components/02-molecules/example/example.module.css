@@ -12,7 +12,7 @@
 
 .label {
 	display: inline-block;
-color: var(--field-color);
+	color: var(--field-color);
 }
 
 .textarea {
