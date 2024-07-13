@@ -31,8 +31,8 @@
 
 	@media (prefers-reduced-motion: no-preference) {
 		transition:
-			background-color 0.3s ease-in-out,
-			color 0.3s ease-in-out;
+			background-color 0.25s ease-in-out,
+			color 0.25s ease-in-out;
 	}
 }
 

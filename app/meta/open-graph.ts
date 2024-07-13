@@ -1,4 +1,4 @@
-import type { MetaDescriptor } from "@remix-run/node";
+import type { MetaDescriptor } from '@remix-run/node';
 
 export const openGraph: MetaDescriptor[] = [
 	{
@@ -19,7 +19,8 @@ export const openGraph: MetaDescriptor[] = [
 	},
 	{
 		property: 'og:description',
-		content: 'Check the contrast between different colour combinations against WCAG standards.',
+		content:
+			'Check the contrast between different colour combinations against WCAG standards.',
 	},
 	{
 		property: 'og:site_name',
@@ -29,4 +30,4 @@ export const openGraph: MetaDescriptor[] = [
 		property: 'og:locale',
 		content: 'en_GB',
 	},
-]
+];

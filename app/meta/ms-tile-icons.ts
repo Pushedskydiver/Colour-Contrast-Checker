@@ -1,4 +1,4 @@
-import type { MetaDescriptor } from "@remix-run/node";
+import type { MetaDescriptor } from '@remix-run/node';
 
 export const msTileIcons: MetaDescriptor[] = [
 	{
@@ -35,6 +35,6 @@ export const msTileIcons: MetaDescriptor[] = [
 	},
 	{
 		name: 'msapplication-config',
-		content: '/browserconfig.xml'
+		content: '/browserconfig.xml',
 	},
-]
+];

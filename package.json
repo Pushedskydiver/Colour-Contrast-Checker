@@ -7,6 +7,7 @@
   "scripts": {
     "build": "remix vite:build",
     "dev": "node ./server.js",
+    "format": "prettier \"*/**/*.{js,jsx,ts,tsx,json,md,css,scss}\" --write",
     "lint": "run-p lint:*",
     "lint:css": "stylelint \"./**/*.{css,scss}\" --fix",
     "lint:ts": "tsc -p tsconfig.json --noEmit",
@@ -62,6 +63,7 @@
     "postcss": "^8.4.38",
     "postcss-preset-env": "^9.5.15",
     "postcss-sort-media-queries": "^5.2.0",
+    "prettier": "^3.3.2",
     "react-copy-to-clipboard": "^5.1.0",
     "remix-development-tools": "^4.2.2",
     "stylelint": "^16.6.1",

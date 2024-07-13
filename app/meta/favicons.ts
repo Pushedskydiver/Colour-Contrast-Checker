@@ -1,4 +1,4 @@
-import type { LinkDescriptor } from "@remix-run/node";
+import type { LinkDescriptor } from '@remix-run/node';
 
 export const favicons: LinkDescriptor[] = [
 	{
@@ -37,4 +37,4 @@ export const favicons: LinkDescriptor[] = [
 		sizes: '512x512',
 		href: '/favicons/favicon-512x512.png',
 	},
-]
+];

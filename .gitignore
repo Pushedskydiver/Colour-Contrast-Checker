@@ -3,8 +3,10 @@
 
 # production
 build
+public/entry.worker.js
 
 # local env files
+.env
 .env.*
 !.env.example
 
@@ -13,6 +15,9 @@ public/storybook
 
 # local Netlify folder
 .netlify
+
+# Ignore intellij IDE config
+/.idea
 
 # debug
 npm-debug.log*

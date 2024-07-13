@@ -7,9 +7,15 @@ export type TTab = {
 	index: number;
 	name: string;
 	activeTab: number;
-	tabRef: React.MutableRefObject<{[key: number]: HTMLElement | null}>
-	handleTabClick: (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, index: number) => void;
-	handleTabKeyDown: (e: React.KeyboardEvent<HTMLAnchorElement>, orientation: "horizontal" | "vertical") => void;
+	tabRef: React.MutableRefObject<{ [key: number]: HTMLElement | null }>;
+	handleTabClick: (
+		e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
+		index: number,
+	) => void;
+	handleTabKeyDown: (
+		e: React.KeyboardEvent<HTMLAnchorElement>,
+		orientation: 'horizontal' | 'vertical',
+	) => void;
 };
 
 export const Tab: React.FC<TTab> = ({
@@ -54,5 +60,5 @@ export const Tab: React.FC<TTab> = ({
 				</Text>
 			</a>
 		</li>
-	)
-}
+	);
+};

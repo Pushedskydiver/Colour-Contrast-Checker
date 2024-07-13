@@ -33,7 +33,7 @@ export const useTabbed = (): TUseTabbed => {
 	const getNextIndex = (
 		direction: string,
 		orientation: TOrientation,
-		activeTab: number
+		activeTab: number,
 	): number => {
 		const isVertical = orientation === 'vertical';
 		const next = isVertical ? 'ArrowDown' : 'ArrowRight';
