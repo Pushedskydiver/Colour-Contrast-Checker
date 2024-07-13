@@ -19,11 +19,10 @@ import { splashScreens } from './meta/splash-screens';
 import { twitterCard } from './meta/twitter-card';
 import { decodeCookie } from './services/cookies';
 import {
-	getContrast,
 	getLevel,
 	hslToHex,
-	isHsl,
 	getColorValue,
+	setContrast,
 } from './utils/color-utils';
 
 import styles from './styles/globals.css?url';
@@ -43,29 +42,13 @@ type TRoot = {
 	colors: TColors[];
 	contrast: number;
 	levels: TLevels;
-	GOOGLE_FONTS_APIKEY: string | undefined;
+	GOOGLE_FONTS_APIKEY?: string;
 };
 
 type CSSCustomProperties = {
 	['--background-color']: string;
 	['--foreground-color']: string;
 } & React.CSSProperties;
-
-const setContrast = (
-	bg: [number, number, number],
-	fg: [number, number, number],
-	fallback: number,
-): number => {
-	const isBgHsl = isHsl(bg);
-	const isFgHsl = isHsl(fg);
-
-	if (!isBgHsl || !isFgHsl) return fallback;
-
-	const bgHex = hslToHex(bg);
-	const fgHex = hslToHex(fg);
-
-	return getContrast(bgHex, fgHex);
-};
 
 export const links: LinksFunction = () => [
 	{
@@ -179,8 +162,14 @@ const AppComponent = (): JSX.Element => {
 	const bgParamHex = bgParam ? `#${bgParam}` : null;
 	const fgParamHex = fgParam ? `#${fgParam}` : null;
 
-	const bg = background ? hslToHex(background) : bgParamHex;
-	const fg = foreground ? hslToHex(foreground) : fgParamHex;
+	const bgHex = hslToHex(background);
+	const fgHex = hslToHex(foreground);
+
+	const isBgParamSameAsBg = bgParamHex === bgHex;
+	const isFgParamSameAsFg = fgParamHex === fgHex;
+
+	const bg = isBgParamSameAsBg ? bgParamHex : bgHex;
+	const fg = isFgParamSameAsFg ? fgParamHex : fgHex;
 
 	const style: CSSCustomProperties = {
 		'--background-color': bg ? bg : '#ffe66d',
