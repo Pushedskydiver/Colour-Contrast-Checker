@@ -19,7 +19,6 @@
   },
   "dependencies": {
     "@netlify/remix-adapter": "^2.4.0",
-    "@remix-pwa/worker-runtime": "^2.1.2",
     "@remix-run/express": "^2.10.2",
     "@remix-run/node": "^2.10.2",
     "@remix-run/react": "^2.10.2",
@@ -36,8 +35,6 @@
     "@eslint/compat": "^1.1.1",
     "@eslint/eslintrc": "^3.1.0",
     "@eslint/js": "^9.7.0",
-    "@remix-pwa/dev": "^3.0.5",
-    "@remix-pwa/sw": "^3.0.7",
     "@remix-run/dev": "^2.10.2",
     "@types/chroma-js": "^2.4.4",
     "@types/compression": "^1.7.5",

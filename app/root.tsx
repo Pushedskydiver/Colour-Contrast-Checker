@@ -9,7 +9,6 @@ import {
 	ShouldRevalidateFunction,
 	useSearchParams,
 } from '@remix-run/react';
-import { useSWEffect } from '@remix-pwa/sw';
 
 import ColourContrastProvider, { useColourContrast } from './context';
 import { favicons } from './meta/favicons';
@@ -187,8 +186,6 @@ const AppComponent = (): JSX.Element => {
 };
 
 export default function App(): JSX.Element {
-	useSWEffect();
-
 	const data = useLoaderData<typeof loader>();
 
 	return (
