@@ -24,7 +24,7 @@
     "@remix-run/react": "^2.10.2",
     "compression": "^1.7.4",
     "cross-env": "^7.0.3",
-    "express": "^4.19.2",
+    "express": "^4.20.0",
     "isbot": "^5.1.12",
     "lodash.round": "^4.0.4",
     "morgan": "^1.10.0",
